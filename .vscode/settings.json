@@ -1,0 +1,18 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "never"
+  },
+  "eslint.workingDirectories": [
+    "apps/admin",
+    "packages/ui-components",
+    "packages/eslint-config-custom"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "typescript"
+  ],
+  "cSpell.words": ["clsx"]
+}

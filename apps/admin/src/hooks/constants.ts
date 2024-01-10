@@ -1,0 +1,2 @@
+export const REGEX_ALLOW_ONLY_UPPER_CASE_NUMBERS_SPACE_AND_DASH =
+  /^[A-Z0-9 -]*$/;

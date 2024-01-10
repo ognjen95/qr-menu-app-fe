@@ -1,0 +1,27 @@
+query GetContentCategories(
+  $where: CategoryDetailsFilterInput
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  $order: [CategoryDetailsSortInput!]
+) {
+  contentCategories(where: $where, first: $first, last: $last, after: $after, before: $before, order: $order) {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}
+
+mutation CreateContentCategory($request: CreateCategoryCommandInput!) {
+  createContentCategory(request: $request)
+}
