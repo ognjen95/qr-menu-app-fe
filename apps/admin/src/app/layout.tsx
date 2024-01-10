@@ -6,8 +6,8 @@ import AppLayout from "~layouts/AppLayout";
 import "~styles/tailwind.css";
 
 export const metadata = {
-  title: "Concorde Health",
-  description: "Concorde Health WebApp",
+  title: "QR Menu",
+  description: "QR Menu",
 };
 
 const RootLayout: FCWithChildren = ({ children }) => (
