@@ -84,7 +84,7 @@ const SimpleTable = <
               key={row.id}
               onClick={handleRowClick}
               className={clsx(
-                "p-5 max-h-[40px] hover:shadow-sm hover:shadow-primary-100 rounded-2xl transition-all ease-in-out duration-300 bg-transparent hover:bg-white row-span-5",
+                "p-5 max-h-[40px] hover:bg-primary-100 hover:shadow-sm hover:shadow-primary-100 rounded-2xl transition-all ease-in-out duration-150 bg-transparent hover:bg-white row-span-5",
                 {
                   "cursor-pointer": onRowClick,
                 }
@@ -93,7 +93,7 @@ const SimpleTable = <
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="px-6 py-1 overflow border-b border-gray-200"
+                  className="px-6 py-1 overflow"
                   style={{ width: `${cell.column.getSize()}%` }}
                 >
                   <div>

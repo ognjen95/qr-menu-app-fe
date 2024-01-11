@@ -14,4 +14,5 @@ export enum ButtonColor {
   RED = "red",
   TRANSPARENT = "transparent",
   TRANSPARENT_LIGHT = "transparent-light",
+  OUTLINED = "outlined",
 }

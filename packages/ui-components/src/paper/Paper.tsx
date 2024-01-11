@@ -43,7 +43,7 @@ const Paper: FCWithChildren<PaperProps> = ({
   titleSize = TextVariant.HEADING6,
   action,
   allowShadowHover = false,
-  rounded = PaperRounded.XXXL,
+  rounded = PaperRounded.XL,
   hideTitlePadding = false,
   titleTruncate = false,
   container,

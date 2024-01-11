@@ -19,7 +19,7 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ mainNav, bottomNav }: SidebarProps) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
@@ -34,7 +34,7 @@ const Sidebar = ({ mainNav, bottomNav }: SidebarProps) => {
     >
       <div
         onClick={toggleSidebar}
-        className="group flex justify-center items-center absolute w-3 h-6 bg-white mt-8 -right-3 cursor-pointer py-1 text-grey-900 hover:text-primary-600 rounded-r-md border-r border-t border-b border-grey-100"
+        className="group flex justify-center items-center absolute w-3 h-6 bg-white mt-16 -right-3 cursor-pointer py-1 text-grey-900 hover:text-primary-600 rounded-r-md border-r border-t border-b border-grey-100"
       >
         <div
           className={clsx(

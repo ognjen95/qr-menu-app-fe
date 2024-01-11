@@ -10,9 +10,9 @@ export type BreadcrumbsProps = {
 };
 
 const Breadcrumbs = ({ content }: BreadcrumbsProps) => (
-  <div className="flex">
+  <div className="flex items-center">
     {content.map(({ text, isActive, link }, index) => (
-      <Link href={link} className="flex flex-row" key={index}>
+      <Link href={link} className="flex flex-row items-center" key={index}>
         <Text
           customClasses={clsx("capitalize", isActive ? "font-semibold" : "")}
           variant={getTextVariant(content.length, index === content.length - 1)}

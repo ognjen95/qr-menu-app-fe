@@ -6,7 +6,7 @@ export const SIZE_CLASS_MAPPER: Record<
 > = {
   [ButtonType.BUTTON]: {
     [ButtonSize.SMALL]: "h-10 px-3",
-    [ButtonSize.MEDIUM]: "h-14 px-4",
+    [ButtonSize.MEDIUM]: "h-12 px-4",
   },
   [ButtonType.LINK]: {
     [ButtonSize.SMALL]: "h-3",
@@ -29,6 +29,8 @@ export const COLOR_CLASS_MAPPER: Record<
       "bg-red-500 hover:bg-red-600 active:bg-red-700 disabled:bg-red-50 text-white disabled:text-red-500",
     [ButtonColor.TRANSPARENT]:
       "bg-transparent disabled:grey-600 disabled:bg-grey-50 text-grey-900 disabled:text-grey-600 hover:bg-[#0000000d] active:bg-[#0000001a]",
+    [ButtonColor.OUTLINED]:
+      "bg-transparent disabled:grey-600 border border-grey-900 disabled:bg-grey-50 text-grey-900 disabled:text-grey-600 hover:bg-grey-50 active:bg-[#0000001a]",
     [ButtonColor.TRANSPARENT_LIGHT]: "bg-white/10 text-white disabled:grey-600",
   },
   [ButtonType.LINK]: {
@@ -42,6 +44,8 @@ export const COLOR_CLASS_MAPPER: Record<
       "bg-transparent text-red-500 hover:text-red-600 hover:underline hover:decoration-solid active:underline active:text-red-700 active:decoration-solid disabled:text-grey-300",
     [ButtonColor.TRANSPARENT]: "bg-transparent",
     [ButtonColor.TRANSPARENT_LIGHT]: "bg-transparent text-white",
+    [ButtonColor.OUTLINED]:
+      "bg-transparent disabled:grey-600 border border-grey-900 disabled:bg-grey-50 text-grey-900 disabled:text-grey-600 hover:bg-[#0000000d] active:bg-[#0000001a]",
   },
 };
 
@@ -51,5 +55,6 @@ export const LOADING_COLOR_CLASS_MAPPER: Record<ButtonColor, string> = {
   [ButtonColor.GREY]: "bg-grey-300 text-grey-900",
   [ButtonColor.RED]: "bg-red-700 text-white",
   [ButtonColor.TRANSPARENT]: "text-grey-900 bg-[#0000001a]",
+  [ButtonColor.OUTLINED]: "text-grey-900 bg-[#0000001a]",
   [ButtonColor.TRANSPARENT_LIGHT]: "bg-white/10 text-white",
 };
