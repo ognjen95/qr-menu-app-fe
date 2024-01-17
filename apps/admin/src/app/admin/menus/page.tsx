@@ -1,6 +1,13 @@
 "use client";
 
-import { Pagination, Paper, useModal, ButtonTabs, Button } from "ui-components";
+import {
+  Pagination,
+  Paper,
+  useModal,
+  ButtonTabs,
+  Button,
+  IconType,
+} from "ui-components";
 
 import ListHeader from "../../../components/meta-list/list-header/ListHeader";
 import MetaList from "../../../components/meta-list/MetaList";
@@ -19,6 +26,7 @@ const MenusPage = () => {
             {
               id: 1,
               text: "Menus",
+              icon: IconType.FILE_DOCUMENT,
               feature: (
                 <Paper fullHeight noPadding>
                   <div className="flex flex-col justify-between flex-1">
@@ -80,6 +88,7 @@ const MenusPage = () => {
             {
               id: 2,
               text: "Restaurants",
+              icon: IconType.CUSTOMERS,
               feature: (
                 <div className="flex items-center justify-center h-full">
                   <Button>New Restaurant</Button>
