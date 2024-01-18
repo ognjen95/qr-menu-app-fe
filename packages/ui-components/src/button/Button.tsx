@@ -50,6 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         [COLOR_CLASS_MAPPER[type][color]]: !loading,
         [LOADING_COLOR_CLASS_MAPPER[color]]: loading,
         "w-full": fullWidth,
+        "w-fit": !fullWidth,
         "bg-[#0000001a]":
           isActive &&
           (color === ButtonColor.TRANSPARENT ||

@@ -5,9 +5,10 @@ import {
   Paper,
   useModal,
   ButtonTabs,
-  Button,
   IconType,
 } from "ui-components";
+
+import RestaurantsOverviewFeature from "~features/restaurants/restaurants-overview/RestaurantsOverview";
 
 import ListHeader from "../../../components/meta-list/list-header/ListHeader";
 import MetaList from "../../../components/meta-list/MetaList";
@@ -89,11 +90,7 @@ const MenusPage = () => {
               id: 2,
               text: "Restaurants",
               icon: IconType.CUSTOMERS,
-              feature: (
-                <div className="flex items-center justify-center h-full">
-                  <Button>New Restaurant</Button>
-                </div>
-              ),
+              feature: <RestaurantsOverviewFeature />,
             },
           ]}
           defaultTab="Menus"
