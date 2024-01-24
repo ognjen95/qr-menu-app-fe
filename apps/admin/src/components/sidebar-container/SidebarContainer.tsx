@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Avatar, Icon, IconSize, IconType, Sidebar } from "ui-components";
 
 import { useUserInfoAtomValue } from "../auth-guard/atoms";
@@ -10,7 +9,6 @@ const SidebarContainer = () => {
   const userInfo = useUserInfoAtomValue();
   const name = `${userInfo?.firstName ?? ""} ${userInfo?.lastName ?? ""}`;
   const image = userInfo?.image || "";
-  const { push } = useRouter();
 
   return (
     <Sidebar
@@ -55,7 +53,7 @@ const SidebarContainer = () => {
           link: "",
           onClick: () => {
             localStorage.clear();
-            push("/login");
+            window.location.href = "/login";
           },
         },
         {
