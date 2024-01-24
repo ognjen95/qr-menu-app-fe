@@ -3,15 +3,20 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import type { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Auth0Provider from "next-auth/providers/auth0";
-import { UserType } from "src/common/enums";
-import { RefreshToken } from "src/common/types";
 
 import { extractUserName } from "./helpers";
+import { UserRole } from "../common/enums";
 
 interface IdentityTokenFields extends JwtPayload {
   given_name?: string;
   family_name?: string;
 }
+
+type RefreshToken = {
+  access_token: string;
+  expires_in: number;
+  refresh_token?: string;
+};
 
 const refreshToken = async (token: JWT): Promise<JWT> => {
   try {
@@ -81,7 +86,7 @@ export const authOptions: NextAuthOptions = {
 
         // Here decode the token and set the user type
         // Until that is done the user type is set to ADMIN
-        token.userType = UserType.ADMIN;
+        token.userType = UserRole.CUSTOMER_OWNER;
 
         if (Date.now() < token.expiresAt * 1000) {
           return token;
@@ -94,7 +99,7 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
-        session.userType = token.userType as UserType;
+        session.userType = token.userType as UserRole;
         session.fullName = token.fullName as string;
         session.error = token.error;
       }

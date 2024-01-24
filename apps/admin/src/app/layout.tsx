@@ -1,9 +1,8 @@
 import { FontLinks } from "ui-components";
 import { FCWithChildren } from "ui-components/src/common/types";
 
-import AppLayout from "~layouts/AppLayout";
-
 import "~styles/tailwind.css";
+import AppLayout from "../layouts/AppLayout";
 
 export const metadata = {
   title: "QR Menu",

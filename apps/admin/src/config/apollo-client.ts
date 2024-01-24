@@ -6,13 +6,9 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { relayStylePagination } from "@apollo/client/utilities";
 import { withScalars } from "apollo-link-scalars";
 import { addMinutes } from "date-fns";
 import { buildClientSchema, IntrospectionQuery } from "graphql";
-import { getSession } from "next-auth/react";
-
-import introspectionResult, { StrictTypedTypePolicies } from "~graphql-api";
 
 import rawSchema from "../../gql-schema.json";
 
@@ -32,10 +28,10 @@ const typesMap = {
   },
 };
 
-const authLink = setContext(async (_, { headers }) => {
-  const session = await getSession();
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("accessToken") ?? "";
 
-  if (!session?.accessToken) {
+  if (!token) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return headers;
   }
@@ -44,7 +40,7 @@ const authLink = setContext(async (_, { headers }) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     headers: {
       ...headers,
-      Authorization: `Bearer ${session?.accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 });
@@ -59,28 +55,9 @@ const httpLink = ApolloLink.from([
   }),
 ]);
 
-const typePolicies: StrictTypedTypePolicies = {
-  Query: {
-    fields: {
-      content: relayStylePagination(["where", "order"]),
-      businesses: relayStylePagination(["where"]),
-      contentTypes: relayStylePagination(["where", "order"]),
-      contentCategories: relayStylePagination(["where", "order"]),
-      focusAreas: relayStylePagination(["where", "order"]),
-      tags: relayStylePagination(["where", "order"]),
-      dailyPlans: relayStylePagination(["where"]),
-    },
-  },
-};
-
-const cache = new InMemoryCache({
-  possibleTypes: introspectionResult.possibleTypes,
-  typePolicies,
-});
-
 const apolloClient = new ApolloClient({
   link: from([authLink, httpLink]),
-  cache,
+  cache: new InMemoryCache(),
 });
 
 export default apolloClient;

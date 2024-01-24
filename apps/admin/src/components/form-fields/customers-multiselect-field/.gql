@@ -1,3 +1,0 @@
-mutation CreateCustomer($request: CreateBusinessCommandInput!) {
-  createBusiness(request: $request)
-}

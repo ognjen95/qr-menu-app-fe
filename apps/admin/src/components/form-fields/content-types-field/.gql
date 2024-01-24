@@ -1,3 +1,0 @@
-mutation CreateContentType($args: CreateTypeCommandInput!) {
-  createContentType(request: $args)
-}

@@ -1,14 +1,16 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Avatar, Icon, IconSize, IconType, Sidebar } from "ui-components";
+
+import { useUserInfoAtomValue } from "../auth-guard/atoms";
 
 // Next.js v13+ disallows IconType.DASHBOARD like imports in server components (e.g. layout), so we wrapped this in SidebarContainer (client side component)
 const SidebarContainer = () => {
-  const session = useSession();
-
-  const name = session?.data?.fullName || "";
-  const image = session?.data?.user?.image || "";
+  const userInfo = useUserInfoAtomValue();
+  const name = `${userInfo?.firstName ?? ""} ${userInfo?.lastName ?? ""}`;
+  const image = userInfo?.image || "";
+  const { push } = useRouter();
 
   return (
     <Sidebar
@@ -52,9 +54,8 @@ const SidebarContainer = () => {
           text: "Sign out",
           link: "",
           onClick: () => {
-            signOut({
-              callbackUrl: process.env.NEXT_PUBLIC_ADMIN_APP_BASE_URL,
-            });
+            localStorage.clear();
+            push("/login");
           },
         },
         {

@@ -3,7 +3,8 @@
 import { Text, TextVariant } from "ui-components";
 
 import HttpError from "~components/http-error/HttpError";
-import ErrorLayout from "~layouts/ErrorLayout";
+
+import ErrorLayout from "../layouts/ErrorLayout";
 
 const NotFoundPage = () => (
   <ErrorLayout>

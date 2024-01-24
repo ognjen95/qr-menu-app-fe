@@ -1,7 +1,7 @@
 "use client";
 
 import { ApolloProvider } from "@apollo/client";
-import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
 import { FCWithChildren } from "ui-components";
 
 import apolloClient from "~config/apollo-client";
@@ -11,9 +11,10 @@ const AppLayout: FCWithChildren = ({ children }) => {
   useTrackRouterHistory();
 
   return (
-    <SessionProvider>
-      <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
-    </SessionProvider>
+    <ApolloProvider client={apolloClient}>
+      {children}
+      <ToastContainer />
+    </ApolloProvider>
   );
 };
 

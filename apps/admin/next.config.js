@@ -1,5 +1,3 @@
-const hostnames = process.env.NEXT_PUBLIC_ASSETS_DOMAIN.split(",");
-
 module.exports = {
   reactStrictMode: true,
   transpilePackages: ["ui-components", "yup", "react-hook-form", "resolvers"],
@@ -11,11 +9,5 @@ module.exports = {
 
     return config;
   },
-  images: {
-    remotePatterns: hostnames.map((hostname) => ({
-      protocol: "https",
-      hostname,
-      pathname: "/**",
-    })),
-  },
+  images: {},
 };
