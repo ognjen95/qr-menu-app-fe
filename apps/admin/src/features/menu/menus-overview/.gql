@@ -1,0 +1,14 @@
+query GetMenus {
+  menus {
+    edges {
+      node {
+        name
+        isVisible
+        description
+        restaurantId
+        id
+        createdAt
+      }
+    }
+  }
+}

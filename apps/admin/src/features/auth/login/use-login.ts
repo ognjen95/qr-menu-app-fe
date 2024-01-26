@@ -39,7 +39,7 @@ const useLogin: UseLogin = (): UseLoginReturn => {
         localStorage.setItem("idToken", idToken);
 
         const decodedIdToken = jwtDecode<DecodedToken>(idToken);
-        console.log({ decodedIdToken });
+
         if (
           decodedIdToken.userRole === UserRoles.CustomerEmployee ||
           decodedIdToken.userRole === UserRoles.CustomerOwner

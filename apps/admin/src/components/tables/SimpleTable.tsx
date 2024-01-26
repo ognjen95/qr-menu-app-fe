@@ -84,7 +84,7 @@ const SimpleTable = <
               key={row.id}
               onClick={handleRowClick}
               className={clsx(
-                "p-5 max-h-[40px] hover:bg-primary-100 hover:shadow-sm hover:shadow-primary-100 rounded-2xl transition-all ease-in-out duration-150 bg-transparent row-span-5",
+                "p-5 min-h-12 hover:bg-primary-100 hover:shadow-sm hover:shadow-primary-100 rounded-2xl transition-all ease-in-out duration-150 bg-transparent row-span-5",
                 {
                   "cursor-pointer": onRowClick,
                 }

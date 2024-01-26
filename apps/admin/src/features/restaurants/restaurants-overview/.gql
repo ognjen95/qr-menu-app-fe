@@ -1,0 +1,23 @@
+query GetRestaurants {
+  restaurants {
+    edges {
+      node {
+        id
+        name
+        createdAt
+        description
+        location {
+          address
+          city
+          country
+          state
+        }
+        menuId
+        image
+        name
+        tenantId
+        updatedAt
+      }
+    }
+  }
+}
