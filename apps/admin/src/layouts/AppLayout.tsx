@@ -1,5 +1,7 @@
 "use client";
 
+import "react-toastify/dist/ReactToastify.css";
+
 import { ApolloProvider } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
 import { FCWithChildren } from "ui-components";

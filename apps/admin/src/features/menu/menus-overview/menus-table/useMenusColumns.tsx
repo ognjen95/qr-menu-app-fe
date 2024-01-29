@@ -4,13 +4,14 @@ import { Icon, IconType, IconSize, Switch, Text } from "ui-components";
 import { colors } from "ui-components/src/config/tailwind-config";
 import { DEFAULT_DATE_FORMAT } from "../../../../common/constants";
 import { MenuTableModel } from "../types";
+import Link from "next/link";
 
 const useMenusColumns = () => {
   const columnHelper = createColumnHelper<MenuTableModel>();
 
   const columns = [
     columnHelper.accessor("name", {
-      cell: (cell) => <Text>{cell.getValue()}</Text>,
+      cell: (cell) => <Link className="hover:underline" href={`/admin/menus/${cell.row.original.id}`}>{cell.getValue()}</Link>,
       header: () => "Name",
       size: 20,
     }),

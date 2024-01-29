@@ -46,7 +46,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => (
     <button
       type={formName ? "submit" : "button"}
-      className={clsx(SIZE_CLASS_MAPPER[type][size], "rounded-lg active", {
+      className={clsx(SIZE_CLASS_MAPPER[type][size], "rounded-xl active", {
         [COLOR_CLASS_MAPPER[type][color]]: !loading,
         [LOADING_COLOR_CLASS_MAPPER[color]]: loading,
         "w-full": fullWidth,
