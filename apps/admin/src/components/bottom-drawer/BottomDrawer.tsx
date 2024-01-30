@@ -33,7 +33,7 @@ const BottomDrawer: FCWithChildren<BottomDrawerProps> = ({
         </DrawerHeader>
       )}
       {children}
-      {actions && <DrawerFooter>{actions}</DrawerFooter>}
+      {actions && <DrawerFooter className="w-full">{actions}</DrawerFooter>}
     </DrawerContent>
   </Drawer>
 );

@@ -15,7 +15,7 @@ const AppLayout: FCWithChildren = ({ children }) => {
   return (
     <ApolloProvider client={apolloClient}>
       {children}
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </ApolloProvider>
   );
 };

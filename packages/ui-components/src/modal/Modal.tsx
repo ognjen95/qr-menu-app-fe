@@ -28,6 +28,7 @@ export type ModalProps = {
   loading?: boolean;
   formName?: string;
   fullWidth?: boolean;
+  disableConfirmButton?: boolean;
 };
 
 const Modal: FCWithChildren<ModalProps> = ({
@@ -46,6 +47,7 @@ const Modal: FCWithChildren<ModalProps> = ({
   formName,
   boldedEndOfDescription,
   fullWidth = false,
+  disableConfirmButton,
 }) => {
   const [ref, setRef] = useState<HTMLElement | null>(null);
 
@@ -110,6 +112,7 @@ const Modal: FCWithChildren<ModalProps> = ({
                 <div className="pt-3 flex flex-col space-y-2 justify-end w-full max-w-[450px]">
                   {(onConfirm || formName) && (
                     <Button
+                      disabled={disableConfirmButton}
                       fullWidth
                       formName={formName}
                       color={confirmButtonStyle?.color}

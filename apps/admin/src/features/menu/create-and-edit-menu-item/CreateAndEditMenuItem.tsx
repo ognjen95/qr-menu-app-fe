@@ -1,35 +1,34 @@
 import React, { FC } from "react";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
-import { ItemModalModel } from "../menu-overview/types";
-import { useCreateMenuItem } from "./useCreateMenuItem";
-import CreateMenuItemFormModal from "./CreateMenuItemFormModal";
+import CreateMenuItemFormModal from "./CreateAndEditMenuItemFormModal";
+import { useCreateMenuItem } from "./useCreateAndEditMenuItem";
+import { ItemModalModel, MenuSectionItem } from "../menu-overview/types";
 
-export type CreateMenuItemFeatureProps = {
+export type CreateAndEditMenuItemFeatureProps = {
   modal: UseModalReturn<ItemModalModel>;
+  editModal?: UseModalReturn<MenuSectionItem>;
   menuId: string;
 };
 
-const CreateMenuItemFeature: FC<CreateMenuItemFeatureProps> = ({
+const CreateAndEditMenuItemFeature: FC<CreateAndEditMenuItemFeatureProps> = ({
   modal,
   menuId,
+  editModal,
 }) => {
-
   const {
     sectionItemForm,
     formFields,
     addVariant,
     removeVariant,
-    createMenuSectionItem,
+    onSubmit,
     loading,
     image,
     setImage,
     imageRef,
     onTagClick,
     onAlergenClick,
-    upload,
-  } = useCreateMenuItem(menuId, modal);
-
+  } = useCreateMenuItem(menuId, modal, editModal);
 
   return (
     <CreateMenuItemFormModal
@@ -41,14 +40,14 @@ const CreateMenuItemFeature: FC<CreateMenuItemFeatureProps> = ({
       imageRef={imageRef}
       image={image}
       setImage={setImage}
-      createMenuSectionItem={createMenuSectionItem}
+      onSubmit={onSubmit}
       modal={modal}
+      editModal={editModal}
       loading={loading}
       sectionItemForm={sectionItemForm}
-      menuId={menuId}
-      upload={upload}
+      disableConfirmButton={!sectionItemForm.formState.isValid}
     />
   );
 };
 
-export default CreateMenuItemFeature;
+export default CreateAndEditMenuItemFeature;

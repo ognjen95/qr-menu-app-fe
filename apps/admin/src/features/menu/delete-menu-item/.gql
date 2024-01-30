@@ -1,0 +1,4 @@
+
+mutation DeleteMenuItem($id: String!) {
+  deleteMenuItem(id: $id)
+}

@@ -26,9 +26,10 @@ export type UseDebounceAtom = (
 
 export type UseUploadFileReturn = {
   // getPresignedUrlAndUpload: (file: File) => Promise<string>;
-  upload: (file: File, url: string) => Promise<boolean>;
+  upload: (file: File) => Promise<string>;
+  loading: boolean;
   // getPresignedUrl: (file: File) => Promise<{ url: string; fileName: string }>;
-}
+};
 
 export type UseUploadFile = () => UseUploadFileReturn;
 

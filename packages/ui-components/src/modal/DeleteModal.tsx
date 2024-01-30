@@ -27,12 +27,12 @@ const DeleteModal: FCWithChildren<
     close={close}
     onConfirm={onConfirm}
     closeButtonStyle={{
-      size: ButtonSize.SMALL,
+      size: ButtonSize.LARGE,
     }}
     confirmButtonStyle={{
       text: "Delete",
       color: ButtonColor.RED,
-      size: ButtonSize.SMALL,
+      size: ButtonSize.LARGE,
     }}
     loading={loading}
     boldedEndOfDescription={boldedEndOfDescription}

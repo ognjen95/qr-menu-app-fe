@@ -30,3 +30,11 @@ export const dateToUtcDate = (date: Date) => {
 
   return utcToZonedTime(parsedISOString, "UTC");
 };
+
+export const addBucketPrefix = (url: string): string => {
+  const bucketUrl = process.env.NEXT_PUBLIC_IMG_URL ?? "";
+
+  if (!url) return "";
+
+  return `${bucketUrl}${url}`;
+};

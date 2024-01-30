@@ -35,3 +35,19 @@ button.video-react-button.video-react-big-play-button.video-react-big-play-butto
   left: 50%;
   transform: translate(-50%, -50%);
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px; 
+  height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+  background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 10px;
+  }

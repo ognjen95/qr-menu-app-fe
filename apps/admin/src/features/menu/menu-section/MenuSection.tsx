@@ -5,14 +5,15 @@ import { UseModalReturn } from "ui-components/src/modal/useModal";
 
 import { MenuItem } from "./types";
 import useIntersectionObserver from "../../../hooks/use-intersection-observer";
+import { MenuSectionItem } from "../menu-overview/types";
 
 export type MenuSectionProps = {
-  sectionId: number;
+  sectionId: string;
   section: string;
   selectedChip: string;
-  modal: UseModalReturn<MenuItem>;
+  modal: UseModalReturn<MenuSectionItem>;
   setSelectedChip: (chip: string) => void;
-  items: MenuItem[];
+  items: MenuSectionItem[];
 };
 
 const MenuSection: FC<MenuSectionProps> = ({
@@ -36,35 +37,44 @@ const MenuSection: FC<MenuSectionProps> = ({
 
   return (
     <div key={sectionId}>
-      <div className="py-5" ref={ref}>
+      <div className="py-5 px-5" ref={ref}>
         <Text variant={TextVariant.HEADING5}>{section}</Text>
       </div>
-      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-5">
         {items.map((item) => (
           <Paper
             onClick={() => modal.open(item)}
             key={item.id}
             noPadding
-            rounded={PaperRounded.XXL}
+            rounded={PaperRounded.NONE}
           >
             <div className="flex items-center justify-between pl-4 pr-2 py-2">
               <div className="flex flex-col flex-1 justify-between overflow-hidden space-y-2 pr-2">
                 <Text variant={TextVariant.HEADING6}>{item.name}</Text>
-                <Text truncate>{item.description}</Text>
+                <div className="flex flex-col h-10">
+                  <Text customClasses="text-ellipsis overflow-hidden">
+                    {item.description}
+                  </Text>
+                </div>
                 <Text color="text-primary-600" variant={TextVariant.HEADING6}>
-                  {item.price} $
+                  {item.variants
+                    .map((variant) => `${variant.price}$`)
+                    .join(" • ")}
                 </Text>
               </div>
-              <div className="shadow border border-gray-200 rounded-xl overflow-hidden relative h-[100px] w-[100px]">
-                <Image
-                  alt="Menu item"
-                  quality={100}
-                  priority
-                  objectFit="cover"
-                  objectPosition="center"
-                  fill
-                  src={item.image}
-                />
+              <div>
+                <div className="shadow border border-gray-200 rounded-xl overflow-hidden relative h-[100px] w-[100px]">
+                  <Image
+                    alt="Menu item"
+                    quality={100}
+                    priority
+                    loading="eager"
+                    objectFit="cover"
+                    objectPosition="center"
+                    fill
+                    src={item.image || "/images/no-content.png"}
+                  />
+                </div>
               </div>
             </div>
           </Paper>

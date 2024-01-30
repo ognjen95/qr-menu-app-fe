@@ -1,19 +1,24 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Loader } from "ui-components";
+import { Loader, useModal } from "ui-components";
 
 import MenuOverviewLayout from "./components/MenuOverviewLayout";
 import MenuSection from "./components/MenuSection";
+import { MenuSectionItem } from "./types";
 import useGetMenu from "./useMenu";
-import CreateMenuItemFeature from "../create-menu-item/CreateMenuItem";
+import CreateAndEditMenuItemFeature from "../create-and-edit-menu-item/CreateAndEditMenuItem";
 import CreateMenuSectionFeature from "../create-menu-section/CreateMenuSection";
+import DeleteMenuItemModalFeature from "../delete-menu-item/DeleteMenuItemModal";
 
 const MenuOverview = () => {
   const { menuId } = useParams();
 
   const { sectionModal, itemModal, menuSections, loading, menuName } =
     useGetMenu(menuId as string);
+
+  const editModal = useModal<MenuSectionItem>();
+  const deleteModal = useModal<MenuSectionItem>();
 
   if (loading) return <Loader centered />;
 
@@ -31,6 +36,18 @@ const MenuOverview = () => {
             addNewSection={() =>
               sectionModal.open({ id: section.id, name: section.name })
             }
+            onMenuItemClick={(item: MenuSectionItem) =>
+              editModal.open({
+                ...item,
+                sectionId: section.id,
+              })
+            }
+            onDeleteMenuItemClick={(item: MenuSectionItem) =>
+              deleteModal.open({
+                ...item,
+                sectionId: section.id,
+              })
+            }
             key={section.id}
             name={section.name}
             description={section.description}
@@ -38,11 +55,16 @@ const MenuOverview = () => {
           />
         ))}
       </div>
-      <CreateMenuSectionFeature
-        modal={sectionModal}
+      <DeleteMenuItemModalFeature modal={deleteModal} />
+      <CreateAndEditMenuItemFeature
+        editModal={editModal}
         menuId={menuId as string}
+        modal={itemModal}
       />
-      <CreateMenuItemFeature menuId={menuId as string} modal={itemModal} />
+      <CreateMenuSectionFeature
+        menuId={menuId as string}
+        modal={sectionModal}
+      />
     </MenuOverviewLayout>
   );
 };

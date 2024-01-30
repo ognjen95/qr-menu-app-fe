@@ -1,0 +1,3 @@
+mutation UpdateMenuItem($args: UpdateMenuItemInput!) {
+  updateMenuItem(args: $args)
+}

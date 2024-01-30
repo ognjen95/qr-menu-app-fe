@@ -7,7 +7,7 @@ export type MenuSection = {
 };
 
 export type ItemVariant = {
-  name: string;
+  name?: string;
   price: string | number;
 };
 
@@ -21,6 +21,8 @@ export type MenuSectionItem = {
   tags: string[];
   alergens: string[];
 };
+
+export type MenuSectionItemModel = Omit<MenuSectionItem, "id" | "sectionId">;
 
 export type MenuSectionModel = {
   name: string;

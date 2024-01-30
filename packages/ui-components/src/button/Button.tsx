@@ -56,7 +56,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           (color === ButtonColor.TRANSPARENT ||
             color === ButtonColor.TRANSPARENT_LIGHT),
       })}
-      disabled={disabled}
+      disabled={disabled || loading}
       form={formName}
       key={formName}
       ref={ref}

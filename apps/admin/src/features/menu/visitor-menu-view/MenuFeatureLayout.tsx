@@ -1,13 +1,19 @@
 import React, { forwardRef } from "react";
 import { useModal } from "ui-components/src/modal";
 
-import { menuDummyData } from "../menu-section/constants";
-import MenuSection from "../menu-section/MenuSection";
-import { MenuItem } from "../menu-section/types";
 import MenuBottomDrawer from "./MenuBottomDrawer";
 import MenuHeader from "./MenuHeader";
+import {
+  MenuSectionItem,
+  MenuSection as MenuSectionType,
+} from "../menu-overview/types";
+import MenuSection from "../menu-section/MenuSection";
 
 export type MenuFeatureLayoutProps = {
+  menu: {
+    name: string;
+    menuSections: MenuSectionType[];
+  };
   chips: string[];
   selectedChip: string;
   setSelectedChip: (chip: string) => void;
@@ -16,8 +22,11 @@ export type MenuFeatureLayoutProps = {
 };
 
 const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
-  ({ chips, selectedChip, setSelectedChip, isTopOfPage, onChipClick }, ref) => {
-    const modal = useModal<MenuItem>();
+  (
+    { chips, selectedChip, setSelectedChip, isTopOfPage, onChipClick, menu },
+    ref
+  ) => {
+    const modal = useModal<MenuSectionItem>();
 
     return (
       <div className="relative">
@@ -27,15 +36,15 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
           isTopOfPage={isTopOfPage}
           onChipClick={onChipClick}
         />
-        <div className="px-5">
-          {menuDummyData.map((section) => (
+        <div className="md:px-5">
+          {menu?.menuSections.map((section) => (
             <div
-              ref={selectedChip === section.section ? ref : undefined}
+              ref={selectedChip === section.name ? ref : undefined}
               key={section.id}
             >
               <MenuSection
                 sectionId={section.id}
-                section={section.section}
+                section={section.name}
                 selectedChip={selectedChip}
                 modal={modal}
                 items={section.items}
@@ -46,8 +55,8 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
         </div>
         <MenuBottomDrawer
           modal={modal}
-          tags={["Vegan", "Vegetarian", "Gluten free", "Lactose free"]}
-          alergens={["Milk", "Nutts", "Eggs"]}
+          tags={modal.params?.tags}
+          alergens={modal.params?.alergens}
         />
       </div>
     );

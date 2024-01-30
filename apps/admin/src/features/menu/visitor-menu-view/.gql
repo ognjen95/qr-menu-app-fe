@@ -1,11 +1,11 @@
-query GetMenu(
+query GetPublicMenu(
   $options: MenuOptionsInput,
-  $menuSectionsOptions2: MenuSectionsOptionsInput
+  $menuSectionsOptions: MenuSectionsOptionsInput
 ) {
-  menu(options: $options) {
+  publicMenu(options: $options) {
     id
     name
-    menuSections(options: $menuSectionsOptions2) {
+    menuSections(options: $menuSectionsOptions) {
       edges {
         node {
           menuId
@@ -33,12 +33,4 @@ query GetMenu(
       }
     }
   }
-}
-
-mutation CreateMenuSection($args: CreateMenuSectionInput!) {
-  createMenuSection(createMenuSectionInput: $args)
-}
-
-mutation CreateMenuItem($args: CreateMenuItemInput!) {
-  createMenuItem(args: $args)
 }

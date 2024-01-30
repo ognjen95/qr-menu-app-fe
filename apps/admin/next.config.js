@@ -9,5 +9,7 @@ module.exports = {
 
     return config;
   },
-  images: {},
+  images: {
+    domains: ["qr-menu-public.s3.eu-central-1.amazonaws.com"],
+  },
 };
