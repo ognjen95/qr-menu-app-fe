@@ -4,6 +4,7 @@ import { TextVariant, Paper, PaperRounded, Text } from "ui-components";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
 import { MenuItem } from "./types";
+import useBreakpoints from "../../../hooks/use-breakpoints";
 import useIntersectionObserver from "../../../hooks/use-intersection-observer";
 import { MenuSectionItem } from "../menu-overview/types";
 
@@ -35,9 +36,11 @@ const MenuSection: FC<MenuSectionProps> = ({
     }
   }, [isvisible, section, selectedChip, setSelectedChip]);
 
+  const isMobile = useBreakpoints("xs");
+
   return (
     <div key={sectionId}>
-      <div className="py-5 px-5" ref={ref}>
+      <div className="py-5 px-5 xs:px-0" ref={ref}>
         <Text variant={TextVariant.HEADING5}>{section}</Text>
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-5">
@@ -46,7 +49,7 @@ const MenuSection: FC<MenuSectionProps> = ({
             onClick={() => modal.open(item)}
             key={item.id}
             noPadding
-            rounded={PaperRounded.NONE}
+            rounded={isMobile ? PaperRounded.NONE : PaperRounded.XL}
           >
             <div className="flex items-center justify-between pl-4 pr-2 py-2">
               <div className="flex flex-col flex-1 justify-between overflow-hidden space-y-2 pr-2">

@@ -151,7 +151,21 @@ const CreateMenuItemFormModal: FC<CreateMenuItemFeatureProps> = ({
               <div className="flex flex-col w-full justify-between space-y-3">
                 <Text variant={TextVariant.HEADING6}>3. Alergens</Text>
                 <div className="flex items-center flex-wrap gap-3">
-                  {sectionItemForm.watch().alergens.map((alergen) => (
+                  {[
+                    "Celery",
+                    "Gluten",
+                    "Crustaceans",
+                    "Eggs",
+                    "Fish",
+                    "Lupin",
+                    "Milk",
+                    "Molluscs",
+                    "Mustard",
+                    "Nuts",
+                    "Peanuts",
+                    "Sesame seeds",
+                    "Soybeans",
+                  ].map((alergen) => (
                     <Chip
                       key={alergen}
                       text={alergen}

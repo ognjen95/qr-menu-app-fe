@@ -36,7 +36,7 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
           isTopOfPage={isTopOfPage}
           onChipClick={onChipClick}
         />
-        <div className="md:px-5">
+        <div className="xs:px-5">
           {menu?.menuSections.map((section) => (
             <div
               ref={selectedChip === section.name ? ref : undefined}

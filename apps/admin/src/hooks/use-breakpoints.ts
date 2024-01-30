@@ -3,7 +3,7 @@ import resolveConfig from "tailwindcss/resolveConfig";
 
 import TailwindConfig from "../../tailwind.config";
 
-export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl";
+export type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 const useBreakpoints = (breakpoint: Breakpoint): boolean => {
   const tailwindConfig = resolveConfig(TailwindConfig);

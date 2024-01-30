@@ -103,6 +103,8 @@ export const useCreateMenuItem = (
       description: data.description,
       menuId,
       image: imageId,
+      alergens: data.alergens,
+      tags: data.tags,
       menuSectionId:
         (editModal?.params?.sectionId || modal.params?.sectionId) ?? "",
       variants: data.variants.map((variant) => ({
