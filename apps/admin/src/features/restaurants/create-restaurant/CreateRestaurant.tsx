@@ -10,6 +10,7 @@ const CreateRestaurantFeature: FC = () => {
       <Button
         leftIcon={{
           type: IconType.PLUS,
+          stroke: "white",
         }}
         size={ButtonSize.SMALL}
         onClick={modal.open}

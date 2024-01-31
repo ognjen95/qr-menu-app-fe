@@ -10,6 +10,7 @@ const CreateMenuFeature: FC = () => {
       <Button
         leftIcon={{
           type: IconType.PLUS,
+          stroke: "white",
         }}
         onClick={modal.open}
         size={ButtonSize.SMALL}

@@ -149,9 +149,10 @@ const MenuSection: FC<MenuSectionProps> = ({
             size={ButtonSize.SMALL}
             leftIcon={{
               type: IconType.PLUS,
+              stroke: "white",
             }}
           >
-            Add Item
+            Add item
           </Button>
         </div>
         <SimpleTable<MenuSectionItem> columns={columns} data={items} />
@@ -165,7 +166,7 @@ const MenuSection: FC<MenuSectionProps> = ({
               stroke: colors.gray[600],
             }}
           >
-            Add Item
+            Add item
           </Button>
         </div>
       </Paper>
@@ -179,7 +180,7 @@ const MenuSection: FC<MenuSectionProps> = ({
             stroke: colors.gray[500],
           }}
         >
-          Add New Section
+          Add section
         </Button>
       </div>
     </div>
