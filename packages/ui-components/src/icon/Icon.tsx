@@ -138,7 +138,17 @@ export type IconProps = {
 };
 
 const Icon = forwardRef<HTMLDivElement, IconProps>(
-  ({ type, size = IconSize.LARGE, onClick, hoverColor, fill, stroke }, ref) => {
+  (
+    {
+      type,
+      size = IconSize.LARGE,
+      onClick,
+      hoverColor,
+      fill,
+      stroke = "white",
+    },
+    ref
+  ) => {
     const iconSize = SIZE_REGISTER[size];
     const sizeClasses = SIZE_CLASS_MAPPER[size];
     const [isHovered, setIsHovered] = useState<boolean>(false);
