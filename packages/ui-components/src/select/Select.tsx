@@ -1,5 +1,11 @@
 import clsx from "clsx";
-import { FC, forwardRef, useCallback, useMemo, useState } from "react";
+import {
+  MutableRefObject,
+  forwardRef,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 import Select, {
   ActionMeta,
   MenuPlacement,
@@ -41,9 +47,10 @@ export type SelectProps = {
   largeIndicator?: boolean;
   onMenuScrollToBottom?: () => void;
   onInputChange?: (value: string) => void;
+  loading?: boolean;
 };
 
-const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
+const SelectInput = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
       options,
@@ -62,12 +69,12 @@ const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
       addNewOption,
       onMenuScrollToBottom,
       onInputChange,
+      loading,
     },
     ref
   ) => {
     const [isOpened, setIsOpened] = useState(false);
     const [inputValue, setInputValue] = useState("");
-
     const handleSetInputValue = useCallback((searchValue: string) => {
       setInputValue(searchValue);
     }, []);
@@ -105,6 +112,7 @@ const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
             onInputChange?.(searchValue);
             handleSetInputValue(searchValue);
           }}
+          isLoading={loading}
           menuIsOpen={isOpened}
           closeMenuOnSelect={!isMultiSelect}
           defaultValue={defaultValue}
@@ -115,7 +123,9 @@ const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
           options={options}
           placeholder={placeholder}
           menuPlacement={menuPlacement}
-          menuPortalTarget={document.body}
+          menuPortalTarget={
+            (ref as MutableRefObject<HTMLDivElement>)?.current || document.body
+          }
           menuPosition="fixed"
           unstyled
           onMenuScrollToBottom={() => {
@@ -160,7 +170,7 @@ const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
             placeholder: () => "text-grey-600 px-2 text-sm",
             container: () =>
               clsx(
-                "rounded-lg w-full flex items-center justify-between text-left text-sm",
+                "rounded-2xl w-full flex items-center justify-between text-left text-sm",
                 {
                   "border border-red-500": !!errorMessage,
                   "border border-grey-800": !errorMessage && isOpened,
@@ -189,7 +199,7 @@ const SelectInput: FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(
               ),
             control: () =>
               clsx(
-                "px-2 rounded-lg w-full flex items-center justify-between",
+                "px-2 rounded-2xl w-full flex items-center justify-between",
                 SIZE_CLASS_MAPPER[size]
               ),
           }}
