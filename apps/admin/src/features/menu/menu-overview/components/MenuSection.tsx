@@ -35,7 +35,8 @@ const useMenuSectionColumns = ({
           <Image
             alt="menuimg"
             fill
-            // loading="eager"
+            placeholder="blur"
+            blurDataURL="/images/no-content.png"
             src={cell.getValue() || "/images/no-content.png"}
           />
         </div>

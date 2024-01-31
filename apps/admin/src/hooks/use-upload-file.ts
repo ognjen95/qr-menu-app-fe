@@ -10,6 +10,7 @@ const useUploadFile: UseUploadFile = (): UseUploadFileReturn => {
 
   const handlePublicUpload = async (file: File): Promise<string> => {
     setIsLoading(true);
+
     try {
       const { data } = await getPresignedUrl({
         fetchPolicy: "network-only",

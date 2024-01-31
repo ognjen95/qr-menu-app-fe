@@ -22,7 +22,7 @@ export const COLOR_CLASS_MAPPER: Record<
 > = {
   [ButtonType.BUTTON]: {
     [ButtonColor.PRIMARY]:
-      "bg-primary-500 hover:bg-primary-600 active:bg-primary-800 disabled:bg-primary-50 text-gray-900 active:text-white disabled:text-primary-600",
+      "bg-primary-500 hover:bg-primary-600 active:bg-primary-800 disabled:bg-primary-50 text-white active:text-white disabled:text-primary-600",
     [ButtonColor.SECONDARY]:
       "bg-secondary-700 hover:bg-secondary-800 active:bg-secondary-900 disabled:bg-secondary-50 text-white disabled:text-secondary-700",
     [ButtonColor.GREY]:
@@ -32,7 +32,7 @@ export const COLOR_CLASS_MAPPER: Record<
     [ButtonColor.TRANSPARENT]:
       "bg-transparent disabled:grey-600 disabled:bg-grey-50 text-grey-900 disabled:text-grey-600 hover:bg-[#0000000d] active:bg-[#0000001a]",
     [ButtonColor.OUTLINED]:
-      "bg-transparent disabled:grey-600 border border-grey-900 disabled:bg-grey-50 text-grey-900 disabled:text-grey-600 hover:bg-grey-50 active:bg-[#0000001a]",
+      "bg-transparent disabled:grey-600 border border-primary-500 disabled:bg-grey-50 text-grey-900 disabled:text-primary-600 hover:bg-primary-50 active:bg-[#0000001a]",
     [ButtonColor.TRANSPARENT_LIGHT]: "bg-white/10 text-white disabled:grey-600",
   },
   [ButtonType.LINK]: {

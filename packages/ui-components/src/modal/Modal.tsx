@@ -6,6 +6,7 @@ import { ModalButton, ModalIcon } from "./types";
 import Button from "../button";
 import { ButtonColor, ButtonSize } from "../button/enums";
 import { FCWithChildren } from "../common/types";
+import { colors } from "../config/tailwind-config";
 import { IconSize, IconType } from "../icon/enums";
 import Icon from "../icon/Icon";
 import IconButton from "../icon-button";
@@ -74,6 +75,8 @@ const Modal: FCWithChildren<ModalProps> = ({
                   onClick: close,
                   type: IconType.CLOSE,
                   size: IconSize.EXTRA_LARGE,
+                  stroke: colors.gray[500],
+                  fill: colors.primary[500],
                 }}
               />
             </div>
