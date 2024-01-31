@@ -1,7 +1,6 @@
 import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
 import React from "react";
-import QRCode from "react-qr-code";
 import { toast } from "react-toastify";
 import {
   Button,
