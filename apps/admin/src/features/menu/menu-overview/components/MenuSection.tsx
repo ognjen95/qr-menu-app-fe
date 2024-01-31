@@ -7,7 +7,6 @@ import {
   Button,
   IconType,
   Text,
-  Icon,
   Chip,
   Tooltip,
   IconButton,
