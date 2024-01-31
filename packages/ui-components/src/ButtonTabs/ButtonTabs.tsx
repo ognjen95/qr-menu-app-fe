@@ -25,9 +25,9 @@ const ButtonTabs: FC<ButtonTabsProps> = ({
   defaultTab,
   onTabChange,
   customClasses,
-  activeTabTextClass = "text-grey-900",
+  activeTabTextClass = "text-primary-700",
   regularTabTextClass = "text-grey-600",
-  activeTabIconClass = colors.grey[500],
+  activeTabIconClass = colors.primary[700],
   regularTabIconClass = colors.grey[500],
 }) => {
   const [activeTab, setActiveTab] = useState(defaultTab);
@@ -60,7 +60,7 @@ const ButtonTabs: FC<ButtonTabsProps> = ({
                   COLOR_CLASS_MAPPER[ButtonType.BUTTON][
                     ButtonColor.TRANSPARENT
                   ],
-                  "transition-all ease-out rounded-xl flex-1 px-6 py-3 m-1 whitespace-nowrap drop-shadow-md transform-gpu",
+                  "transition-all ease-out rounded-full flex-1 px-6 py-3 m-1 whitespace-nowrap drop-shadow-md transform-gpu",
                   {
                     "bg-white": isActive,
                   }
@@ -122,7 +122,7 @@ const ButtonTabs: FC<ButtonTabsProps> = ({
   return (
     <TabsRadix.Root defaultValue={defaultTab} className="h-full flex flex-col">
       <TabsRadix.List
-        className={clsx("flex bg-grey-100 rounded-xl mb-6", customClasses)}
+        className={clsx("flex bg-grey-100 rounded-full mb-6", customClasses)}
       >
         {tabsAndFeatures.tabs}
       </TabsRadix.List>

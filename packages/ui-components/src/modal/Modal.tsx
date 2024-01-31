@@ -39,7 +39,7 @@ const Modal: FCWithChildren<ModalProps> = ({
   children,
   close,
   onConfirm,
-  hideCloseButton = false,
+  hideCloseButton = true,
   closeOnOverlayClick = false,
   confirmButtonStyle,
   closeButtonStyle,
@@ -119,7 +119,7 @@ const Modal: FCWithChildren<ModalProps> = ({
                       fullWidth
                       formName={formName}
                       color={confirmButtonStyle?.color}
-                      size={confirmButtonStyle?.size ?? ButtonSize.LARGE}
+                      size={confirmButtonStyle?.size ?? ButtonSize.MEDIUM}
                       onClick={onConfirm}
                       loading={loading}
                     >
@@ -130,7 +130,7 @@ const Modal: FCWithChildren<ModalProps> = ({
                     <Button
                       fullWidth
                       color={closeButtonStyle?.color ?? ButtonColor.GREY}
-                      size={closeButtonStyle?.size ?? ButtonSize.LARGE}
+                      size={closeButtonStyle?.size ?? ButtonSize.MEDIUM}
                       onClick={close}
                     >
                       {closeButtonStyle?.text ?? "Cancel"}

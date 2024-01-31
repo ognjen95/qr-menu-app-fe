@@ -55,7 +55,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       {label && <Label text={label} />}
       <div
         className={clsx(
-          "w-full text-gray-900 rounded-lg sm:text-md flex items-center justify-between border",
+          "w-full text-gray-900 rounded-2xl sm:text-md flex items-center justify-between border",
           {
             "border-grey-200 bg-transparent": disabled,
             "border-transparent focus:border-grey-800 hover:border-grey-300":
@@ -85,7 +85,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={clsx(
-            "h-2/3 w-full px-4 border-0 focus:outline-none border-transparent bg-inherit rounded-lg"
+            "h-2/3 w-full px-4 border-0 focus:outline-none border-transparent bg-inherit rounded-2xl"
           )}
           type={type}
           placeholder={placeholder}
