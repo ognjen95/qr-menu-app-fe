@@ -23,7 +23,7 @@ const MenuOverview = () => {
   if (loading) return <Loader centered />;
 
   return (
-    <MenuOverviewLayout menuName={menuName}>
+    <MenuOverviewLayout menuName={menuName} menuId={menuId as string}>
       <div className="p-5 flex flex-col h-full space-y-5">
         {menuSections.map((section) => (
           <MenuSection
