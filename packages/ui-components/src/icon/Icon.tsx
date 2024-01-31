@@ -63,7 +63,6 @@ import Users from "./variants/Users";
 import UserVoice from "./variants/UserVoice";
 import UserWeight from "./variants/UserWeight";
 import Weight from "./variants/Weight";
-import { colors } from "../config/tailwind-config";
 
 export const ICON_REGISTER = {
   [IconType.HIDE_EYE]: <HideEye />,
