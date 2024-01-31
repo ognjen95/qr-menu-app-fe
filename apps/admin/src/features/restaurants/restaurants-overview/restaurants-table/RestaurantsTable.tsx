@@ -2,9 +2,8 @@ import { FC } from "react";
 
 import SimpleTable from "~components/tables/SimpleTable";
 
-import { RestaurantTableModel } from "../types";
 import useRestaurantColumns from "./useRestaurantsColumns";
-
+import { RestaurantTableModel } from "../types";
 
 export type RestaurantsTableProps = {
   restaurants: RestaurantTableModel[];

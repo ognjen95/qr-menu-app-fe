@@ -1,23 +1,26 @@
 import { FC } from "react";
 import { Button, IconType, Input, Modal, useModal } from "ui-components";
+import { ButtonSize } from "ui-components/src/button/enums";
 
 const CreateMenuFeature: FC = () => {
   const modal = useModal();
 
-  return ((
+  return (
     <div>
-      <Button leftIcon={{
-        type: IconType.PLUS,
-      }}
+      <Button
+        leftIcon={{
+          type: IconType.PLUS,
+        }}
         onClick={modal.open}
+        size={ButtonSize.SMALL}
       >
         Create Menu
       </Button>
       <Modal
-      modalIcon={{
-        type: IconType.FILE_ADD,
-        fill: "none",
-      }}
+        modalIcon={{
+          type: IconType.FILE_ADD,
+          fill: "none",
+        }}
         title="Create Menu"
         description="Please enter the name of the menu you want to create."
         close={modal.close}
@@ -28,9 +31,8 @@ const CreateMenuFeature: FC = () => {
           <Input placeholder="Menu name" />
         </div>
       </Modal>
-
     </div>
-  ))
+  );
 };
 
 export default CreateMenuFeature;

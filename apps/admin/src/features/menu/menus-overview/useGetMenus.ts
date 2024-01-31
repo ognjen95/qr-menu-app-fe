@@ -1,5 +1,5 @@
-import { useGetMenusQuery, useGetRestaurantsQuery } from '../../../graphql-api';
-import { MenuTableModel } from './types';
+import { MenuTableModel } from "./types";
+import { useGetMenusQuery } from "../../../graphql-api";
 
 const useGetMenus = () => {
   const { data, loading } = useGetMenusQuery();
@@ -9,7 +9,6 @@ const useGetMenus = () => {
       id: node.id ?? "",
       name: node.name ?? "",
       isVisible: node.isVisible,
-      restaurantId: node.restaurantId ?? "",
       description: node.description ?? "",
       createdAt: node.createdAt ?? null,
     })) ?? [];
@@ -17,7 +16,7 @@ const useGetMenus = () => {
   return {
     menus,
     loading,
-  }
-}
+  };
+};
 
-export default useGetMenus
+export default useGetMenus;
