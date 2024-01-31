@@ -4,7 +4,7 @@ import { Icon, IconType, Text } from "ui-components";
 import { colors } from "ui-components/src/config/tailwind-config";
 
 import SimpleTable from "~components/tables/SimpleTable";
-import CreateRestaurantFeature from "~features/restaurants/create-restaurant/CreateRestaurant";
+import CreateRestaurantFeature from "~features/admin/company/restaurants/create-restaurant/CreateRestaurant";
 
 import { RestaurantTableModel } from "../types";
 

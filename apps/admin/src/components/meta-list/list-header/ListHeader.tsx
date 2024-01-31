@@ -77,23 +77,6 @@ const ListHeader: FC<ListHeaderProps> = ({
       />
     </div>
     <div className="flex">
-      {/* <IconButton
-        isActive={isVisible}
-        iconProps={{
-          type: IconType.ADD_PLUS_CIRCLE,
-          fill: "transparent",
-          onClick: showAddInput,
-          size: IconSize.MEDIUM,
-        }}
-      />
-      <IconButton
-        iconProps={{
-          type: IconType.TRASH_FULL,
-          stroke: bulkDeleteIds.length > 0 ? colors.red[500] : colors.red[200],
-          onClick: bulkDeleteIds.length > 0 ? onBulkDelete : () => {},
-          size: IconSize.MEDIUM,
-        }}
-      /> */}
       <Button
         leftIcon={{
           type: IconType.PLUS,
