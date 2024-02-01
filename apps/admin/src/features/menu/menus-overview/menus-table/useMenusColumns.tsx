@@ -7,7 +7,10 @@ import { colors } from "ui-components/src/config/tailwind-config";
 import { DEFAULT_DATE_FORMAT } from "../../../../common/constants";
 import { MenuTableModel } from "../types";
 
-const useMenusColumns = () => {
+const useMenusColumns = (
+  onDelete: (id: string) => void,
+  onUpdate: (id: string) => void
+) => {
   const columnHelper = createColumnHelper<MenuTableModel>();
 
   const columns = [
@@ -42,14 +45,17 @@ const useMenusColumns = () => {
       size: 15,
     }),
     columnHelper.accessor("id", {
-      cell: () => (
+      cell: (cell) => (
         <div className="flex space-x-2">
           <Icon
             type={IconType.TRASH_FULL}
             stroke={colors.red[500]}
-            onClick={() => {}}
+            onClick={() => onDelete(cell.row.original.id)}
           />
-          <Icon type={IconType.EDIT_PENCIL_1} onClick={() => {}} />
+          <Icon
+            type={IconType.EDIT_PENCIL_1}
+            onClick={() => onUpdate(cell.row.original.id)}
+          />
         </div>
       ),
       header: undefined,
