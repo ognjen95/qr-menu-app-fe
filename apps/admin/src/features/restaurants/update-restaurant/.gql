@@ -1,0 +1,3 @@
+mutation UpdateRestaurant($args: UpdateRestaurantInput!) {
+  updateRestaurant(args: $args)
+}

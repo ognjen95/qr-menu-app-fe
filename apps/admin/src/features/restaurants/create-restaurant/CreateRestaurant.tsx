@@ -1,9 +1,12 @@
 import { FC } from "react";
-import { Button, IconType, Modal, useModal } from "ui-components";
+import { Button, IconType } from "ui-components";
 import { ButtonSize } from "ui-components/src/button/enums";
 
+import useCreateRestaurant from "./use-create-restaurant";
+import ManageRestaurantModal from "../common/ManageRestaurantModal";
+
 const CreateRestaurantFeature: FC = () => {
-  const modal = useModal();
+  const { modal, form, loading, onSubmit } = useCreateRestaurant();
 
   return (
     <div>
@@ -17,14 +20,14 @@ const CreateRestaurantFeature: FC = () => {
       >
         New Restaurant
       </Button>
-      <Modal
-        title="Create Restaurant"
+      <ManageRestaurantModal
         close={modal.close}
-        onConfirm={modal.close}
+        form={form}
+        formName="create-restaurant"
         isOpen={modal.isOpen}
-      >
-        Create
-      </Modal>
+        loading={loading}
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };

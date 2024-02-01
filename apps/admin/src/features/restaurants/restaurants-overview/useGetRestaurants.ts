@@ -1,5 +1,5 @@
-import { useGetRestaurantsQuery } from '../../../graphql-api';
-import { RestaurantTableModel } from './types';
+import { RestaurantTableModel } from "./types";
+import { useGetRestaurantsQuery } from "../../../graphql-api";
 
 const useGetRestaurants = () => {
   const { data, loading } = useGetRestaurantsQuery();
@@ -21,7 +21,7 @@ const useGetRestaurants = () => {
   return {
     restaurants,
     loading,
-  }
-}
+  };
+};
 
-export default useGetRestaurants
+export default useGetRestaurants;

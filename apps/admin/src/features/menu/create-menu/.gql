@@ -1,0 +1,3 @@
+mutation CreateMenu($createMenuInput: CreateMenuInput!) {
+  createMenu(createMenuInput: $createMenuInput)
+}

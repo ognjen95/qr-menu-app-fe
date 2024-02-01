@@ -1,0 +1,3 @@
+mutation CreateRestaurant($args: CreateRestaurantInput!) {
+  createRestaurant(args: $args)
+}

@@ -1,36 +1,32 @@
 import { FC } from "react";
-import { Button, IconType, Input, Modal, useModal } from "ui-components";
-import { ButtonSize } from "ui-components/src/button/enums";
+import { Button, Form, InputField, Modal } from "ui-components";
+
+import useCreateMenu from "./use-create-menu";
 
 const CreateMenuFeature: FC = () => {
-  const modal = useModal();
-
+  const { modal, form, loading, onSubmit } = useCreateMenu();
   return (
     <div>
-      <Button
-        leftIcon={{
-          type: IconType.PLUS,
-          stroke: "white",
-        }}
-        onClick={modal.open}
-        size={ButtonSize.SMALL}
-      >
-        Create Menu
-      </Button>
+      <Button onClick={modal.open}>+ New Menu</Button>
       <Modal
-        modalIcon={{
-          type: IconType.FILE_ADD,
-          fill: "none",
-        }}
-        title="Create Menu"
-        description="Please enter the name of the menu you want to create."
-        close={modal.close}
-        onConfirm={modal.close}
         isOpen={modal.isOpen}
+        close={modal.close}
+        title="Add Menu"
+        formName="create-menu"
+        loading={loading}
       >
-        <div className="w-full py-5">
-          <Input placeholder="Menu name" />
-        </div>
+        <Form form={form} fullWidth formName="create-menu" onSubmit={onSubmit}>
+          {({ control }) => (
+            <div className="flex flex-col space-y-4 w-full pb-4">
+              <InputField control={control} fieldName="name" label="Name" />
+              <InputField
+                control={control}
+                fieldName="description"
+                label="Description (optional)"
+              />
+            </div>
+          )}
+        </Form>
       </Modal>
     </div>
   );

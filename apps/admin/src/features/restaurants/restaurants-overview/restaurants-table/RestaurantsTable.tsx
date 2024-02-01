@@ -7,10 +7,16 @@ import { RestaurantTableModel } from "../types";
 
 export type RestaurantsTableProps = {
   restaurants: RestaurantTableModel[];
+  onDelete: (id: string) => void;
+  onUpdate: (id: string) => void;
 };
 
-const RestaurantsTable: FC<RestaurantsTableProps> = ({ restaurants }) => {
-  const columns = useRestaurantColumns();
+const RestaurantsTable: FC<RestaurantsTableProps> = ({
+  restaurants,
+  onDelete,
+  onUpdate,
+}) => {
+  const columns = useRestaurantColumns(onDelete, onUpdate);
 
   return (
     <div className="flex flex-col min-h-0">
