@@ -74,7 +74,9 @@ const MenuOverviewLayout: FCWithChildren<MenuOverviewLayoutProps> = ({
                 stroke: isCollapsed ? "white" : colors.primary[500],
               }}
             >
-              Collapse and reorder sections
+              {isCollapsed
+                ? "Expand sections"
+                : "Collapse and reorder sections"}
             </Button>
             <Button
               size={ButtonSize.SMALL}

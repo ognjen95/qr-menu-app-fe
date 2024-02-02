@@ -25,12 +25,18 @@ export const useReorderSectionsAndItems = (
     const newIndex = sectionItemIndex;
     const oldIndex = menuSectionItemIds.indexOf(sectionItemId);
 
-    if (oldIndex === 0 && newIndex <= 0) return;
+    if (oldIndex === 0 && newIndex <= 0) {
+      toast.warn("Cannot move item up, it's already at the top of the list");
+      return;
+    }
 
     if (
       oldIndex === section.items.length - 1 &&
       newIndex === section.items.length
     ) {
+      toast.warn(
+        "Cannot move item down, it's already at the bottom of the list"
+      );
       return;
     }
 
@@ -64,12 +70,18 @@ export const useReorderSectionsAndItems = (
     const menuSectionIds = menuSections.map((item) => item.id);
     const oldIndex = menuSectionIds.indexOf(section.id);
 
-    if (oldIndex === 0 && newIndex <= 0) return;
+    if (oldIndex === 0 && newIndex <= 0) {
+      toast.warn("Cannot move section up, it's already at the top of the list");
+      return;
+    }
 
     if (
       oldIndex === menuSections.length - 1 &&
       newIndex === menuSections.length
     ) {
+      toast.warn(
+        "Cannot move section down, it's already at the bottom of the list"
+      );
       return;
     }
 

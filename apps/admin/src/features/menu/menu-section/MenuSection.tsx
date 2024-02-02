@@ -73,6 +73,8 @@ const MenuSection: FC<MenuSectionProps> = ({
                     loading="eager"
                     objectFit="cover"
                     objectPosition="center"
+                    blurDataURL="/images/no-content.png"
+                    placeholder="blur"
                     fill
                     src={item.image || "/images/no-content.png"}
                   />
