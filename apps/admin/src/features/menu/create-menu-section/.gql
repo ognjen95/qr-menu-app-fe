@@ -1,0 +1,10 @@
+
+mutation DeleteMenuSection($deleteMenuSectionId: String!) {
+  deleteMenuSection(id: $deleteMenuSectionId)
+}
+
+
+
+mutation UpdateMenuSection($args: UpdateMenuSectionInput!) {
+  updateMenuSection(args: $args)
+}

@@ -8,16 +8,18 @@ export type IconButtonProps = {
   iconProps: IconProps;
   disabled?: boolean;
   isActive?: boolean;
+  className?: string;
 };
 
 const IconButton: FC<IconButtonProps> = ({
   iconProps,
   disabled = false,
   isActive = false,
+  className,
 }) => (
   <div
     onClick={iconProps.onClick}
-    className={clsx("p-2 rounded-lg", {
+    className={clsx("p-2 rounded-lg", className, {
       "bg-primary-50": isActive,
       "hover:bg-grey-100 cursor-pointer": !disabled,
       "cursor-not-allowed": disabled,

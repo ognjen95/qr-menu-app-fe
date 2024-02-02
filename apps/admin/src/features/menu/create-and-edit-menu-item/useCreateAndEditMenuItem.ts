@@ -17,6 +17,7 @@ import {
 } from "../../../graphql-api";
 import useUploadFile from "../../../hooks/use-upload-file";
 import {
+  EditModalModel,
   ItemModalModel,
   MenuSectionItem,
   MenuSectionItemModel,
@@ -39,13 +40,12 @@ export type UseCreateMenuItemReturn = {
 export const useCreateMenuItem = (
   menuId: string,
   modal: UseModalReturn<ItemModalModel>,
-  editModal?: UseModalReturn<MenuSectionItem>
+  editModal?: UseModalReturn<EditModalModel>
 ): UseCreateMenuItemReturn => {
   const isEditMode = !!editModal?.isOpen;
 
   const [craete, { loading }] = useCreateMenuItemMutation();
   const [update, { loading: updateLoading }] = useUpdateMenuItemMutation();
-
   const { upload, loading: imageUploadLoading } = useUploadFile();
 
   const [image, setImage] = useState<string | null>(null);
@@ -114,6 +114,7 @@ export const useCreateMenuItem = (
     };
 
     if (isEditMode && editModal.params) {
+      console.log("UPDATE");
       update({
         refetchQueries: [GetMenuDocument],
         onCompleted: () => {
@@ -121,8 +122,9 @@ export const useCreateMenuItem = (
         },
         variables: {
           args: {
-            id: editModal.params.id,
             ...commonArgs,
+            id: editModal.params.id,
+            menuItemsIds: editModal.params?.menuSectionsIds ?? [],
           },
         },
       });
@@ -133,9 +135,13 @@ export const useCreateMenuItem = (
           sectionItemForm.reset(DEFAULT_VALUES);
           setImage(null);
           toast.success("Item created");
+          modal.close();
         },
         variables: {
-          args: commonArgs,
+          args: {
+            ...commonArgs,
+            menuItemsIds: modal.params?.menuSectionsIds ?? [],
+          },
         },
       });
     }

@@ -1,5 +1,12 @@
 import { FC } from "react";
-import { Form, InputField, Modal, UseFormReturn } from "ui-components";
+import {
+  Form,
+  IconType,
+  InputField,
+  Modal,
+  UseFormReturn,
+} from "ui-components";
+import { colors } from "ui-components/src/config/tailwind-config";
 
 import { RestaurantFormModel } from "../create-restaurant/types";
 
@@ -26,6 +33,11 @@ const ManageRestaurantModal: FC<ManageRestaurantModalProps> = ({
     title="Add restaurant"
     formName={formName}
     loading={loading}
+    modalIcon={{
+      type: IconType.CUSTOMERS,
+      fill: "none",
+      stroke: colors.primary[600],
+    }}
   >
     <Form form={form} fullWidth formName={formName} onSubmit={onSubmit}>
       {({ control }) => (

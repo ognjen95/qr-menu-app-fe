@@ -3,11 +3,11 @@ import { UseModalReturn } from "ui-components/src/modal/useModal";
 
 import CreateMenuItemFormModal from "./CreateAndEditMenuItemFormModal";
 import { useCreateMenuItem } from "./useCreateAndEditMenuItem";
-import { ItemModalModel, MenuSectionItem } from "../menu-overview/types";
+import { EditModalModel, ItemModalModel } from "../menu-overview/types";
 
 export type CreateAndEditMenuItemFeatureProps = {
   modal: UseModalReturn<ItemModalModel>;
-  editModal?: UseModalReturn<MenuSectionItem>;
+  editModal?: UseModalReturn<EditModalModel>;
   menuId: string;
 };
 

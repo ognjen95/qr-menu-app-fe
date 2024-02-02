@@ -8,13 +8,14 @@ import {
 } from "ui-components";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
-import { MenuSectionModel } from "../menu-overview/types";
+import { MenuSection, MenuSectionModel } from "../menu-overview/types";
 
 export type CreateMenuSectionFormModalProps = {
   modal: UseModalReturn<Partial<MenuSectionModel>>;
   form: UseFormReturn<MenuSectionModel>;
   loading: boolean;
   createMenuSection: SubmitHandler<MenuSectionModel>;
+  editSectionModal: UseModalReturn<MenuSection>;
 };
 
 const CreateMenuSectionFormModal: FC<CreateMenuSectionFormModalProps> = ({
@@ -22,13 +23,14 @@ const CreateMenuSectionFormModal: FC<CreateMenuSectionFormModalProps> = ({
   form,
   loading,
   createMenuSection,
+  editSectionModal,
 }) => (
   <Modal
     formName="sectionForm"
     title="Add new section"
     description="Enter name and description for new section in your menu. You can add items to this section later."
-    isOpen={modal.isOpen}
-    close={modal.close}
+    isOpen={modal.isOpen || editSectionModal?.isOpen || false}
+    close={modal.isOpen ? modal.close : editSectionModal.close}
     loading={loading}
   >
     <Form

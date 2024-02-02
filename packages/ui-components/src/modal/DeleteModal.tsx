@@ -26,6 +26,7 @@ const DeleteModal: FCWithChildren<
     isOpen={isOpen}
     close={close}
     onConfirm={onConfirm}
+    hideCloseButton={false}
     closeButtonStyle={{
       size: ButtonSize.MEDIUM,
     }}

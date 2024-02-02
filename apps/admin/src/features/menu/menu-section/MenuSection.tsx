@@ -3,7 +3,6 @@ import { FC, useEffect } from "react";
 import { TextVariant, Paper, PaperRounded, Text } from "ui-components";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
-import { MenuItem } from "./types";
 import useBreakpoints from "../../../hooks/use-breakpoints";
 import useIntersectionObserver from "../../../hooks/use-intersection-observer";
 import { MenuSectionItem } from "../menu-overview/types";

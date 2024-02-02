@@ -22,7 +22,7 @@ export const COLOR_CLASS_MAPPER: Record<
 > = {
   [ButtonType.BUTTON]: {
     [ButtonColor.PRIMARY]:
-      "bg-primary-500 hover:bg-primary-600 active:bg-primary-800 disabled:bg-primary-50 text-white active:text-white disabled:text-primary-600 shadow shadow-primary-300 disabled:shadow disabled:shadow-transparent",
+      "bg-primary-500 hover:bg-primary-600 active:bg-primary-800 disabled:bg-primary-50 text-white active:text-white disabled:text-primary-600 shadow-primary-300 disabled:shadow disabled:shadow-transparent",
     [ButtonColor.SECONDARY]:
       "bg-secondary-700 hover:bg-secondary-800 active:bg-secondary-900 disabled:bg-secondary-50 text-white disabled:text-secondary-700",
     [ButtonColor.GREY]:

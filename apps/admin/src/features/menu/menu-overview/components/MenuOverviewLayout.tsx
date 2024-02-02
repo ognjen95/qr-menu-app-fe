@@ -17,12 +17,16 @@ import TopNavbar from "../../../../components/top-navbar/TopNavbar";
 export type MenuOverviewLayoutProps = {
   menuName: string;
   menuId: string;
+  isCollapsed?: boolean;
+  toggleCollapse?: () => void;
 };
 
 const MenuOverviewLayout: FCWithChildren<MenuOverviewLayoutProps> = ({
   children,
   menuName,
   menuId,
+  isCollapsed,
+  toggleCollapse,
 }) => {
   const modal = useModal();
 
@@ -60,6 +64,20 @@ const MenuOverviewLayout: FCWithChildren<MenuOverviewLayoutProps> = ({
           <div className="flex items-center space-x-2">
             <Button
               size={ButtonSize.SMALL}
+              color={
+                isCollapsed ? ButtonColor.PRIMARY : ButtonColor.TRANSPARENT
+              }
+              onClick={toggleCollapse}
+              leftIcon={{
+                type: IconType.UP_AND_DOWN_ARROWS,
+                fill: "none",
+                stroke: isCollapsed ? "white" : colors.primary[500],
+              }}
+            >
+              Collapse and reorder sections
+            </Button>
+            <Button
+              size={ButtonSize.SMALL}
               color={ButtonColor.OUTLINED}
               onClick={modal.open}
               leftIcon={{
@@ -69,17 +87,6 @@ const MenuOverviewLayout: FCWithChildren<MenuOverviewLayoutProps> = ({
               }}
             >
               Preview QR Code
-            </Button>
-            <Button
-              size={ButtonSize.SMALL}
-              color={ButtonColor.OUTLINED}
-              leftIcon={{
-                type: IconType.HIDE_EYE,
-                fill: "none",
-                stroke: colors.primary[500],
-              }}
-            >
-              Preview Menu
             </Button>
           </div>
         }
@@ -101,7 +108,7 @@ const MenuOverviewLayout: FCWithChildren<MenuOverviewLayoutProps> = ({
           <QRCodeCanvas id="qrcode-canvas" level="H" size={300} value={url} />
         </div>
         <Button fullWidth color={ButtonColor.OUTLINED} onClick={downloadQRCode}>
-          Download
+          Download QR Code
         </Button>
       </Modal>
     </div>

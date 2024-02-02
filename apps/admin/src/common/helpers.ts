@@ -38,3 +38,11 @@ export const addBucketPrefix = (url: string): string => {
 
   return `${bucketUrl}${url}`;
 };
+
+export const removeBucketPrefix = (url: string): string => {
+  const bucketUrl = process.env.NEXT_PUBLIC_IMG_URL ?? "";
+
+  if (!url) return "";
+
+  return url.replace(bucketUrl, "");
+};

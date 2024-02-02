@@ -11,6 +11,13 @@ export type ItemVariant = {
   price: string | number;
 };
 
+export type SectionModalModel = Partial<
+  MenuSection & {
+    positionIndex: number;
+    menuSectionsIds: string[];
+  }
+>;
+
 export type MenuSectionItem = {
   sectionId: string;
   id: string;
@@ -30,5 +37,9 @@ export type MenuSectionModel = {
 };
 
 export type ItemModalModel = Partial<
-  MenuSectionItem & { sectionName?: string }
+  MenuSectionItem & { sectionName?: string; menuSectionsIds: string[] }
 >;
+
+export type EditModalModel = MenuSectionItem & {
+  menuSectionsIds: string[];
+};

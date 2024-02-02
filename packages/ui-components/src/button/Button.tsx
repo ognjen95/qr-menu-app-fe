@@ -24,6 +24,7 @@ export type ButtonProps = {
   rightIcon?: IconProps;
   fullWidth?: boolean;
   isActive?: boolean;
+  shadow?: boolean;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -41,12 +42,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled = false,
       fullWidth = false,
       isActive = false,
+      shadow,
     },
     ref
   ) => (
     <button
       type={formName ? "submit" : "button"}
       className={clsx(SIZE_CLASS_MAPPER[type][size], "rounded-full active", {
+        shadow,
         [COLOR_CLASS_MAPPER[type][color]]: !loading,
         [LOADING_COLOR_CLASS_MAPPER[color]]: loading,
         "w-full": fullWidth,

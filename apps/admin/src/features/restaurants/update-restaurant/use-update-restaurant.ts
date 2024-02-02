@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useForm, useModal } from "ui-components";
 
 import { namedOperations, useUpdateRestaurantMutation } from "~graphql-api";
@@ -55,12 +56,26 @@ const useUpdateRestaurant = (restaurants: RestaurantTableModel[]) => {
       },
       onCompleted: () => {
         modal.close();
+        toast.success("Restaurant updated");
+        form.reset(DEFAULT_VALUES);
       },
       refetchQueries: [namedOperations.Query.GetRestaurants],
     });
   };
 
-  return { modal, form, onSubmit, loading, onUpdate };
+  return {
+    modal: {
+      ...modal,
+      close: () => {
+        modal.close();
+        form.reset(DEFAULT_VALUES);
+      },
+    },
+    form,
+    onSubmit,
+    loading,
+    onUpdate,
+  };
 };
 
 export default useUpdateRestaurant;

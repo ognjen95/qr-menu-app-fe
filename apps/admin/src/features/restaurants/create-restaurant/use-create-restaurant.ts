@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useForm, useModal } from "ui-components";
 
 import { namedOperations, useCreateRestaurantMutation } from "~graphql-api";
@@ -17,16 +18,38 @@ const useCreateRestaurant = () => {
   const onSubmit = (data: RestaurantFormModel) => {
     createRestaurant({
       variables: {
-        args: { name: data.name, description: data.description },
+        args: {
+          name: data.name,
+          description: data.description,
+          location: {
+            address: data.address,
+            city: data.city,
+            state: data.state,
+            country: data.country,
+          },
+        },
       },
       refetchQueries: [namedOperations.Query.GetRestaurants],
       onCompleted: () => {
         modal.close();
+        toast.success("Restaurant created");
+        form.reset(DEFAULT_VALUES);
       },
     });
   };
 
-  return { modal, form, onSubmit, loading };
+  return {
+    modal: {
+      ...modal,
+      close: () => {
+        modal.close();
+        form.reset(DEFAULT_VALUES);
+      },
+    },
+    form,
+    onSubmit,
+    loading,
+  };
 };
 
 export default useCreateRestaurant;

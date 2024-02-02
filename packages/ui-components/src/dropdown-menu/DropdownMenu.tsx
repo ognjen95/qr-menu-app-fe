@@ -71,7 +71,7 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
     <RadixDropdownMenu.Root open={isOpen}>
       <RadixDropdownMenu.Trigger
         asChild
-        className="outline-0 rounded-lg"
+        className="outline-0 rounded-2xl"
         onClick={(event) => {
           event.stopPropagation();
           setIsOpen(true);
@@ -122,7 +122,7 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
           onPointerDownOutside={() => setIsOpen(false)}
           sideOffset={5}
           className={clsx(
-            "bg-white rounded-lg shadow relative z-10 w-fit p-2",
+            "bg-white rounded-2xl shadow relative z-10 w-fit p-2",
             {
               "pb-2": label || onClearButtonClick || actionButtons,
             }

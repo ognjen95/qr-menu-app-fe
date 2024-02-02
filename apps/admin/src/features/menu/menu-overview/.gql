@@ -1,16 +1,18 @@
 query GetMenu(
-  $options: MenuOptionsInput,
+  $options: MenuOptionsInput
   $menuSectionsOptions2: MenuSectionsOptionsInput
 ) {
   menu(options: $options) {
     id
     name
+    menuSectionIds
     menuSections(options: $menuSectionsOptions2) {
       edges {
         node {
           menuId
           description
           id
+          menuItemIds
           name
           menuItems {
             edges {
@@ -19,8 +21,8 @@ query GetMenu(
                 id
                 name
                 tags
-                image
                 alergens
+                image
                 description
                 variants {
                   name
@@ -42,3 +44,6 @@ mutation CreateMenuSection($args: CreateMenuSectionInput!) {
 mutation CreateMenuItem($args: CreateMenuItemInput!) {
   createMenuItem(args: $args)
 }
+
+
+
