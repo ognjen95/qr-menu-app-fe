@@ -22,6 +22,11 @@ const SidebarContainer = () => {
           text: "Menus",
           link: "/admin/menus",
         },
+        {
+          iconType: IconType.TEMPLATE,
+          text: "Builder",
+          link: "/admin/builder",
+        },
       ]}
       bottomNav={[
         {

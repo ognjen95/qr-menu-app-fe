@@ -1,0 +1,161 @@
+mutation CreateThemeConfiguration($args: CreateThemeConfigurationInput!) {
+  createThemeConfiguration(args: $args)
+}
+
+query FindThemeById($findThemeByIdId: String!) {
+  findThemeById(id: $findThemeByIdId) {
+    animation {
+      delay
+      duration
+      iteration
+      timing
+      type
+    }
+    background {
+      color
+      image
+    }
+    buttons {
+      borderRadius
+    }
+    cards {
+      backgroundColor
+      borderRadius
+    }
+    colorPallete {
+      background
+      cards
+      headers
+      primary
+      secondary
+      surface
+      tertiary
+      text
+    }
+    createdAt
+    footer {
+      backgroundColor
+      color
+      fontSize
+      fontWeight
+      layout
+    }
+    id
+    logo {
+      url
+    }
+    navigation {
+      backgroundColor
+      fontSize
+      fontWeight
+      layout
+      navigationLinksColors
+    }
+    sections {
+      components {
+        props {
+          alt
+          className
+          id
+          name
+          onClick
+          placeholder
+          src
+          type
+          value
+        }
+        style {
+          alignItems
+          background
+          backgroundColor
+          border
+          borderRadius
+          bottom
+          boxShadow
+          color
+          display
+          flex
+          flexDirection
+          flexWrap
+          fontSize
+          fontWeight
+          height
+          justifyContent
+          left
+          margin
+          overflow
+          padding
+          position
+          right
+          textAlign
+          top
+          transform
+          width
+          zIndex
+        }
+        title
+        type
+      }
+      description
+      id
+      props {
+        alt
+        className
+        id
+        name
+        onClick
+        placeholder
+        src
+        type
+        value
+      }
+      style {
+        alignItems
+        background
+        backgroundColor
+        border
+        borderRadius
+        bottom
+        boxShadow
+        color
+        display
+        flex
+        flexDirection
+        flexWrap
+        fontSize
+        fontWeight
+        height
+        justifyContent
+        left
+        margin
+        overflow
+        padding
+        position
+        right
+        textAlign
+        top
+        transform
+        width
+        zIndex
+      }
+      title
+    }
+    title
+    typography {
+      fontSize
+      headers {
+        color
+        fontFamily
+        fontSize
+        weight
+      }
+      text {
+        color
+        fontFamily
+        fontSize
+        weight
+      }
+    }
+    updatedAt
+  }
+}
