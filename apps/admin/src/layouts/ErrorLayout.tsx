@@ -4,7 +4,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { FCWithChildren, Text, TextVariant } from "ui-components";
 
-import ChLogo from "../../public/ch-logo.svg";
+import ChLogo from "../../public/menu-logo.png";
 
 const ErrorLayout: FCWithChildren = ({ children }) => (
   <div className="flex flex-col items-center justify-center w-screen h-screen pb-6 pt-20">

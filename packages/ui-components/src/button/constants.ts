@@ -5,9 +5,9 @@ export const SIZE_CLASS_MAPPER: Record<
   Record<ButtonSize, string>
 > = {
   [ButtonType.BUTTON]: {
-    [ButtonSize.SMALL]: "h-10 px-3",
-    [ButtonSize.MEDIUM]: "h-12 px-4",
-    [ButtonSize.LARGE]: "h-14 px-5",
+    [ButtonSize.SMALL]: "h-10 px-4",
+    [ButtonSize.MEDIUM]: "h-12 px-5",
+    [ButtonSize.LARGE]: "h-14 px-6",
   },
   [ButtonType.LINK]: {
     [ButtonSize.SMALL]: "h-3",

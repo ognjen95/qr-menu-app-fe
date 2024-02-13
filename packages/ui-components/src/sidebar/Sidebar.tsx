@@ -7,7 +7,6 @@ import { useState } from "react";
 import BottomNavbarItem from "./BottomNavbarItem";
 import { NAV_CLASSES } from "./constants";
 import { BottomNav, TopNav } from "./types";
-import ChLogo from "../../public/ch-logo.svg";
 import { IconSize, IconType } from "../icon/enums";
 import Icon from "../icon/Icon";
 import Text from "../text";
@@ -57,16 +56,16 @@ const Sidebar = ({ mainNav, bottomNav }: SidebarProps) => {
             "w-[45px]": !sidebarOpen,
           })}
         >
-          <div className="w-[140px] h-[40px] absolute">
+          <div className="w-[100px] h-[100px] absolute top-0 -left-8">
             <Image
-              src={ChLogo as StaticImport}
+              src="/menu-logo.png"
               alt="Concorde Health Logo"
-              width={140}
-              height={40}
+              width={100}
+              height={100}
             />
             <div
               className={clsx(
-                "w-24 h-10 bg-white absolute right-0 -top-1",
+                "w-24 h-10 absolute right-0 top-5",
                 sidebarOpen ? "opacity-0" : "opacity-1"
               )}
               onClick={(event) => event.preventDefault()}

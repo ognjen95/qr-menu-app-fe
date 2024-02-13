@@ -92,11 +92,15 @@ const FileUploadInput: FC<FileUploadInputProps> = ({
           {...getRootProps({
             tabIndex: 0,
             role: "button",
-            className: clsx("border border-grey-300 w-[640px] rounded-lg p-4", {
-              "border-dashed": !value && !error,
-              "border-solid": !!value || !!error,
-              "border-red-500": !!error,
-            }),
+            className: clsx(
+              "border border-grey-200 max-w-[640px] rounded-lg p-4 overflow-hidden",
+              {
+                "border-dashed border-primary-500 bg-gray-100 hover:bg-gray-50":
+                  !value && !error,
+                "border-solid shadow bg-white break-all": !!value || !!error,
+                "border-red-500": !!error,
+              }
+            ),
           })}
         >
           {!value && (
@@ -116,7 +120,7 @@ const FileUploadInput: FC<FileUploadInputProps> = ({
                   size={IconSize.XXL}
                 />
               )}
-              <div className="flex h-6">
+              <div className="flex text-center">
                 <Text variant={TextVariant.HEADING6} color="text-grey-600">
                   {`Drag and drop an ${
                     type === FileType.FILE ? "file" : "image"
@@ -135,7 +139,10 @@ const FileUploadInput: FC<FileUploadInputProps> = ({
           )}
           {value && (
             <div className="flex justify-between">
-              <div onClick={fileNameClick} className="flex gap-3 items-center">
+              <div
+                onClick={fileNameClick}
+                className="flex gap-3 items-center group"
+              >
                 {type === FileType.FILE && (
                   <Icon
                     type={getIcon(value.name)}
@@ -152,9 +159,12 @@ const FileUploadInput: FC<FileUploadInputProps> = ({
                     height={40}
                   />
                 )}
-                <div className="flex flex-col gap-1 items-start">
+                <div className="flex flex-col gap-1 items-start group-hover:underline">
                   <div>
-                    <Text variant={TextVariant.BODY3} customClasses="underline">
+                    <Text
+                      variant={TextVariant.BODY3}
+                      customClasses="font-semibold"
+                    >
                       {value.name}
                     </Text>
                   </div>

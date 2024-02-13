@@ -158,7 +158,7 @@ const ContentPreviewModal: FC<ContentPreviewModalProps> = ({
                             URL.createObjectURL(selectedContent.file!)
                           }
                           className="rounded-lg"
-                          objectFit="cover"
+                          objectFit="contain"
                         />
                       </div>
                     )}

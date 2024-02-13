@@ -174,7 +174,7 @@ const SelectInput = forwardRef<HTMLDivElement, SelectProps>(
                 {
                   "border border-red-500": !!errorMessage,
                   "border border-grey-800": !errorMessage && isOpened,
-                  "border border-transparent hover:border-grey-300":
+                  "border border-grey-900 hover:border-grey-300":
                     !errorMessage && !isOpened && selectColor !== "white",
                   "border border-grey-50": selectColor === "white",
                 }

@@ -5,6 +5,7 @@ export enum PaperColor {
   GRADIENT_LIGHT = "bg-gradient-to-l from-primary-50 to-secondary-50",
   SECONDARY_LIGHT = "bg-secondary-100",
   PRIMARY = "bg-primary-600",
+  GRAY_LIGHT = "bg-gray-100",
 }
 
 export enum PaperRounded {
