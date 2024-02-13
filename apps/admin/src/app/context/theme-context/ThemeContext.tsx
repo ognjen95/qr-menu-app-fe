@@ -1,13 +1,17 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { FCWithChildren } from "ui-components";
 
+import { useFindThemeByIdQuery } from "~graphql-api";
+
 import { DEFAULT_THEME } from "./constants";
 import reducer from "./reducer";
 import { DefaultThemeType, ThemeContextType } from "./types";
+import { mapThemeGQL } from "./utils";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: DEFAULT_THEME,
+  loading: false,
   setCollorPallete: () => {},
   setTypography: () => {},
   setBackground: () => {},
@@ -17,8 +21,15 @@ const ThemeContext = createContext<ThemeContextType>({
 const ThemeContextProvider: FCWithChildren = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, DEFAULT_THEME);
 
+  const { loading } = useFindThemeByIdQuery({
+    variables: { findThemeByIdId: "65cb5ce8927ae2084a5694f7" },
+    onCompleted: (data) =>
+      dispatch({ type: "THEME", payload: mapThemeGQL(data.findThemeById) }),
+  });
+
   const contextValue = useMemo(
     () => ({
+      loading,
       theme: state,
       setTheme: (theme: DefaultThemeType) => {
         dispatch({ type: "THEME", payload: theme });
@@ -36,7 +47,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
         dispatch({ type: DesignOptions.BUTTONS, payload: buttons });
       },
     }),
-    [state]
+    [loading, state]
   );
 
   return (

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, IconType } from "ui-components";
 import { ButtonColor, ButtonSize } from "ui-components/src/button/enums";
+
+import "aos/dist/aos.css";
+import DefaultTheme from "~features/themes/default/DefaultTheme";
 
 import BuilderSidebar from "./builder-sidebar/BuilderSidebar";
 import useBuilderSidebar from "./builder-sidebar/useBuilderSidebar";
@@ -13,7 +16,7 @@ const Builder = () => {
   const { theme } = useThemeContext();
 
   return (
-    <div className="flex items-start h-screen bg-grey-50 bg-white overflow-hidden w-full">
+    <div className="flex items-start h-screen bg-white overflow-hidden w-full">
       <BuilderSidebar
         open={() => setSidebarOpen(true)}
         sidebarOpen={sidebarOpen}
@@ -51,38 +54,8 @@ const Builder = () => {
             Publish
           </Button>
         </div>
-        <div className="flex flex-col items-center gap-5 justify-center h-screen w-full shadow rounded-tl-lg bg-[url(/images/pub-food.png)]">
-          <h1
-            style={{
-              color: theme.colorPallete.headers,
-              fontSize: theme.typography.headers.fontSize,
-              fontFamily: theme.typography.headers.fontFamily,
-              fontWeight: theme.typography.headers.weight,
-            }}
-          >
-            Website & Menu Builder
-          </h1>
-          <p
-            style={{
-              color: theme.colorPallete.text,
-              fontSize: theme.typography.text.fontSize,
-              fontFamily: theme.typography.text.fontFamily,
-              fontWeight: theme.typography.text.weight,
-            }}
-          >
-            This is paragraph
-          </p>
-          <button
-            style={{
-              backgroundColor: theme.colorPallete.primary,
-              color: theme.colorPallete.text,
-              borderRadius: theme.buttons.borderRadius,
-            }}
-            type="button"
-            className="px-6 h-10 bg-primary-500 flex items-center justify-center"
-          >
-            Square
-          </button>
+        <div className="flex flex-col items-center flex-1 overflow-y-auto gap-5  w-full shadow rounded-t-lg no-scrollbar">
+          <DefaultTheme theme={theme} />
         </div>
       </div>
     </div>

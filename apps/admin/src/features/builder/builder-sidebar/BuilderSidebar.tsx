@@ -30,14 +30,14 @@ const SidebarContainer: FC<SidebarContainerProps> = ({
   const { push } = useRouter();
 
   return (
-    <div className="flex flex-col justify-between h-screen transition-all duration-300 ease-in-out relative z-50 pt-3">
+    <div className="flex flex-col justify-between h-screen transition-all duration-300 ease-in-out relative z-50 pt-3 shadow">
       <div className="flex flex-col justify-between">
         <Image
           src="/menu-logo.png"
           alt="Concorde Health Logo"
           width={100}
           height={100}
-          className="ml-3"
+          className="ml-2"
         />
         {MAIN_NAV.map((item) => (
           <div key={item.link} className="mt-3 mx-2">
