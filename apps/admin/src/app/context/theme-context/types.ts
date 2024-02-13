@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
 
 export type ActionsType =
@@ -30,30 +32,54 @@ export type ThemeContextType = {
   setBackground: (background: DefaultThemeType["background"]) => void;
 };
 
-export type DefaultThemeType = {
-  sections: Array<{
-    description: string;
-    id: string;
+export type Section = {
+  description: string;
+  id: string;
+  title: string;
+  style: CSSProperties;
+  props: Record<string, string>;
+  components: Array<{
     title: string;
-    style: Record<string, string>;
+    type: string;
+    style: CSSProperties;
     props: Record<string, string>;
-    components: Array<{
-      title: string;
-      type: string;
-      style: Record<string, string>;
-      props: Record<string, string>;
-    }>;
   }>;
-  colorPallete: {
-    primary: string;
-    text: string;
-    cards: string;
-    background: string;
-    headers: string;
-    surface: string;
-    tertiary: string;
-    secondary: string;
+};
+
+export type ColorPallete = {
+  primary: string;
+  text: string;
+  cards: string;
+  background: string;
+  headers: string;
+  surface: string;
+  tertiary: string;
+  secondary: string;
+};
+
+export type Typography = {
+  fontSize: string;
+  headers: {
+    color: string;
+    fontFamily: string;
+    fontSize: string;
+    weight: string;
   };
+  text: {
+    color: string;
+    fontFamily: string;
+    fontSize: string;
+    weight: string;
+  };
+};
+
+export type ButtonsStyle = {
+  borderRadius: string;
+};
+
+export type DefaultThemeType = {
+  sections: Section[];
+  colorPallete: ColorPallete;
   title: string;
   animation: {
     delay: string;
@@ -66,22 +92,6 @@ export type DefaultThemeType = {
     color: string;
     image: string;
   };
-  buttons: {
-    borderRadius: string;
-  };
-  typography: {
-    fontSize: string;
-    headers: {
-      fontSize: string;
-      color: string;
-      weight: string;
-      fontFamily: string;
-    };
-    text: {
-      fontSize: string;
-      color: string;
-      weight: string;
-      fontFamily: string;
-    };
-  };
+  buttons: ButtonsStyle;
+  typography: Typography;
 };

@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { FCWithChildren } from "ui-components";
 
+import { useFindThemeByIdQuery } from "~graphql-api";
+
 import { DEFAULT_THEME } from "./constants";
 import reducer from "./reducer";
 import { DefaultThemeType, ThemeContextType } from "./types";
+import { mapThemeGQL } from "./utils";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
 
 const ThemeContext = createContext<ThemeContextType>({
@@ -38,6 +41,12 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
     }),
     [state]
   );
+
+  useFindThemeByIdQuery({
+    variables: { findThemeByIdId: "65cb5ce8927ae2084a5694f7" },
+    onCompleted: (data) =>
+      contextValue.setTheme(mapThemeGQL(data.findThemeById)),
+  });
 
   return (
     <ThemeContext.Provider value={contextValue}>
