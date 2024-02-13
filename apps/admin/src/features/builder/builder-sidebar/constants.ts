@@ -9,27 +9,27 @@ export const MAIN_NAV = [
     link: "/admin/menus",
   },
   {
-    iconType: IconType.DASHBOARD,
+    iconType: IconType.EDIT_PENCIL_1,
     text: MainNav.DESIGN,
     link: "/admin/dashboard",
   },
   {
-    iconType: IconType.DASHBOARD,
+    iconType: IconType.IMAGE_1,
     text: MainNav.THEMES,
     link: "/admin/dashboard",
   },
   {
-    iconType: IconType.TEMPLATE,
+    iconType: IconType.FILE_DOCUMENT,
     text: MainNav.PAGES,
     link: "/admin/builder",
   },
   {
-    iconType: IconType.TEMPLATE,
+    iconType: IconType.GLOBE,
     text: MainNav.LANGUAGES,
     link: "/admin/builder",
   },
   {
-    iconType: IconType.TEMPLATE,
+    iconType: IconType.SETTINGS,
     text: MainNav.SETTINGS,
     link: "/admin/builder",
   },
@@ -42,7 +42,7 @@ export const DESING_OPTIONS = [
     return: MainNav.DESIGN,
   },
   {
-    iconType: IconType.TEMPLATE,
+    iconType: IconType.TYPOGRAPHY,
     text: DesignOptions.TYPOGRAPHY,
     return: MainNav.DESIGN,
   },
@@ -52,7 +52,7 @@ export const DESING_OPTIONS = [
     return: MainNav.DESIGN,
   },
   {
-    iconType: IconType.TEMPLATE,
+    iconType: IconType.IMAGE_1,
     text: DesignOptions.BACKGROUND,
     return: MainNav.DESIGN,
   },

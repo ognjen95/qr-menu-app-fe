@@ -7,6 +7,7 @@ import Slideshow from "./Slideshow";
 import AddPlusCircle from "./variants/AddPlusCircle";
 import ArrowLeftLg from "./variants/ArrowLeftLg";
 import ArrowRight from "./variants/ArrowRight";
+import Brush from "./variants/Brush";
 import CaretDown from "./variants/CaretDown";
 import Check from "./variants/Check";
 import ChevronLeft from "./variants/ChevronLeft";
@@ -31,6 +32,7 @@ import FolderAdd from "./variants/FolderAdd";
 import FolderColored from "./variants/FolderColored";
 import FolderDocument from "./variants/FolderDocument";
 import Gender from "./variants/Gender";
+import Globe from "./variants/Globe";
 import Hamburger from "./variants/Hamburger";
 import Heart from "./variants/Heart";
 import Height from "./variants/Height";
@@ -50,11 +52,13 @@ import Plus from "./variants/Plus";
 import Redo from "./variants/Redo";
 import RemoveMinusCircle from "./variants/RemoveMinusCircle";
 import Search from "./variants/Search";
+import Settings from "./variants/Settings";
 import SquareWarning from "./variants/SquareWarning";
 import Template from "./variants/Template";
 import TrashFull from "./variants/TrashFull";
 import TriangleWarning from "./variants/TriangleWarning";
 import TwoUsersOutlined from "./variants/TwoUsersOutlined";
+import Typography from "./variants/Typography";
 import UpAndDownArrows from "./variants/UpAndDownArrows";
 import User03 from "./variants/User03";
 import UserCardId from "./variants/UserCardId";
@@ -126,6 +130,10 @@ export const ICON_REGISTER = {
   [IconType.DAILY_PLAN]: <DailyPlan />,
   [IconType.USER_HEIGHT]: <UserHeight />,
   [IconType.USER_WEIGHT]: <UserWeight />,
+  [IconType.SETTINGS]: <Settings />,
+  [IconType.GLOBE]: <Globe />,
+  [IconType.TYPOGRAPHY]: <Typography />,
+  [IconType.BRUSH]: <Brush />,
 };
 
 export type IconProps = {

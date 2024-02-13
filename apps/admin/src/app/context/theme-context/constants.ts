@@ -34,7 +34,7 @@ export const DEFAULT_THEME: DefaultThemeType = {
   ],
   colorPallete: {
     primary: "orange",
-    text: "black",
+    text: "white",
     cards: "white",
     background: "#f4f4f4",
     headers: "orange",

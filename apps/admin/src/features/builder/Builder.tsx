@@ -21,7 +21,7 @@ const Builder = () => {
         selected={selected}
         setSelected={setSelected}
       />
-      <div className="flex flex-col flex-1 h-screen overflow-y-auto bg-gray-50 w-full">
+      <div className="flex flex-col flex-1 h-screen overflow-y-auto bg-gray w-full">
         <div className="flex items-center justify-end space-x-3 px-5 py-2">
           <Button
             leftIcon={{ type: IconType.ARROW_LEFT_LG }}
@@ -51,7 +51,7 @@ const Builder = () => {
             Publish
           </Button>
         </div>
-        <div className="flex flex-col items-center gap-5 justify-center h-screen w-full shadow rounded-t-xl">
+        <div className="flex flex-col items-center gap-5 justify-center h-screen w-full shadow rounded-tl-lg bg-[url(/images/pub-food.png)]">
           <h1
             style={{
               color: theme.colorPallete.headers,
