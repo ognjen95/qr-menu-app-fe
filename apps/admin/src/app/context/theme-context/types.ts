@@ -1,6 +1,22 @@
 import { CSSProperties } from "react";
 
+import {
+  AnimationType,
+  ButtonSize,
+  ButtonType,
+  NavigationLayout,
+  SectionActions,
+  TypographySize,
+} from "./enums";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
+import { ComponentType } from "../../../features/themes/sections/enums";
+
+export type PartialCollorPallete = Partial<DefaultThemeType["colorPallete"]>;
+export type PartialTypography = Partial<DefaultThemeType["typography"]>;
+export type PartialButtons = Partial<DefaultThemeType["buttons"]>;
+export type PartialBackground = Partial<DefaultThemeType["background"]>;
+export type PartialNavigation = Partial<DefaultThemeType["navigation"]>;
+export type PartialAnimation = Partial<DefaultThemeType["animation"]>;
 
 export type ActionsType =
   | {
@@ -9,42 +25,98 @@ export type ActionsType =
     }
   | {
       type: DesignOptions.COLORS;
-      payload: DefaultThemeType["colorPallete"];
+      payload: PartialCollorPallete;
     }
   | {
       type: DesignOptions.TYPOGRAPHY;
-      payload: DefaultThemeType["typography"];
+      payload: PartialTypography;
     }
   | {
       type: DesignOptions.BUTTONS;
-      payload: DefaultThemeType["buttons"];
+      payload: PartialButtons;
     }
   | {
       type: DesignOptions.BACKGROUND;
-      payload: DefaultThemeType["background"];
+      payload: PartialBackground;
+    }
+  | {
+      type: DesignOptions.NAVIGATION;
+      payload: PartialNavigation;
+    }
+  | {
+      type: DesignOptions.ANIMATIONS;
+      payload: PartialAnimation;
+    }
+  | {
+      type: SectionActions.ADD;
+      payload: {
+        index: number;
+        section: Section;
+      };
+    }
+  | {
+      type: SectionActions.EDIT;
+      payload: {
+        index: number;
+        section: Section;
+      };
+    }
+  | {
+      type: SectionActions.DELETE;
+      payload: {
+        index: number;
+      };
     };
 
 export type ThemeContextType = {
   theme: DefaultThemeType;
   loading: boolean;
-  setCollorPallete: (colorPallete: DefaultThemeType["colorPallete"]) => void;
-  setTypography: (typography: DefaultThemeType["typography"]) => void;
-  setButtons: (buttons: DefaultThemeType["buttons"]) => void;
-  setBackground: (background: DefaultThemeType["background"]) => void;
+  setTheme: (theme: DefaultThemeType) => void;
+  setCollorPallete: (colorPallete: PartialCollorPallete) => void;
+  setTypography: (typography: PartialTypography) => void;
+  setButtons: (buttons: PartialButtons) => void;
+  setBackground: (background: PartialBackground) => void;
+  setNavigation: (navigation: PartialNavigation) => void;
+  setAnimation: (animation: PartialAnimation) => void;
+  addSection: (section: Section, index: number) => void;
+  editSection: (section: Section, index: number) => void;
+  deleteSection: (index: number) => void;
+};
+
+export type ComponentProps = {
+  className?: string;
+
+  id?: string;
+
+  onClick?: string;
+
+  src?: string;
+
+  alt?: string;
+
+  type?: string;
+
+  value?: string;
+
+  placeholder?: string;
+
+  name?: string;
+};
+
+export type SectionComponent = {
+  title: string;
+  type: ComponentType;
+  style?: CSSProperties;
+  props?: ComponentProps;
 };
 
 export type Section = {
   description: string;
   id: string;
   title: string;
-  style: CSSProperties;
-  props: Record<string, string>;
-  components: Array<{
-    title: string;
-    type: string;
-    style: CSSProperties;
-    props: Record<string, string>;
-  }>;
+  style?: CSSProperties;
+  props?: Record<string, string>;
+  components: Array<SectionComponent>;
 };
 
 export type ColorPallete = {
@@ -59,7 +131,7 @@ export type ColorPallete = {
 };
 
 export type Typography = {
-  fontSize: string;
+  fontSize: TypographySize;
   headers: {
     color: string;
     fontFamily: string;
@@ -76,18 +148,32 @@ export type Typography = {
 
 export type ButtonsStyle = {
   borderRadius: string;
+  buttonHover: boolean;
+  buttonType: ButtonType;
+  buttonSize: ButtonSize;
+};
+
+export type NavigationModel = {
+  layout: NavigationLayout;
+  backgroundColor: string;
+  navigationLinksColors: string;
+  fontSize: string;
+  fontWeight: string;
 };
 
 export type DefaultThemeType = {
   sections: Section[];
   colorPallete: ColorPallete;
-  title: string;
+  logo: {
+    url?: string;
+  };
+  title?: string;
   animation: {
     delay: string;
     duration: string;
     iteration: string;
     timing: string;
-    type: string;
+    type: AnimationType;
   };
   background: {
     color: string;
@@ -95,4 +181,5 @@ export type DefaultThemeType = {
   };
   buttons: ButtonsStyle;
   typography: Typography;
+  navigation: NavigationModel;
 };

@@ -99,11 +99,11 @@ const Modal: FCWithChildren<ModalProps> = ({
                   />
                 </div>
               )}
-              <div className="text-center max-w-[500px]">
+              <div className="text-center max-w-[500px] py-3">
                 <Text variant={TextVariant.HEADING5}>{title}</Text>
               </div>
               <div className="text-center flex items-center max-w-[500px] space-x-1">
-                <Text>{description}</Text>
+                <Text variant={TextVariant.BODY2}>{description}</Text>
                 {boldedEndOfDescription && (
                   <Text customClasses="font-bold">
                     {boldedEndOfDescription}

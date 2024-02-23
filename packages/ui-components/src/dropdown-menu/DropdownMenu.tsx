@@ -96,7 +96,7 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
                   leftIcon={{
                     type: iconType,
                     size: iconSize,
-                    fill: iconColor,
+                    fill: "none",
                     stroke: iconColor,
                   }}
                   isActive={isOpen}

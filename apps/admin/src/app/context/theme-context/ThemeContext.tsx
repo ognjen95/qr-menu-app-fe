@@ -1,53 +1,85 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { FCWithChildren } from "ui-components";
 
-import { useFindThemeByIdQuery } from "~graphql-api";
-
-import { DEFAULT_THEME } from "./constants";
+import { SectionActions } from "./enums";
 import reducer from "./reducer";
-import { DefaultThemeType, ThemeContextType } from "./types";
-import { mapThemeGQL } from "./utils";
+import { DefaultThemeType, Section, ThemeContextType } from "./types";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
+import { DEFAULT_THEME_CONFIG } from "../../../features/themes/default/constants";
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: DEFAULT_THEME,
+  theme: DEFAULT_THEME_CONFIG,
   loading: false,
+  setTheme: () => {},
   setCollorPallete: () => {},
   setTypography: () => {},
   setBackground: () => {},
   setButtons: () => {},
+  setNavigation: () => {},
+  setAnimation: () => {},
+  addSection: () => {},
+  editSection: () => {},
+  deleteSection: () => {},
 });
 
 const ThemeContextProvider: FCWithChildren = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, DEFAULT_THEME);
-
-  const { loading } = useFindThemeByIdQuery({
-    variables: { findThemeByIdId: "65cb5ce8927ae2084a5694f7" },
-    onCompleted: (data) =>
-      dispatch({ type: "THEME", payload: mapThemeGQL(data.findThemeById) }),
-  });
+  const [state, dispatch] = useReducer(reducer, DEFAULT_THEME_CONFIG);
 
   const contextValue = useMemo(
     () => ({
-      loading,
+      loading: false,
       theme: state,
       setTheme: (theme: DefaultThemeType) => {
         dispatch({ type: "THEME", payload: theme });
       },
-      setCollorPallete: (colorPallete: DefaultThemeType["colorPallete"]) => {
+      setCollorPallete: (
+        colorPallete: Partial<DefaultThemeType["colorPallete"]>
+      ) => {
         dispatch({ type: DesignOptions.COLORS, payload: colorPallete });
       },
-      setTypography: (typography: DefaultThemeType["typography"]) => {
+      setTypography: (typography: Partial<DefaultThemeType["typography"]>) => {
         dispatch({ type: DesignOptions.TYPOGRAPHY, payload: typography });
       },
-      setBackground: (background: DefaultThemeType["background"]) => {
+      setBackground: (background: Partial<DefaultThemeType["background"]>) => {
         dispatch({ type: DesignOptions.BACKGROUND, payload: background });
       },
-      setButtons: (buttons: DefaultThemeType["buttons"]) => {
+      setButtons: (buttons: Partial<DefaultThemeType["buttons"]>) => {
         dispatch({ type: DesignOptions.BUTTONS, payload: buttons });
       },
+      setNavigation: (navigation: Partial<DefaultThemeType["navigation"]>) => {
+        dispatch({ type: DesignOptions.NAVIGATION, payload: navigation });
+      },
+      setAnimation: (animation: Partial<DefaultThemeType["animation"]>) => {
+        dispatch({ type: DesignOptions.ANIMATIONS, payload: animation });
+      },
+      addSection: (section: Section, index: number) => {
+        dispatch({
+          type: SectionActions.ADD,
+          payload: {
+            section,
+            index,
+          },
+        });
+      },
+      editSection: (section: Section, index: number) => {
+        dispatch({
+          type: SectionActions.EDIT,
+          payload: {
+            section,
+            index,
+          },
+        });
+      },
+      deleteSection: (index: number) => {
+        dispatch({
+          type: SectionActions.DELETE,
+          payload: {
+            index,
+          },
+        });
+      },
     }),
-    [loading, state]
+    [state]
   );
 
   return (

@@ -1,14 +1,15 @@
 import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Icon, IconSize, TextVariant, Text, IconType } from "ui-components";
 import { colors } from "ui-components/src/config/tailwind-config";
 
 import { DESING_OPTIONS, MAIN_NAV } from "./constants";
+import { MainNav } from "./enums";
 import ExtendedSidebar from "./ExtendedSidebar";
-import { renderExtendedSidebar } from "./renderExtendedSidebar";
 import { SelectedEnumType } from "./types";
+import useExtendedSidebar from "./useExtendedSidebar";
 
 export type SidebarContainerProps = {
   sidebarOpen: boolean;
@@ -20,17 +21,27 @@ export type SidebarContainerProps = {
 
 const SidebarContainer: FC<SidebarContainerProps> = ({
   sidebarOpen,
-  close,
+  close: onClose,
   open,
   selected,
   setSelected,
 }) => {
-  const subemnu =
-    DESING_OPTIONS.find((option) => option.text === selected)?.return ?? null;
+  const renderExtendedSidebar = useExtendedSidebar();
+  const subemnu = useMemo(
+    () =>
+      DESING_OPTIONS.find((option) => option.text === selected)?.return ?? null,
+    [selected]
+  );
+
+  const close = () => {
+    onClose();
+    setSelected(MainNav.EDITOR);
+  };
+
   const { push } = useRouter();
 
   return (
-    <div className="flex flex-col justify-between h-screen transition-all duration-300 ease-in-out relative z-50 pt-3 shadow">
+    <div className="flex flex-col justify-between h-screen transition-all duration-300 ease-in-out relative z-50 pt-3 shadow shadow-grey-100">
       <div className="flex flex-col justify-between">
         <Image
           src="/menu-logo.png"
@@ -43,10 +54,22 @@ const SidebarContainer: FC<SidebarContainerProps> = ({
           <div key={item.link} className="mt-3 mx-2">
             <div
               onClick={() => {
-                open(item.text);
+                if (item.text === MainNav.EDITOR) {
+                  close();
+                } else {
+                  open(item.text);
+                }
+
                 setSelected(item.text);
               }}
-              className="flex flex-col justify-center items-center space-y-2 p-2 rounded-xl cursor-pointer border border-transparent hover:border hover:border-primary-500"
+              className={clsx(
+                "flex flex-col justify-center items-center space-y-2 p-2 rounded-xl cursor-pointer border hover:border hover:border-primary-500",
+                {
+                  "border-primary-500 bg-white":
+                    selected === item.text || subemnu === item.text,
+                  "border-transparent": selected !== item.text,
+                }
+              )}
             >
               <Icon
                 type={item.iconType}

@@ -167,14 +167,14 @@ const SelectInput = forwardRef<HTMLDivElement, SelectProps>(
             },
           }}
           classNames={{
-            placeholder: () => "text-grey-600 px-2 text-sm",
+            placeholder: () => "text-grey-600 px-3 text-sm",
             container: () =>
               clsx(
                 "rounded-2xl w-full flex items-center justify-between text-left text-sm",
                 {
                   "border border-red-500": !!errorMessage,
                   "border border-grey-800": !errorMessage && isOpened,
-                  "border border-grey-900 hover:border-grey-300":
+                  "border border-grey-200 hover:border-grey-900":
                     !errorMessage && !isOpened && selectColor !== "white",
                   "border border-grey-50": selectColor === "white",
                 }
@@ -191,10 +191,10 @@ const SelectInput = forwardRef<HTMLDivElement, SelectProps>(
                 largeIndicator ? "w-4 h-4 ml-1" : "w-3 h-3"
               ),
             option: () =>
-              "p-2 cursor-pointer hover:bg-primary-50 !flex items-center flex-wrap",
+              "p-2 !cursor-pointer hover:bg-primary-300 hover:text-grey-900 !flex items-center flex-wrap",
             menuList: () =>
               clsx(
-                "overflow-hidden z-[99999] bg-white rounded-[5px] shadow w-full",
+                "overflow-hidden z-[99999] bg-primary-500 text-white rounded-xl shadow w-full",
                 menuPlacement === MenuPlacementOptions.Top ? "mb-2" : "mt-1"
               ),
             control: () =>

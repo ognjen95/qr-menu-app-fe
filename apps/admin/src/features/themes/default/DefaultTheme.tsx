@@ -1,93 +1,18 @@
 "use client";
 
 import AOS from "aos";
-import Image from "next/image";
 import "aos/dist/aos.css";
-import { FC, ReactElement, useEffect } from "react";
-import {
-  ButtonsStyle,
-  ColorPallete,
-  DefaultThemeType,
-  Section,
-  Typography,
-} from "src/app/context/theme-context/types";
+import React, { FC, useEffect } from "react";
+import { toast } from "react-toastify";
+import { DefaultThemeType, Section } from "src/app/context/theme-context/types";
+import { DeleteModal } from "ui-components";
 
-import CuisineSectionSection from "./cuisine-info-section/CuisineInfoSection";
-import Header from "./header/Header";
-import IngredientsSectionSection from "./ingrediants-info-section/IngrediantsInfoSection";
-import OffersSectionSection from "./offers-section/OffersSection";
-import WelcomeSection from "./welcome-section/WelcomeSection";
-import WorkingHoursSection from "./working-hours-section/WorkingHoursSection";
-
-const renderThemeSection = (
-  sectionData: Section,
-  colorPallete: ColorPallete,
-  typography: Typography,
-  buttons: ButtonsStyle
-): ReactElement | null => {
-  if (sectionData.title === "header") {
-    return (
-      <Header
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-        buttons={buttons}
-      />
-    );
-  }
-  if (sectionData.title === "welcome") {
-    return (
-      <WelcomeSection
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-      />
-    );
-  }
-
-  if (sectionData.title === "cuisine-info") {
-    return (
-      <CuisineSectionSection
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-        buttons={buttons}
-      />
-    );
-  }
-
-  if (sectionData.title === "ingredients-info") {
-    return (
-      <IngredientsSectionSection
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-      />
-    );
-  }
-
-  if (sectionData.title === "offers") {
-    return (
-      <OffersSectionSection
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-      />
-    );
-  }
-
-  if (sectionData.title === "working-hours") {
-    return (
-      <WorkingHoursSection
-        sectionData={sectionData}
-        colorPallete={colorPallete}
-        typography={typography}
-      />
-    );
-  }
-
-  return null;
-};
+import useRenderSections from "./useRenderSections";
+import { useThemeContext } from "../../../app/context/theme-context/ThemeContext";
+import EditComponentDrawer from "../components/edit-component-drawer/EditComponentDrawer";
+import Footer1 from "../sections/footers/footer-1/Footer1";
+import Navigation from "../sections/navigations/navigation-1/Navigation";
+import SectionSelectDrawer from "../sections/section-select-drawer/SectionSelectDrawer";
 
 export type DefaultThemeProps = {
   theme: DefaultThemeType;
@@ -95,8 +20,32 @@ export type DefaultThemeProps = {
 
 const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({ once: true });
+    AOS.refresh();
   }, []);
+
+  const {
+    renderThemeSection,
+    addSectionModal,
+    edtSectionModal,
+    deleteSectionModal,
+  } = useRenderSections();
+  const { addSection, deleteSection } = useThemeContext();
+
+  const handleAddSection = (section: Section) => {
+    const index = addSectionModal.params?.index;
+
+    addSection(section!, index!);
+    toast.success("Section added successfully");
+    addSectionModal.close();
+  };
+
+  const handleDelete = () => {
+    const index = deleteSectionModal.params?.index;
+    deleteSection(index!);
+    toast.success("Section deleted successfully");
+    deleteSectionModal.close();
+  };
 
   return (
     <div
@@ -105,24 +54,45 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
         backgroundColor: theme?.background.color,
       }}
     >
-      {theme?.sections.map((section) =>
+      <Navigation
+        navigation={theme.navigation}
+        logo={theme?.logo?.url ?? ""}
+        sectionData={
+          theme.sections.find((section) => section.title === "header")!
+        }
+        colorPallete={theme.colorPallete}
+        typography={theme.typography}
+        buttons={theme.buttons}
+      />
+      {theme?.sections?.map((section, index) =>
         renderThemeSection(
           section,
           theme.colorPallete,
           theme.typography,
-          theme.buttons
+          theme.buttons,
+          theme.animation.type,
+          index
         )
       )}
-      <section className="flex flex-col items-center pt-[40px] space-y-10">
-        <Image
-          // TODO: This logo should be on theme level
-          src="https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/restaurantlogo.png?v=8"
-          width={160}
-          alt="Image"
-          height={160}
-        />
-      </section>
-      <div className="mt-[150px]" />
+      <Footer1
+        logo={theme?.logo?.url ?? ""}
+        colorPallete={theme.colorPallete}
+        typography={theme.typography}
+      />
+      <EditComponentDrawer edtSectionModal={edtSectionModal} />
+
+      <SectionSelectDrawer
+        addSectionModal={addSectionModal}
+        handleAddSection={handleAddSection}
+      />
+
+      <DeleteModal
+        title="Delete Section"
+        description="Are you sure you want to delete this section?"
+        isOpen={deleteSectionModal.isOpen}
+        close={deleteSectionModal.close}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 };

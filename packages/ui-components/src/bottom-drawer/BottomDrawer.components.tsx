@@ -28,7 +28,7 @@ const DrawerOverlay = React.forwardRef<
   <DrawerPrimitive.Overlay
     ref={ref}
     className={clsx(
-      "fixed inset-0 z-[99999999999999999] bg-black/80",
+      "fixed inset-0 z-[99999999999999999] bg-grey-900/80",
       className
     )}
     {...props}
@@ -40,19 +40,15 @@ const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & {
     onClose?: () => void;
+    hideHandle?: boolean;
   }
->(({ className, children, onClose, ...props }, ref) => (
+>(({ className, children, onClose, hideHandle, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay onClick={onClose} />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={clsx(
-        "fixed inset-x-0 bottom-0 z-[9999999999999999999] mt-24 flex h-auto flex-col rounded-t-2xl border bg-white  ",
-        className
+    <DrawerPrimitive.Content ref={ref} className={clsx(className)} {...props}>
+      {!hideHandle && (
+        <div className="mx-auto mt-4 h-2 w-[100px] bg-gray-200" />
       )}
-      {...props}
-    >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-gray-200" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>

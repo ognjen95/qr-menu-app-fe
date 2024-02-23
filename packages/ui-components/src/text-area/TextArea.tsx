@@ -68,7 +68,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             "block outline-none w-full text-gray-900 border rounded-lg sm:text-md p-3",
             { "border-grey-200 bg-transparent": disabled },
             {
-              "border-transparent focus:border-grey-800":
+              "border-grey-300 focus:border-grey-800":
                 !errorMessage && !disabled,
             },
             { "border-red-500": !!errorMessage },

@@ -17,6 +17,9 @@ query FindThemeById($findThemeByIdId: String!) {
     }
     buttons {
       borderRadius
+      buttonType
+      buttonSize
+      buttonHover
     }
     cards {
       backgroundColor

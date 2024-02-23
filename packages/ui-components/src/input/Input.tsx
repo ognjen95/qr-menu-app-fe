@@ -58,7 +58,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           "w-full text-gray-900 rounded-2xl sm:text-md flex items-center justify-between border",
           {
             "border-grey-200 bg-transparent": disabled,
-            "border-grey-900 focus:border-grey-800 hover:border-grey-300":
+            "border-grey-200 focus:border-grey-800 hover:border-grey-900":
               !errorMessage && !disabled && color !== InputColor.TRANSPARENT,
             "border-red-500": !!errorMessage,
           },

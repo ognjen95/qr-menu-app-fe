@@ -145,6 +145,8 @@ export { default as VideoPlayer } from "./video-player";
 export * from "./video-player";
 export { default as ButtonGroup } from "./button-group/ButtonGroup";
 export * from "./button-group/ButtonGroup";
+export { default as Accordion } from "./accordion/Accordion";
+export * from "./accordion/Accordion";
 
 export { default as SwitchField } from "./form/fields/switch-field";
 export * from "./input";

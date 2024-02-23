@@ -8,22 +8,20 @@ import {
   ButtonGroup,
   PaperColor,
 } from "ui-components";
+import { Option } from "ui-components/src/select/types";
 
+import { FONT_FAMILY_OPTIONS, FONT_WEIGHT_MAPPER } from "./constants";
+import { TypographySize } from "../../../../../app/context/theme-context/enums";
 import { useThemeContext } from "../../../../../app/context/theme-context/ThemeContext";
-import { TypographySize } from "../../../../../graphql-api";
 
 const TypographySubsection = () => {
   const { theme, setTypography } = useThemeContext();
   const { typography } = theme;
 
-  const FONT_WEIGHT_MAPPER = {
-    400: "Light",
-    500: "Regular",
-    600: "Bold",
-  };
+  const ref = React.useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex flex-col space-y-5 overflow-y-auto h-full no-scrollbar pb-14">
+    <div className="flex flex-col space-y-5 overflow-y-auto h-full no-scrollbar pb-16">
       <Paper color={PaperColor.GRAY_LIGHT}>
         <div className="flex flex-col space-y-3">
           <Text variant={TextVariant.HEADING6}>Font size</Text>
@@ -35,27 +33,10 @@ const TypographySubsection = () => {
                 onClick: () => {
                   setTypography({
                     ...typography,
-                    fontSize: TypographySize.Small,
+                    fontSize: TypographySize.SMALL,
                     headers: {
                       ...typography.headers,
                       fontSize: "32px",
-                    },
-                    text: {
-                      ...typography.text,
-                      fontSize: "14px",
-                    },
-                  });
-                },
-              },
-              {
-                text: "Medium",
-                onClick: () => {
-                  setTypography({
-                    ...typography,
-                    fontSize: TypographySize.Medium,
-                    headers: {
-                      ...typography.headers,
-                      fontSize: "48px",
                     },
                     text: {
                       ...typography.text,
@@ -65,14 +46,14 @@ const TypographySubsection = () => {
                 },
               },
               {
-                text: "Large",
+                text: "Medium",
                 onClick: () => {
                   setTypography({
                     ...typography,
-                    fontSize: TypographySize.Large,
+                    fontSize: TypographySize.MEDIUM,
                     headers: {
                       ...typography.headers,
-                      fontSize: "56px",
+                      fontSize: "48px",
                     },
                     text: {
                       ...typography.text,
@@ -81,14 +62,52 @@ const TypographySubsection = () => {
                   });
                 },
               },
+              {
+                text: "Large",
+                onClick: () => {
+                  setTypography({
+                    ...typography,
+                    fontSize: TypographySize.LARGE,
+                    headers: {
+                      ...typography.headers,
+                      fontSize: "56px",
+                    },
+                    text: {
+                      ...typography.text,
+                      fontSize: "20px",
+                    },
+                  });
+                },
+              },
             ]}
           />
         </div>
       </Paper>
-      <Paper color={PaperColor.GRAY_LIGHT}>
+      <Paper color={PaperColor.GRAY_LIGHT} ref={ref}>
         <div className="flex flex-col space-y-3">
           <Text variant={TextVariant.HEADING6}>Headers</Text>
-          <Select options={[]} placeholder="Headers font" />
+          <Select
+            ref={ref}
+            value={{
+              value: typography.headers.fontFamily,
+              label: typography.headers.fontFamily,
+            }}
+            options={FONT_FAMILY_OPTIONS}
+            defaultValue={{
+              value: typography.headers.fontFamily,
+              label: typography.headers.fontFamily,
+            }}
+            onChange={(font: Option) => {
+              setTypography({
+                ...typography,
+                headers: {
+                  ...typography.text,
+                  fontFamily: font.value as string,
+                },
+              });
+            }}
+            placeholder="Headers font"
+          />
           <ButtonGroup
             defaultTab={
               FONT_WEIGHT_MAPPER[
@@ -136,10 +155,31 @@ const TypographySubsection = () => {
           />
         </div>
       </Paper>
-      <Paper color={PaperColor.GRAY_LIGHT}>
+      <Paper color={PaperColor.GRAY_LIGHT} ref={ref}>
         <div className="flex flex-col space-y-3">
           <Text variant={TextVariant.HEADING6}>Text</Text>
-          <Select options={[]} placeholder="Text font" />
+          <Select
+            ref={ref}
+            options={FONT_FAMILY_OPTIONS}
+            defaultValue={{
+              value: typography.text.fontFamily,
+              label: typography.text.fontFamily,
+            }}
+            value={{
+              value: typography.text.fontFamily,
+              label: typography.text.fontFamily,
+            }}
+            onChange={(font: Option) => {
+              setTypography({
+                ...typography,
+                text: {
+                  ...typography.text,
+                  fontFamily: font.value as string,
+                },
+              });
+            }}
+            placeholder="Text font"
+          />
           <ButtonGroup
             defaultTab={
               FONT_WEIGHT_MAPPER[

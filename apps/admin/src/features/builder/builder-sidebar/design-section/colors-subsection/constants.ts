@@ -7,9 +7,9 @@ export const RECOMENDED_COLORS: Array<
 > = [
   {
     id: 1,
-    primary: "red",
-    secondary: "blue",
-    tertiary: "green",
+    primary: "#219ebc",
+    secondary: "#8ecae6",
+    tertiary: "#023047",
     text: "black",
     cards: "white",
     background: "lightgrey",

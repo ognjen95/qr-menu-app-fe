@@ -14,3 +14,32 @@ export const FONT_SIZE_MAPPER = {
     text: "18px",
   },
 };
+
+export const FONT_FAMILY_OPTIONS = [
+  {
+    value: "Inter",
+    label: "Inter",
+  },
+  {
+    value: "Rubik",
+    label: "Rubik",
+  },
+  {
+    value: "Montserrat",
+    label: "Montserrat",
+  },
+  {
+    value: "Playfair Display",
+    label: "Playfair Display",
+  },
+  {
+    value: "Merriweather",
+    label: "Merriweather",
+  },
+];
+
+export const FONT_WEIGHT_MAPPER = {
+  400: "Light",
+  500: "Regular",
+  600: "Bold",
+};

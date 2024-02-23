@@ -5,7 +5,7 @@ import { ButtonSize } from "ui-components/src/button/enums";
 import { ChipVariant } from "ui-components/src/chip/enums";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
-import BottomDrawer from "../../../components/bottom-drawer/BottomDrawer";
+import BottomDrawer from "../../../components/drawers/BottomDrawer";
 import { MenuSectionItem } from "../menu-overview/types";
 
 export type MenuBottomDrawerProps = {
