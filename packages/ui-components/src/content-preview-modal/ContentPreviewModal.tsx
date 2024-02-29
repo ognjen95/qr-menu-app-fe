@@ -60,7 +60,7 @@ const ContentPreviewModal: FC<ContentPreviewModalProps> = ({
       {isOpen && (
         <Portal node={ref}>
           <div
-            className="absolute w-screen h-screen top-0 flex flex-col bg-[#000000cc] z-50"
+            className="absolute w-screen h-screen top-0 flex flex-col bg-[#000000cc] z-[99999999999999] pointer-events-none"
             onClick={(event) => {
               event.stopPropagation();
               onClose();

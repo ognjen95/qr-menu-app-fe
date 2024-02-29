@@ -27,10 +27,7 @@ const DrawerOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
-    className={clsx(
-      "fixed inset-0 z-[99999999999999999] bg-grey-900/40",
-      className
-    )}
+    className={clsx("fixed inset-0 z-[99999] bg-grey-900/40", className)}
     {...props}
   />
 ));
@@ -44,7 +41,12 @@ const DrawerContent = React.forwardRef<
   }
 >(({ className, children, onClose, hideHandle, ...props }, ref) => (
   <DrawerPortal>
-    <DrawerOverlay onClick={onClose} />
+    <DrawerOverlay
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose?.();
+      }}
+    />
     <DrawerPrimitive.Content ref={ref} className={clsx(className)} {...props}>
       {!hideHandle && (
         <div className="mx-auto mt-4 h-2 w-[100px] bg-gray-200" />

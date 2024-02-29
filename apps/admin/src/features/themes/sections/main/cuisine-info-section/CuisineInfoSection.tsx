@@ -4,11 +4,13 @@ import {
   ButtonsStyle,
   ColorPallete,
   Section,
+  SectionComponent,
   Typography,
 } from "src/app/context/theme-context/types";
 
 import { AnimationType } from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
+import ThemeImage from "../../../components/images/ThemeImage";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { ComponentType } from "../../enums";
 
@@ -37,21 +39,9 @@ const CuisineSectionSection: FC<CuisineSectionProps> = ({
     <div className="w-[1170px] px-[15px] mx-auto">
       <div className="flex h-full -mx-[15px] items-center">
         <div className="w-1/2 float-left relative min-h-0 px-[15px]">
-          <Image
+          <ThemeImage
+            component={sectionData.components[0]}
             className="rounded-ss-[80px] rounded-ee-[80px]"
-            src={
-              sectionData.components?.[0]?.props?.src ??
-              "https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/generic2.jpg?v=8"
-            }
-            width={parseInt(
-              sectionData.components?.[0]?.style?.width?.toString() ?? "400",
-              10
-            )}
-            alt={sectionData.components?.[0]?.props?.alt ?? ""}
-            height={parseInt(
-              sectionData.components?.[0]?.style?.height?.toString() ?? "400",
-              10
-            )}
           />
         </div>
         <div

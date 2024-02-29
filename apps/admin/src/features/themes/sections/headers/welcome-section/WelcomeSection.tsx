@@ -8,6 +8,7 @@ import {
 import { removeEmptyFields } from "src/common/helpers";
 
 import { AnimationType } from "../../../../../app/context/theme-context/enums";
+import ThemeImage from "../../../components/images/ThemeImage";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { ComponentType } from "../../enums";
 
@@ -52,15 +53,9 @@ const WelcomeSection: FC<WelcomeSectionProps> = ({
           </div>
         </div>
         <div className="w-1/2 float-left relative min-h-0 px-[15px] flex justify-center">
-          <Image
+          <ThemeImage
+            component={sectionData.components?.[3]}
             className="rounded-ss-[80px] rounded-ee-[80px]"
-            src={
-              sectionData.components?.[3]?.props?.src ??
-              "https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/generic8.jpg?v=8"
-            }
-            width={+(sectionData.components?.[3]?.style?.width ?? 400)}
-            alt={sectionData.components?.[3]?.props?.alt ?? ""}
-            height={+(sectionData.components?.[3]?.style?.height ?? 400)}
           />
         </div>
       </div>

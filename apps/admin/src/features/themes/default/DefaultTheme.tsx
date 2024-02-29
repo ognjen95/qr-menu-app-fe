@@ -49,44 +49,44 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
   };
 
   return (
-    <div
-      className="break-words w-full"
-      style={{
-        backgroundColor: theme?.colorPallete.background,
-      }}
-    >
-      <Navigation
-        navigation={theme.navigation}
-        logo={theme?.logo?.url ?? ""}
-        sectionData={
-          theme.sections.find((section) => section.title === "header")!
-        }
-        colorPallete={theme.colorPallete}
-        typography={theme.typography}
-        buttons={theme.buttons}
-      />
-      {theme?.sections?.map((section, index) =>
-        renderThemeSection(
-          section,
-          theme.colorPallete,
-          theme.typography,
-          theme.buttons,
-          theme.animation.type,
-          index
-        )
-      )}
-      <Footer1
-        logo={theme?.logo?.url ?? ""}
-        colorPallete={theme.colorPallete}
-        typography={theme.typography}
-      />
+    <>
+      <div
+        className="break-words w-full"
+        style={{
+          backgroundColor: theme?.colorPallete.background,
+        }}
+      >
+        <Navigation
+          navigation={theme.navigation}
+          logo={theme?.logo?.url ?? ""}
+          sectionData={
+            theme.sections.find((section) => section.title === "header")!
+          }
+          colorPallete={theme.colorPallete}
+          typography={theme.typography}
+          buttons={theme.buttons}
+        />
+        {theme?.sections?.map((section, index) =>
+          renderThemeSection(
+            section,
+            theme.colorPallete,
+            theme.typography,
+            theme.buttons,
+            theme.animation.type,
+            index
+          )
+        )}
+        <Footer1
+          logo={theme?.logo?.url ?? ""}
+          colorPallete={theme.colorPallete}
+          typography={theme.typography}
+        />
+      </div>
       <EditComponentDrawer edtSectionModal={edtSectionModal} />
-
       <SectionSelectDrawer
         addSectionModal={addSectionModal}
         handleAddSection={handleAddSection}
       />
-
       <DeleteModal
         title="Delete Section"
         description="Are you sure you want to delete this section?"
@@ -94,7 +94,7 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
         close={deleteSectionModal.close}
         onConfirm={handleDelete}
       />
-    </div>
+    </>
   );
 };
 

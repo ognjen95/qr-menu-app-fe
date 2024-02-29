@@ -7,6 +7,7 @@ import {
 } from "src/app/context/theme-context/types";
 
 import { AnimationType } from "../../../../../app/context/theme-context/enums";
+import ThemeImage from "../../../components/images/ThemeImage";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { ComponentType } from "../../enums";
 
@@ -57,15 +58,9 @@ const IngredientsSectionSection: FC<IngredientsSectionProps> = ({
           className="w-1/2 float-right relative min-h-0 px-[15px] flex justify-center"
           // data-aos="fade-up"
         >
-          <Image
+          <ThemeImage
             className="rounded-ss-[80px] rounded-ee-[80px]"
-            src={
-              components?.[4]?.props?.src ??
-              "https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/cook.jpg?v=8"
-            }
-            width={+(components?.[3]?.style?.width ?? 400)}
-            alt={components?.[4]?.props?.alt ?? ""}
-            height={+(components?.[3]?.style?.height ?? 400)}
+            component={components?.[3]}
           />
         </div>
       </div>

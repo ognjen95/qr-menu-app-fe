@@ -93,6 +93,7 @@ export type ComponentProps = {
   value?: string;
   placeholder?: string;
   name?: string;
+  file?: File;
 };
 
 export type SectionComponent = {
@@ -158,6 +159,7 @@ export type DefaultThemeType = {
   colorPallete: ColorPallete;
   logo: {
     url?: string;
+    file?: File;
   };
   title?: string;
   animation: {

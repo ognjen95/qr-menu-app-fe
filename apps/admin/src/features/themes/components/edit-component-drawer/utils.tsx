@@ -3,6 +3,7 @@ import { Icon, IconType, IconButton, FileUploadInput } from "ui-components";
 import { colors } from "ui-components/src/config/tailwind-config";
 
 import EditButtonComponent from "./edit-button-component/EditButtonComponent";
+import EditImageComponent from "./edit-image-component/EditImageComponent";
 import EditTypographyComponent from "./edit-typography-component/EditTypographyComponent";
 import { SectionComponent } from "../../../../app/context/theme-context/types";
 import { ComponentType } from "../../sections/enums";
@@ -96,27 +97,11 @@ export const renderContent = (
       );
     case ComponentType.IMAGE:
       return (
-        <div className="w-[520px] self-center h-[300px] relative overflow-hidden">
-          <div className="absolute z-50 right-5 top-5 bg-white rounded-xl">
-            <IconButton
-              iconProps={{
-                type: IconType.TRASH_FULL,
-                stroke: colors.red[500],
-              }}
-            />
-          </div>
-          {component.props?.src ? (
-            <Image
-              src={component.props.src}
-              alt="image"
-              fill
-              objectPosition="center"
-              objectFit="cover"
-            />
-          ) : (
-            <FileUploadInput onChange={() => {}} />
-          )}
-        </div>
+        <EditImageComponent
+          sectionIndex={sectionIndex}
+          defaultComponent={component}
+          componentIndex={componentIndex}
+        />
       );
     case ComponentType.BUTTON:
       return (
