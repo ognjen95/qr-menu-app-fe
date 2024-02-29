@@ -85,21 +85,13 @@ export type ThemeContextType = {
 
 export type ComponentProps = {
   className?: string;
-
   id?: string;
-
   onClick?: string;
-
   src?: string;
-
   alt?: string;
-
   type?: string;
-
   value?: string;
-
   placeholder?: string;
-
   name?: string;
 };
 

@@ -76,6 +76,8 @@ const AccordionContent = React.forwardRef<
 
 export type AccordionProps = {
   options: {
+    id: string;
+    icon?: ReactNode;
     collapsed: boolean;
     title: string;
     description?: string;
@@ -91,11 +93,14 @@ const Accordion: FC<AccordionProps> = ({ options }) => (
     collapsible
   >
     {options.map((option) => (
-      <AccordionItem value={option.title} key={option.title}>
+      <AccordionItem value={option.id} key={option.title}>
         <AccordionTrigger>
-          <Text color="white" customClasses="block text-left font-semibold">
-            {option.title}
-          </Text>
+          <div className="flex items-center gap-3">
+            {option.icon}
+            <Text color="white" customClasses="block text-left font-semibold">
+              {option.title}
+            </Text>
+          </div>
           <Text truncate color="text-white" customClasses="block text-left">
             {option.description}
           </Text>

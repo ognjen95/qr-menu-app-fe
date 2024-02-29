@@ -14,6 +14,7 @@ export type RightDrawerProps = {
   actions?: React.ReactNode;
   isOpen: boolean;
   onClose?: () => void;
+  dismissible?: boolean;
 };
 
 const RightDrawer: FCWithChildren<RightDrawerProps> = ({
@@ -23,12 +24,18 @@ const RightDrawer: FCWithChildren<RightDrawerProps> = ({
   description,
   isOpen = false,
   onClose,
+  dismissible = false,
 }) => (
-  <Drawer open={isOpen} onClose={onClose} direction="right">
+  <Drawer
+    open={isOpen}
+    onClose={onClose}
+    direction="right"
+    dismissible={dismissible}
+  >
     <DrawerContent
       hideHandle
       onClose={onClose}
-      className="bg-white flex flex-col rounded-l-xl h-full min-w-[400px] bg-white/80 backdrop-blur mt-24 fixed bottom-0 right-0 z-[9999999999]"
+      className="bg-white flex flex-col rounded-l-md h-full min-w-[400px] bg-white backdrop-blur mt-24 fixed bottom-0 right-0 z-[9999999999]"
     >
       {(title || description) && (
         <DrawerHeader>

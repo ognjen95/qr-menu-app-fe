@@ -26,6 +26,7 @@ export type InputProps = {
   onIconClick?: () => void;
   iconPlacement?: IconPlacement;
   autoFocus?: boolean;
+  onBlur?: () => void;
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(

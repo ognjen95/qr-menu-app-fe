@@ -23,7 +23,12 @@ const IngredientsSectionSection: FC<IngredientsSectionProps> = ({
   typography,
   animationType,
 }) => (
-  <section className="py-[120px] bg-gray-100">
+  <section
+    className="py-[120px]"
+    style={{
+      backgroundColor: colorPallete.surface,
+    }}
+  >
     <div className="w-[1170px] px-[15px] mx-auto">
       <div className="flex h-full -mx-[15px] items-center">
         <div

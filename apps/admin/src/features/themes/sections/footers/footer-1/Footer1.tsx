@@ -7,7 +7,9 @@ import {
   ColorPallete,
   Typography,
 } from "../../../../../app/context/theme-context/types";
+import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { PAGES } from "../../../pages/constants";
+import { ComponentType } from "../../enums";
 
 type FooterProps = {
   colorPallete: ColorPallete;
@@ -98,10 +100,22 @@ const Footer1: FC<FooterProps> = ({ logo, colorPallete, typography }) => (
           </Link>
         </div>
         <div className="col-span-1 flex flex-col gap-3 flex">
-          <Text variant={TextVariant.HEADING6}>Contact</Text>
-          <Text>Belevar Kralja Aleksandra, Beograd</Text>
-          <Text>info@restoran.com</Text>
-          <Text>+381 60 000 444</Text>
+          <ThemeTypography
+            type={ComponentType.H5}
+            props={{ value: "Contact" }}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={{ value: "Belevar Kralja Aleksandra, Beograd" }}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={{ value: "info@restoran.com" }}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={{ value: "+381 60 000 444" }}
+          />
         </div>
       </div>
     </footer>

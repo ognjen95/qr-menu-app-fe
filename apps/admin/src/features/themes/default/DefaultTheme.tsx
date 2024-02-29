@@ -30,6 +30,7 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
     edtSectionModal,
     deleteSectionModal,
   } = useRenderSections();
+
   const { addSection, deleteSection } = useThemeContext();
 
   const handleAddSection = (section: Section) => {
@@ -51,7 +52,7 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
     <div
       className="break-words w-full"
       style={{
-        backgroundColor: theme?.background.color,
+        backgroundColor: theme?.colorPallete.background,
       }}
     >
       <Navigation

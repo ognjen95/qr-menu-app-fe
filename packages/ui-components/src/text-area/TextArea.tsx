@@ -25,6 +25,7 @@ export type TextAreaProps = {
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
   onKeyDown?: KeyboardEventHandler<HTMLTextAreaElement>;
   color?: TextAreaColor;
+  onBlur?: () => void;
 };
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(

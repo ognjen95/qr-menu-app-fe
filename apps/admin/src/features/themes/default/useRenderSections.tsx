@@ -35,34 +35,33 @@ const useRenderSections = () => {
         (section) => section.config.title === sectionData.title
       )?.component;
 
-      if (renderSectionComponent)
-        return (
-          <EditSectionWrapper
-            editModal={() =>
-              edtSectionModal.open({ index, section: sectionData })
-            }
-            addUpModal={() =>
-              addSectionModal.open({
-                section: sectionData,
-                index: index >= 0 ? index : 0,
-              })
-            }
-            addDownModal={() =>
-              addSectionModal.open({ section: sectionData, index: index + 1 })
-            }
-            deleteSectionModal={() => deleteSectionModal.open({ index })}
-          >
-            {renderSectionComponent({
-              sectionData,
-              colorPallete,
-              typography,
-              buttons,
-              animationType: animation,
-            })}
-          </EditSectionWrapper>
-        );
+      if (!renderSectionComponent) return null;
 
-      return null;
+      return (
+        <EditSectionWrapper
+          editModal={() =>
+            edtSectionModal.open({ index, section: sectionData })
+          }
+          addUpModal={() =>
+            addSectionModal.open({
+              section: sectionData,
+              index: index >= 0 ? index : 0,
+            })
+          }
+          addDownModal={() =>
+            addSectionModal.open({ section: sectionData, index: index + 1 })
+          }
+          deleteSectionModal={() => deleteSectionModal.open({ index })}
+        >
+          {renderSectionComponent({
+            sectionData,
+            colorPallete,
+            typography,
+            buttons,
+            animationType: animation,
+          })}
+        </EditSectionWrapper>
+      );
     },
     [addSectionModal, deleteSectionModal, edtSectionModal]
   );

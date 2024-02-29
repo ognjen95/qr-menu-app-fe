@@ -55,7 +55,9 @@ const reducer = (state: DefaultThemeType, actions: ActionsType) => {
       );
       return stateCopy;
     case SectionActions.EDIT:
-      stateCopy.sections[actions.payload.index] = actions.payload.section;
+      stateCopy.sections[actions.payload.index] = {
+        ...actions.payload.section,
+      };
       return stateCopy;
     case SectionActions.DELETE:
       stateCopy.sections.splice(actions.payload.index, 1);

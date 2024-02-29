@@ -93,6 +93,8 @@ export { default as Sidebar } from "./sidebar";
 
 export { default as Pagination } from "./pagination";
 
+export { default as Slider } from "./slider/Slider";
+
 export { default as Badge } from "./badge";
 export * from "./badge";
 

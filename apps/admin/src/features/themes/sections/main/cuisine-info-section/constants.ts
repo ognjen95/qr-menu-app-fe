@@ -58,6 +58,5 @@ export const CUISINE_INFO_SECTION = {
   ],
   description: "Second content section",
   id: "3",
-
   title: "cuisine-info",
 };

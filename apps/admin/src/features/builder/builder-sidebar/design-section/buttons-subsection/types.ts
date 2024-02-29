@@ -1,3 +1,4 @@
+import { ButtonSize } from "../../../../../app/context/theme-context/enums";
 import {
   PartialButtons,
   DefaultThemeType,
@@ -6,4 +7,5 @@ import {
 export type ButtonTypeprops = {
   setButtons: (buttons: PartialButtons) => void;
   theme: DefaultThemeType["buttons"];
+  currentButtonSize?: ButtonSize;
 };

@@ -27,7 +27,13 @@ const CuisineSectionSection: FC<CuisineSectionProps> = ({
   buttons,
   animationType,
 }) => (
-  <section className="py-[120px] bg-gray-100">
+  <section
+    className="py-[120px]"
+    style={{
+      backgroundColor:
+        colorPallete.surface || sectionData.style?.backgroundColor,
+    }}
+  >
     <div className="w-[1170px] px-[15px] mx-auto">
       <div className="flex h-full -mx-[15px] items-center">
         <div className="w-1/2 float-left relative min-h-0 px-[15px]">

@@ -107,13 +107,13 @@ export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
   },
   colorPallete: {
     background: "#f4f4f4",
-    cards: "white",
-    headers: "black",
+    cards: "#fff",
+    headers: "#000",
     primary: "#D2A556",
     secondary: "#545454",
-    surface: "white",
-    tertiary: "black",
-    text: "black",
+    surface: "#fff",
+    tertiary: "#000",
+    text: "#000",
   },
   title: "Theme 1",
   typography: {

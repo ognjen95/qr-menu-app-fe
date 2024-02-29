@@ -28,7 +28,7 @@ const DrawerOverlay = React.forwardRef<
   <DrawerPrimitive.Overlay
     ref={ref}
     className={clsx(
-      "fixed inset-0 z-[99999999999999999] bg-grey-900/80",
+      "fixed inset-0 z-[99999999999999999] bg-grey-900/40",
       className
     )}
     {...props}
