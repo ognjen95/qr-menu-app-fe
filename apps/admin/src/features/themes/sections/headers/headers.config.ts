@@ -1,5 +1,5 @@
-import { WELCOME_SECTION_CONFIG } from "./welcome-section/constants";
-import WelcomeSection from "./welcome-section/WelcomeSection";
+import { WELCOME_SECTION_CONFIG } from "../main/welcome-section/constants";
+import WelcomeSection from "../main/welcome-section/WelcomeSection";
 import { SectionConfigMapper } from "../types";
 
 export const HEADER_SECTIONS: SectionConfigMapper[] = [

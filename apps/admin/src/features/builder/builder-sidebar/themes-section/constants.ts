@@ -1,3 +1,5 @@
+import { PIZZA_RESTAURANT_THEME_CONFIG } from "~features/themes/variants/pizza-restaurant/constants";
+
 import { ThemeMapper } from "./types";
 import { DEFAULT_THEME } from "../../../../app/context/theme-context/constants";
 import { DEFAULT_THEME_CONFIG } from "../../../themes/default/constants";
@@ -13,5 +15,10 @@ export const THEMES: ThemeMapper[] = [
     id: ThemeIds.THEME1,
     image: "/images/theme1.png",
     config: DEFAULT_THEME,
+  },
+  {
+    id: ThemeIds.PIZZA_RESTAURANT,
+    image: "/images/pizza-theme.png",
+    config: PIZZA_RESTAURANT_THEME_CONFIG,
   },
 ];

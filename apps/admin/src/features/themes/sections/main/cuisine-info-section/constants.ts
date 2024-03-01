@@ -60,3 +60,64 @@ export const CUISINE_INFO_SECTION = {
   id: "3",
   title: "cuisine-info",
 };
+
+export const CUISINE_INFO_PIZZA_SECTION = {
+  components: [
+    {
+      props: {
+        alt: "image 1",
+        className: "",
+        id: "",
+        name: "",
+        onClick: "",
+        placeholder: "",
+        src: "https://static.cdn-upm.com/static/themes/6654c880-9584-11ed-9ecf-525400080521/assets-2/pexels-nataliya-vaitkevich-5792325.jpg?v=0",
+        type: "",
+        value: "",
+      },
+      style: {
+        height: "400",
+        justifyContent: "",
+        width: "400",
+        zIndex: "",
+      },
+      title: "Main image",
+      type: ComponentType.IMAGE,
+    },
+    {
+      props: {
+        value: "Indulge in Delicious pizza",
+      },
+      title: "Cuisine info title",
+      type: ComponentType.H4,
+    },
+    {
+      props: {
+        value: "Let yourself taste buds POP!",
+      },
+      title: "Cuisine info subtitle",
+      type: ComponentType.H4,
+    },
+    {
+      props: {
+        value:
+          "Our head chef combines carefully selected ingredients and presents them in beautiful forms.",
+      },
+      title: "Cuisine info description",
+      type: ComponentType.H4,
+    },
+    {
+      style: {
+        color: "white",
+      },
+      props: {
+        value: "Order now",
+      },
+      title: "",
+      type: ComponentType.BUTTON,
+    },
+  ],
+  description: "Second content section",
+  id: "3",
+  title: "cuisine-info",
+};

@@ -11,6 +11,7 @@ import {
 import { ColorPallete } from "../../../graphql-api";
 import { HEADER_SECTIONS } from "../sections/headers/headers.config";
 import { MAIN_SECTIONS } from "../sections/main/main.config";
+import { TESTIMONIAL_SECTIONS } from "../sections/testimonials/testimonials.config";
 import { WORKING_HOURS_SECTIONS } from "../sections/working-hours/constants";
 
 const useRenderSections = () => {
@@ -30,6 +31,7 @@ const useRenderSections = () => {
       const renderSectionComponent = [
         ...HEADER_SECTIONS,
         ...MAIN_SECTIONS,
+        ...TESTIMONIAL_SECTIONS,
         ...WORKING_HOURS_SECTIONS,
       ].find(
         (section) => section.config.title === sectionData.title
