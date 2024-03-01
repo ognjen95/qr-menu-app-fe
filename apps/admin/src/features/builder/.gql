@@ -1,0 +1,3 @@
+mutation SaveThemeConfiguration($args: UpdateThemeConfigurationInput!) {
+  saveThemeConfiguration(args: $args)
+}

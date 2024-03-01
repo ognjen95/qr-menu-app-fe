@@ -1,11 +1,9 @@
-import Image from "next/image";
 import { FC } from "react";
 import {
   ColorPallete,
   Section,
   Typography,
 } from "src/app/context/theme-context/types";
-import { removeEmptyFields } from "src/common/helpers";
 
 import { AnimationType } from "../../../../../app/context/theme-context/enums";
 import ThemeImage from "../../../components/images/ThemeImage";

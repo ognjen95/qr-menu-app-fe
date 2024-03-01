@@ -157,4 +157,4 @@ export * from "./input/constants";
 
 export * from "./common/constants";
 
-export * from "./bottom-drawer/BottomDrawer.components";
+export * from "./drawer/Drawer.components";

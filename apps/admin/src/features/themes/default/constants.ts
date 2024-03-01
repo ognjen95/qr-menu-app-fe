@@ -14,6 +14,7 @@ import { OFFERS_SECTION } from "../sections/main/offers-section/constants";
 import { WORKING_HOURS_SECTION } from "../sections/working-hours/working-hours-section/constants";
 
 export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
+  id: "",
   sections: [
     {
       components: [

@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { Button, DropdownMenu, IconType, Loader } from "ui-components";
 import { ButtonColor, ButtonSize } from "ui-components/src/button/enums";
 import { colors } from "ui-components/src/config/tailwind-config";
@@ -8,12 +9,43 @@ import DefaultTheme from "~features/themes/default/DefaultTheme";
 import BuilderSidebar from "./builder-sidebar/BuilderSidebar";
 import useBuilderSidebar from "./builder-sidebar/useBuilderSidebar";
 import { useThemeContext } from "../../app/context/theme-context/ThemeContext";
+import {
+  BUTTON_SIZE_MAPPER,
+  BUTTON_TYPE_MAPPER,
+} from "../../app/context/theme-context/types";
+import { useSaveThemeConfigurationMutation } from "../../graphql-api";
 
 const Builder = () => {
   const { sidebarOpen, setSidebarOpen, selected, setSelected } =
     useBuilderSidebar();
 
   const { theme, loading } = useThemeContext();
+
+  const [saveTheme, { loading: saveThemeLoading }] =
+    useSaveThemeConfigurationMutation();
+
+  const handleSaveTheme = () => {
+    if (!theme) return;
+
+    saveTheme({
+      onCompleted: () => {
+        toast.success("Theme saved successfully");
+      },
+      variables: {
+        args: {
+          ...theme,
+          logo: {
+            url: theme.logo.url ?? "",
+          },
+          buttons: {
+            ...theme.buttons,
+            buttonSize: BUTTON_SIZE_MAPPER[theme.buttons.buttonSize],
+            buttonType: BUTTON_TYPE_MAPPER[theme.buttons.buttonType],
+          },
+        },
+      },
+    });
+  };
 
   return (
     <div className="flex items-start h-screen bg-white overflow-hidden w-full">
@@ -71,6 +103,8 @@ const Builder = () => {
               Preview
             </Button>
             <Button
+              loading={saveThemeLoading}
+              onClick={handleSaveTheme}
               leftIcon={{
                 type: IconType.CONTENT,
                 fill: "none",

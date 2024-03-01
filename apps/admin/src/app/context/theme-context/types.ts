@@ -10,6 +10,10 @@ import {
 } from "./enums";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
 import { ComponentType } from "../../../features/themes/sections/enums";
+import {
+  ButtonSize as ButtonSizeGql,
+  ButtonType as ButtonTypeGql,
+} from "../../../graphql-api";
 
 export type PartialCollorPallete = Partial<DefaultThemeType["colorPallete"]>;
 export type PartialTypography = Partial<DefaultThemeType["typography"]>;
@@ -69,7 +73,7 @@ export type ActionsType =
     };
 
 export type ThemeContextType = {
-  theme: DefaultThemeType;
+  theme: DefaultThemeType | null;
   loading: boolean;
   setTheme: (theme: DefaultThemeType) => void;
   setCollorPallete: (colorPallete: PartialCollorPallete) => void;
@@ -155,6 +159,7 @@ export type NavigationModel = {
 };
 
 export type DefaultThemeType = {
+  id: string;
   sections: Section[];
   colorPallete: ColorPallete;
   logo: {
@@ -176,4 +181,16 @@ export type DefaultThemeType = {
   buttons: ButtonsStyle;
   typography: Typography;
   navigation: NavigationModel;
+};
+
+export const BUTTON_SIZE_MAPPER: Record<ButtonSize, ButtonSizeGql> = {
+  [ButtonSize.SMALL]: ButtonSizeGql.Small,
+  [ButtonSize.MEDIUM]: ButtonSizeGql.Medium,
+  [ButtonSize.LARGE]: ButtonSizeGql.Large,
+};
+
+export const BUTTON_TYPE_MAPPER: Record<ButtonType, ButtonTypeGql> = {
+  [ButtonType.FILLED]: ButtonTypeGql.Filled,
+  [ButtonType.OUTLINED]: ButtonTypeGql.Outlined,
+  [ButtonType.TEXT]: ButtonTypeGql.Text,
 };

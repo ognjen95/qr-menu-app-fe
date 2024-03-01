@@ -1,9 +1,6 @@
-mutation CreateThemeConfiguration($args: CreateThemeConfigurationInput!) {
-  createThemeConfiguration(args: $args)
-}
-
-query FindThemeById($findThemeByIdId: String!) {
-  findThemeById(id: $findThemeByIdId) {
+query FindThemeByTenantId {
+  findThemeByTenantId {
+    id
     animation {
       delay
       duration
