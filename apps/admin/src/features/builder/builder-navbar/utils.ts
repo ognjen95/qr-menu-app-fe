@@ -15,16 +15,17 @@ export const handleUploadChangedImages = async (
       Promise.all(
         section.components.map(async (component) => {
           if (component.type !== ComponentType.IMAGE) return component;
+          if (!component.props?.file) return component;
 
-          const newImageForUpload = component.props?.file;
+          const newImageForUpload = component.props.file;
           const newComponent = component;
 
-          if (!newImageForUpload) return component;
-
           if (newComponent.props) newComponent.props.file = undefined;
+
           const uploadId = await upload(newImageForUpload);
-          // TODO: Remove old image from bucker
+          // TODO: Remove old image from bucket
           // TDOO: Add prop currentIdToBeRemoved to upload function, so it deletes it from the bucket
+          
           if (!uploadId) return component;
 
           newComponent!.props!.src = addBucketPrefix(uploadId);

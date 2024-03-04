@@ -13,9 +13,9 @@ const Builder = () => {
   const { sidebarOpen, setSidebarOpen, selected, setSelected } =
     useBuilderSidebar();
 
-  const { theme, loading } = useThemeContext();
+  const { theme, loading, setTheme } = useThemeContext();
 
-  const { saveThemeLoading, handleSaveTheme } = useSaveTheme(theme);
+  const { saveThemeLoading, handleSaveTheme } = useSaveTheme(theme, setTheme);
 
   return (
     <div className="flex items-start h-screen bg-white overflow-hidden w-full">

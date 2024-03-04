@@ -8,8 +8,8 @@ import {
 } from "../../../graphql-api";
 import useUploadFile from "../../../hooks/use-upload-file";
 
-const useSaveTheme = (theme: DefaultThemeType | null) => {
-  const [saveTheme, { loading: saveThemeLoading }] =
+const useSaveTheme = (theme: DefaultThemeType | null, setTheme: (theme: DefaultThemeType) => void) => {
+  const [saveTheme, { loading }] =
     useSaveThemeConfigurationMutation();
   const { upload } = useUploadFile();
 
@@ -22,6 +22,7 @@ const useSaveTheme = (theme: DefaultThemeType | null) => {
       refetchQueries: [FindThemeByTenantIdDocument],
       onCompleted: () => {
         toast.success("Theme saved successfully");
+        setTheme(themeCopy)
       },
       variables: {
         args: {
@@ -35,7 +36,7 @@ const useSaveTheme = (theme: DefaultThemeType | null) => {
   };
 
   return {
-    saveThemeLoading,
+    saveThemeLoading: loading,
     handleSaveTheme,
   };
 };
