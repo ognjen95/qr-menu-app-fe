@@ -1,11 +1,8 @@
-import { cloneDeep } from "@apollo/client/utilities";
 import { toast } from "react-toastify";
 
 import { handleUploadChangedImages } from "./utils";
 import { DefaultThemeType } from "../../../app/context/theme-context/types";
-import { addBucketPrefix } from "../../../common/helpers";
 import {
-  ComponentType,
   FindThemeByTenantIdDocument,
   useSaveThemeConfigurationMutation,
 } from "../../../graphql-api";
