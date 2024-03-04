@@ -2,16 +2,17 @@ import {
   AnimationType,
   ButtonSize,
   ButtonType,
+  ComponentType,
   NavigationLayout,
   TypographySize,
 } from "./enums";
 import { DefaultThemeType } from "./types";
-import { ComponentType } from "../../../features/themes/sections/enums";
 
 export const DEFAULT_THEME: DefaultThemeType = {
   logo: {
     url: "",
   },
+  id: "",
   navigation: {
     layout: NavigationLayout.CENTER,
     backgroundColor: "",

@@ -1,4 +1,4 @@
-import { ComponentType } from "../../enums";
+import { ComponentType } from "../../../../../app/context/theme-context/enums";
 
 export const MENU_SECTION = {
   components: [
@@ -14,7 +14,7 @@ export const MENU_SECTION = {
         value: "Bologna",
       },
       title: "",
-      type: ComponentType.H2,
+      type: ComponentType.H3,
     },
     {
       props: {
@@ -35,7 +35,7 @@ export const MENU_SECTION = {
         value: "Italia",
       },
       title: "",
-      type: ComponentType.H2,
+      type: ComponentType.H3,
     },
     {
       props: {

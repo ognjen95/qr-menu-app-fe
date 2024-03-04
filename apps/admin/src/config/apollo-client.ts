@@ -57,7 +57,9 @@ const httpLink = ApolloLink.from([
 
 const apolloClient = new ApolloClient({
   link: from([authLink, httpLink]),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false,
+  }),
 });
 
 export default apolloClient;

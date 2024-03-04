@@ -1,21 +1,28 @@
 import clsx from "clsx";
-import React, { CSSProperties, FC } from "react";
+import React, { FC } from "react";
 
 import {
   ButtonSize,
   ButtonType,
 } from "../../../../app/context/theme-context/enums";
 import { useThemeContext } from "../../../../app/context/theme-context/ThemeContext";
-import { ComponentProps } from "../../../../app/context/theme-context/types";
+import {
+  ComponentProps,
+  CSSStyle,
+} from "../../../../app/context/theme-context/types";
 import { removeEmptyFields } from "../../../../common/helpers";
 
 export type ThemeButtonProps = {
-  style?: CSSProperties;
+  style?: CSSStyle;
   props?: ComponentProps;
 };
 
 const ThemeButton: FC<ThemeButtonProps> = ({ style, props }) => {
   const { theme } = useThemeContext();
+
+  if (!theme?.buttons) {
+    return null;
+  }
 
   return (
     <button

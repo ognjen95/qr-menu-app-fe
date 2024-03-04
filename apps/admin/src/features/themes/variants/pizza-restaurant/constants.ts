@@ -8,11 +8,11 @@ import {
   AnimationType,
   ButtonSize,
   ButtonType,
+  ComponentType,
   NavigationLayout,
   TypographySize,
 } from "../../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../../app/context/theme-context/types";
-import { ComponentType } from "../../sections/enums";
 import { CUISINE_INFO_PIZZA_SECTION } from "../../sections/main/cuisine-info-section/constants";
 import { WELCOME_PIZZA_SECTION } from "../../sections/main/welcome-section/constants";
 import {
@@ -150,4 +150,5 @@ export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
     fontSize: "",
     fontWeight: "",
   },
+  id: "",
 };

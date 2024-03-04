@@ -1,19 +1,14 @@
-import { CSSProperties } from "react";
-
 import {
   AnimationType,
   ButtonSize,
   ButtonType,
+  ComponentType,
   NavigationLayout,
   SectionActions,
   TypographySize,
 } from "./enums";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
-import { ComponentType } from "../../../features/themes/sections/enums";
-import {
-  ButtonSize as ButtonSizeGql,
-  ButtonType as ButtonTypeGql,
-} from "../../../graphql-api";
+import { ThemeSectionComponentInput } from "../../../graphql-api";
 
 export type PartialCollorPallete = Partial<DefaultThemeType["colorPallete"]>;
 export type PartialTypography = Partial<DefaultThemeType["typography"]>;
@@ -88,22 +83,53 @@ export type ThemeContextType = {
 };
 
 export type ComponentProps = {
-  className?: string;
-  id?: string;
-  onClick?: string;
-  src?: string;
-  alt?: string;
-  type?: string;
-  value?: string;
-  placeholder?: string;
-  name?: string;
+  title?: string | null;
+  className?: string | null;
+  id?: string | null;
+  onClick?: string | null;
+  src?: string | null;
+  alt?: string | null;
+  type?: string | null;
+  value?: string | null;
+  placeholder?: string | null;
+  name?: string | null;
   file?: File;
+};
+
+export type CSSStyle = {
+  padding?: string | null;
+  margin?: string | null;
+  color?: string | null;
+  backgroundColor?: string | null;
+  background?: string | null;
+  border?: string | null;
+  borderRadius?: string | null;
+  fontSize?: string | null;
+  fontWeight?: string | null;
+  textAlign?: string | null;
+  display?: string | null;
+  flexDirection?: string | null;
+  justifyContent?: string | null;
+  alignItems?: string | null;
+  flexWrap?: string | null;
+  flex?: string | null;
+  width?: string | null;
+  height?: string | null;
+  position?: string | null;
+  top?: string | null;
+  right?: string | null;
+  bottom?: string | null;
+  left?: string | null;
+  zIndex?: string | null;
+  boxShadow?: string | null;
+  overflow?: string | null;
+  transform?: string | null;
 };
 
 export type SectionComponent = {
   title: string;
   type: ComponentType;
-  style?: CSSProperties;
+  style?: Partial<CSSStyle>;
   props?: ComponentProps;
 };
 
@@ -111,8 +137,8 @@ export type Section = {
   description: string;
   id: string;
   title: string;
-  style?: CSSProperties;
-  props?: Record<string, string>;
+  style?: Partial<CSSStyle>;
+  props?: ComponentProps;
   components: Array<SectionComponent>;
 };
 
@@ -181,16 +207,4 @@ export type DefaultThemeType = {
   buttons: ButtonsStyle;
   typography: Typography;
   navigation: NavigationModel;
-};
-
-export const BUTTON_SIZE_MAPPER: Record<ButtonSize, ButtonSizeGql> = {
-  [ButtonSize.SMALL]: ButtonSizeGql.Small,
-  [ButtonSize.MEDIUM]: ButtonSizeGql.Medium,
-  [ButtonSize.LARGE]: ButtonSizeGql.Large,
-};
-
-export const BUTTON_TYPE_MAPPER: Record<ButtonType, ButtonTypeGql> = {
-  [ButtonType.FILLED]: ButtonTypeGql.Filled,
-  [ButtonType.OUTLINED]: ButtonTypeGql.Outlined,
-  [ButtonType.TEXT]: ButtonTypeGql.Text,
 };

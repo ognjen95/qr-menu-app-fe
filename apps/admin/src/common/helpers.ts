@@ -1,6 +1,7 @@
 import { formatDistance, parseISO, isToday, isYesterday } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
-import { CSSProperties } from "react";
+
+import { CSSStyle } from "../app/context/theme-context/types";
 
 export const getExtensionFromFileType = (fileType: string): string =>
   fileType.replace(/(.*)\//g, "");
@@ -49,7 +50,7 @@ export const removeBucketPrefix = (url: string): string => {
 };
 
 export const removeEmptyFields = (
-  obj: CSSProperties | undefined | null
+  obj: CSSStyle | undefined | null
 ): Record<string, unknown> => {
   if (!obj) return {};
 

@@ -2,7 +2,7 @@ import { PIZZA_RESTAURANT_THEME_CONFIG } from "~features/themes/variants/pizza-r
 
 import { ThemeMapper } from "./types";
 import { DEFAULT_THEME } from "../../../../app/context/theme-context/constants";
-import { DEFAULT_THEME_CONFIG } from "../../../themes/default/constants";
+import { DEFAULT_THEME_CONFIG } from "../../../themes/variants/default-theme/constants";
 import { ThemeIds } from "../../../themes/enums";
 
 export const THEMES: ThemeMapper[] = [

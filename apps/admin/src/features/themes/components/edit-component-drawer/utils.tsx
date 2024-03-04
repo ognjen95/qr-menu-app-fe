@@ -1,12 +1,10 @@
-import Image from "next/image";
-import { Icon, IconType, IconButton, FileUploadInput } from "ui-components";
-import { colors } from "ui-components/src/config/tailwind-config";
+import { Icon, IconType } from "ui-components";
 
 import EditButtonComponent from "./edit-button-component/EditButtonComponent";
 import EditImageComponent from "./edit-image-component/EditImageComponent";
 import EditTypographyComponent from "./edit-typography-component/EditTypographyComponent";
 import { SectionComponent } from "../../../../app/context/theme-context/types";
-import { ComponentType } from "../../sections/enums";
+import { ComponentType } from "../../../../app/context/theme-context/enums";
 
 export const renderIcon = (type: ComponentType) => {
   switch (type) {

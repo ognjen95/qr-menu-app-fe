@@ -1,9 +1,10 @@
 import { Ref, useEffect, useRef, useState } from "react";
 
-import { TypographySize } from "../../../../../app/context/theme-context/enums";
+import { ComponentType, TypographySize } from "../../../../../app/context/theme-context/enums";
 import { useThemeContext } from "../../../../../app/context/theme-context/ThemeContext";
-import { SectionComponent } from "../../../../../app/context/theme-context/types";
-import { ComponentType } from "../../../sections/enums";
+import {
+  SectionComponent,
+} from "../../../../../app/context/theme-context/types";
 import { TYPOGRAPHY_MAPPER } from "../../typography/constants";
 import { ComponentTypeUnion } from "../../typography/types";
 
@@ -16,7 +17,7 @@ const useEditTypography = (
   const [textValue, setTextValue] = useState("");
   const [color, setColor] = useState("");
   const ref = useRef<HTMLDivElement>() as Ref<HTMLDivElement>;
-  const section = theme.sections[sectionIndex];
+  const section = theme!.sections[sectionIndex];
   const component = section.components[componentIndex];
 
   useEffect(() => {
@@ -32,16 +33,11 @@ const useEditTypography = (
     }
 
     if (component.type === ComponentType.P) {
-      setColor(theme.colorPallete.text);
+      setColor(theme!.colorPallete.text);
     } else {
-      setColor(theme.colorPallete.headers);
+      setColor(theme!.colorPallete.headers);
     }
-  }, [
-    component.style,
-    component.type,
-    theme.colorPallete.headers,
-    theme.colorPallete.text,
-  ]);
+  }, [component.style, component.type, theme]);
 
   const handleEditTextValue = () => {
     editSection(
@@ -166,7 +162,7 @@ const useEditTypography = (
     handleEditFontWeight,
     handleFontSizeChange,
     handleColorChange,
-    typography: theme.typography,
+    typography: theme!.typography,
     component,
   };
 };

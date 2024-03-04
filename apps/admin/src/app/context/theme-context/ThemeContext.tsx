@@ -1,15 +1,10 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-} from "react";
+import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { FCWithChildren } from "ui-components";
 
 import { SectionActions } from "./enums";
 import reducer from "./reducer";
 import { DefaultThemeType, Section, ThemeContextType } from "./types";
+import { themeMapper } from "./utils";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
 import { useFindThemeByTenantIdQuery } from "../../../graphql-api";
 
@@ -31,18 +26,15 @@ const ThemeContext = createContext<ThemeContextType>({
 const ThemeContextProvider: FCWithChildren = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, null);
 
-  console.log({ state });
-  const { data } = useFindThemeByTenantIdQuery();
-
-  useEffect(() => {
-    if (state) return;
-
-    console.log(data);
-
-    if (data) {
-      dispatch({ type: "THEME", payload: data.findThemeByTenantId });
-    }
-  }, [data, state]);
+  useFindThemeByTenantIdQuery({
+    skip: !!state,
+    onCompleted: (fetchedTheme) => {
+      dispatch({
+        type: "THEME",
+        payload: themeMapper(fetchedTheme.findThemeByTenantId),
+      });
+    },
+  });
 
   const contextValue = useMemo(
     () => ({

@@ -2,16 +2,16 @@ import {
   AnimationType,
   ButtonSize,
   ButtonType,
+  ComponentType,
   NavigationLayout,
   TypographySize,
-} from "../../../app/context/theme-context/enums";
-import { DefaultThemeType } from "../../../app/context/theme-context/types";
-import { ComponentType } from "../sections/enums";
-import { CUISINE_INFO_SECTION } from "../sections/main/cuisine-info-section/constants";
-import { INGREDIANTS_INFO_SECTION } from "../sections/main/ingrediants-info-section/constants";
-import { OFFERS_SECTION } from "../sections/main/offers-section/constants";
-import { WELCOME_SECTION_CONFIG } from "../sections/main/welcome-section/constants";
-import { WORKING_HOURS_SECTION } from "../sections/working-hours/working-hours-section/constants";
+} from "../../../../app/context/theme-context/enums";
+import { DefaultThemeType } from "../../../../app/context/theme-context/types";
+import { CUISINE_INFO_SECTION } from "../../sections/main/cuisine-info-section/constants";
+import { INGREDIANTS_INFO_SECTION } from "../../sections/main/ingrediants-info-section/constants";
+import { OFFERS_SECTION } from "../../sections/main/offers-section/constants";
+import { WELCOME_SECTION_CONFIG } from "../../sections/main/welcome-section/constants";
+import { WORKING_HOURS_SECTION } from "../../sections/working-hours/working-hours-section/constants";
 
 export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
   id: "",

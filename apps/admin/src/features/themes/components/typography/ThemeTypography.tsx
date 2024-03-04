@@ -3,9 +3,9 @@ import React, { FC } from "react";
 
 import { TYPOGRAPHY_MAPPER } from "./constants";
 import { ComponentTypeUnion } from "./types";
+import { ComponentType } from "../../../../app/context/theme-context/enums";
 import { useThemeContext } from "../../../../app/context/theme-context/ThemeContext";
 import { removeEmptyFields } from "../../../../common/helpers";
-import { ComponentType } from "../../sections/enums";
 import { ThemeComponentProps } from "../types";
 
 const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
@@ -15,7 +15,11 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
   props,
 }) => {
   const { theme } = useThemeContext();
-  const { typography } = theme;
+  const { typography } = theme || {};
+
+  if (!typography) {
+    return null;
+  }
 
   const fontSize =
     TYPOGRAPHY_MAPPER[typography.fontSize][type ?? ComponentType.P];

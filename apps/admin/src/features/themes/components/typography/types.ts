@@ -1,4 +1,4 @@
-import { ComponentType } from "../../sections/enums";
+import { ComponentType } from "../../../../app/context/theme-context/enums";
 
 export type ComponentTypeUnion =
   | ComponentType.H1

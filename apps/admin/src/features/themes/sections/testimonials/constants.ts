@@ -1,4 +1,4 @@
-import { ComponentType } from "../enums";
+import { ComponentType } from "../../../../app/context/theme-context/enums";
 
 export const TESTIMONIAL_SECTION = {
   components: [
@@ -28,6 +28,9 @@ export const TESTIMONIAL_SECTION = {
       props: {
         value:
           "'Passion and experience - in my opinion, that’s the recipe for our success. Without dedication and experience, we wouldn't have been able to create this place.'",
+      },
+      style: {
+        color: "#fff",
       },
       title: "Message",
       type: ComponentType.H3,

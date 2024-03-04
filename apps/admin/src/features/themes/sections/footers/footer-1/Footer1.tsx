@@ -9,7 +9,7 @@ import {
 } from "../../../../../app/context/theme-context/types";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { PAGES } from "../../../pages/constants";
-import { ComponentType } from "../../enums";
+import { ComponentType } from "../../../../../app/context/theme-context/enums";
 
 type FooterProps = {
   colorPallete: ColorPallete;

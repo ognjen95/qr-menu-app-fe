@@ -1,53 +1,53 @@
 import { ThemeConfigurationEntity } from "~graphql-api";
 
+import { AnimationType } from "./enums";
 import { DefaultThemeType } from "./types";
 
-export const mapThemeGQL = (
+export const themeMapper = (
   theme: ThemeConfigurationEntity
 ): DefaultThemeType => ({
-  sections: theme.sections.map((section) => ({
-    components:
-      section?.components?.map((component) => ({
-        props: component.props as Record<string, string>,
-        style: component.style as Record<string, string>,
-        title: component.title,
-        type: component.type,
-      })) ?? [],
-    description: section.description,
-    id: section.id,
-    props: section.props as Record<string, string>,
-    style: section.style as Record<string, string>,
-    title: section.title,
-  })),
-  animation: {
-    delay: "1",
-    duration: "1",
-    iteration: "1",
-    timing: "1",
-    type: "1",
-  },
-  background: {
-    color: theme.background.color,
-    image: theme.background.image,
-  },
-  buttons: {
-    borderRadius: theme.buttons.borderRadius,
-  },
+  id: theme.id,
   colorPallete: theme.colorPallete,
   title: theme.title,
+  logo: theme.logo,
   typography: {
     fontSize: theme.typography.fontSize,
     headers: {
-      color: theme.typography.headers.color ?? "red",
-      fontFamily: theme.typography.headers.fontFamily ?? "promeni",
-      fontSize: theme.typography.headers.fontSize ?? "30px",
-      weight: theme.typography.headers.weight ?? "500",
+      color: theme.typography.headers.color ?? "",
+      fontFamily: theme.typography.headers.fontFamily ?? "",
+      fontSize: theme.typography.headers.fontSize ?? "",
+      weight: theme.typography.headers.weight ?? "",
     },
     text: {
-      color: theme.typography.headers.color ?? "red",
-      fontFamily: theme.typography.headers.fontFamily ?? "promeni",
-      fontSize: theme.typography.headers.fontSize ?? "18px",
-      weight: theme.typography.headers.weight ?? "400",
+      color: theme.typography.headers.color ?? "",
+      fontFamily: theme.typography.headers.fontFamily ?? "",
+      fontSize: theme.typography.headers.fontSize ?? "",
+      weight: theme.typography.headers.weight ?? "",
     },
   },
+  buttons: theme.buttons,
+  navigation: theme.navigation,
+  background: theme.background,
+  animation: {
+    type: (theme.animation.type ?? AnimationType.FADE_UP) as AnimationType,
+    delay: "",
+    duration: "",
+    iteration: "",
+    timing: "",
+  },
+  sections:
+    theme.sections.map((section) => ({
+      id: section.id,
+      title: section.title ?? "",
+      description: section.description ?? "",
+      style: section.style ?? {},
+      props: section.props ?? {},
+      components:
+        section?.components?.map((component) => ({
+          title: component.title ?? "",
+          type: component.type,
+          style: component.style ?? {},
+          props: component.props ?? {},
+        })) ?? [],
+    })) ?? [],
 });

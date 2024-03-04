@@ -3,10 +3,9 @@ import { cloneDeep } from "@apollo/client/utilities";
 import { SectionActions } from "./enums";
 import { ActionsType, DefaultThemeType } from "./types";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
-import { DEFAULT_THEME_CONFIG } from "../../../features/themes/default/constants";
 
 const reducer = (state: DefaultThemeType | null, actions: ActionsType) => {
-  let stateCopy = state ? cloneDeep(state) : DEFAULT_THEME_CONFIG;
+  let stateCopy = cloneDeep(state) as DefaultThemeType;
 
   switch (actions.type) {
     case "THEME":

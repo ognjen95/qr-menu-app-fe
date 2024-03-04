@@ -1,18 +1,15 @@
-import Image from "next/image";
 import { FC } from "react";
 import {
   ButtonsStyle,
   ColorPallete,
   Section,
-  SectionComponent,
   Typography,
 } from "src/app/context/theme-context/types";
 
-import { AnimationType } from "../../../../../app/context/theme-context/enums";
+import { AnimationType, ComponentType } from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
 import ThemeImage from "../../../components/images/ThemeImage";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
-import { ComponentType } from "../../enums";
 
 type CuisineSectionProps = {
   sectionData: Section;

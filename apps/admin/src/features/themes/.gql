@@ -19,24 +19,24 @@ query FindThemeByTenantId {
       buttonHover
     }
     cards {
-      backgroundColor
       borderRadius
+      backgroundColor
     }
     colorPallete {
       background
       cards
-      headers
       primary
       secondary
       surface
       tertiary
+      headers
       text
     }
     createdAt
     footer {
       backgroundColor
-      color
       fontSize
+      color
       fontWeight
       layout
     }

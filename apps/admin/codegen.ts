@@ -1,6 +1,8 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnvConfig } from "@next/env";
 
+import { ButtonSize, ButtonType } from "./src/app/context/theme-context/enums";
+
 loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
@@ -36,6 +38,14 @@ const config: CodegenConfig = {
           Date: "Date",
           Decimal: "number",
           UUID: "string",
+        },
+        enumValues: {
+          ButtonSize: "../app/context/theme-context/enums#ButtonSize",
+          ButtonType: "../app/context/theme-context/enums#ButtonType",
+          NavigationLayout:
+            "../app/context/theme-context/enums#NavigationLayout",
+          TypographySize: "../app/context/theme-context/enums#TypographySize",
+          ComponentType: "../app/context/theme-context/enums#ComponentType",
         },
       },
     },

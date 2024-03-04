@@ -5,9 +5,9 @@ import {
   Typography,
 } from "src/app/context/theme-context/types";
 
+import { ComponentType } from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
-import { ComponentType } from "../../enums";
 
 type WorkingHoursSectionProps = {
   sectionData: Section;

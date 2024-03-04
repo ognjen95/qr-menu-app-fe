@@ -1,10 +1,11 @@
-import { CSSProperties } from "react";
-
-import { ComponentProps } from "../../../app/context/theme-context/types";
-import { ComponentType } from "../sections/enums";
+import { ComponentType } from "../../../app/context/theme-context/enums";
+import {
+  CSSStyle,
+  ComponentProps,
+} from "../../../app/context/theme-context/types";
 
 export type ThemeComponentProps<T = ComponentType.DIV> = {
-  style?: CSSProperties;
+  style?: CSSStyle;
   props?: ComponentProps;
   type?: T;
   className?: string;

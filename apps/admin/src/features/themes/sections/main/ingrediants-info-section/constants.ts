@@ -1,4 +1,4 @@
-import { ComponentType } from "../../enums";
+import { ComponentType } from "../../../../../app/context/theme-context/enums";
 
 export const INGREDIANTS_INFO_SECTION = {
   components: [
