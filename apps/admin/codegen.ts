@@ -46,6 +46,7 @@ const config: CodegenConfig = {
             "../app/context/theme-context/enums#NavigationLayout",
           TypographySize: "../app/context/theme-context/enums#TypographySize",
           ComponentType: "../app/context/theme-context/enums#ComponentType",
+          SectionPage: "../app/context/theme-context/enums#SectionPage",
         },
       },
     },

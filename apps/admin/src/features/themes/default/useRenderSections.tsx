@@ -1,8 +1,12 @@
-import { useCallback, ReactElement } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCallback, ReactElement, useState, useEffect } from "react";
 import { useModal } from "ui-components";
 
 import EditSectionWrapper from "./EditSectionWrapper";
-import { AnimationType } from "../../../app/context/theme-context/enums";
+import {
+  AnimationType,
+  SectionPage,
+} from "../../../app/context/theme-context/enums";
 import {
   Section,
   ButtonsStyle,
@@ -18,6 +22,13 @@ const useRenderSections = () => {
   const addSectionModal = useModal<{ section: Section; index: number }>();
   const edtSectionModal = useModal<{ index: number; section: Section }>();
   const deleteSectionModal = useModal<{ index: number }>();
+  const { get } = useSearchParams();
+
+  const [activePage, setActivePage] = useState(SectionPage.HOME);
+
+  useEffect(() => {
+    setActivePage((get("page") as SectionPage) || SectionPage.HOME);
+  }, [get]);
 
   const renderThemeSection = useCallback(
     (
@@ -28,7 +39,7 @@ const useRenderSections = () => {
       animation: AnimationType,
       index: number
     ): ReactElement | null => {
-      const renderSectionComponent = [
+      const renderSection = [
         ...HEADER_SECTIONS,
         ...MAIN_SECTIONS,
         ...TESTIMONIAL_SECTIONS,
@@ -37,35 +48,42 @@ const useRenderSections = () => {
         (section) => section.config.title === sectionData.title
       )?.component;
 
-      if (!renderSectionComponent) return null;
+      if (!renderSection) return null;
 
-      return (
-        <EditSectionWrapper
-          editModal={() =>
-            edtSectionModal.open({ index, section: sectionData })
-          }
-          addUpModal={() =>
-            addSectionModal.open({
-              section: sectionData,
-              index: index >= 0 ? index : 0,
-            })
-          }
-          addDownModal={() =>
-            addSectionModal.open({ section: sectionData, index: index + 1 })
-          }
-          deleteSectionModal={() => deleteSectionModal.open({ index })}
-        >
-          {renderSectionComponent({
-            sectionData,
-            colorPallete,
-            typography,
-            buttons,
-            animationType: animation,
-          })}
-        </EditSectionWrapper>
-      );
+      if (
+        activePage === sectionData.page ||
+        (!sectionData.page && activePage === SectionPage.HOME)
+      ) {
+        return (
+          <EditSectionWrapper
+            editModal={() =>
+              edtSectionModal.open({ index, section: sectionData })
+            }
+            addUpModal={() =>
+              addSectionModal.open({
+                section: sectionData,
+                index: index >= 0 ? index : 0,
+              })
+            }
+            addDownModal={() =>
+              addSectionModal.open({ section: sectionData, index: index + 1 })
+            }
+            deleteSectionModal={() => deleteSectionModal.open({ index })}
+          >
+            {renderSection({
+              sectionData,
+              colorPallete,
+              typography,
+              buttons,
+              animationType: animation,
+            })}
+          </EditSectionWrapper>
+        );
+      }
+
+      return null;
     },
-    [addSectionModal, deleteSectionModal, edtSectionModal]
+    [addSectionModal, deleteSectionModal, edtSectionModal, activePage]
   );
 
   return {

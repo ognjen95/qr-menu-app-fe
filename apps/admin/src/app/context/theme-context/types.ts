@@ -5,6 +5,7 @@ import {
   ComponentType,
   NavigationLayout,
   SectionActions,
+  SectionPage,
   TypographySize,
 } from "./enums";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
@@ -139,6 +140,7 @@ export type Section = {
   title: string;
   style?: Partial<CSSStyle>;
   props?: ComponentProps;
+  page?: string;
   components: Array<SectionComponent>;
 };
 
@@ -184,6 +186,8 @@ export type NavigationModel = {
   fontWeight: string;
 };
 
+export type WebsitePage = SectionPage;
+
 export type DefaultThemeType = {
   id: string;
   sections: Section[];
@@ -207,4 +211,5 @@ export type DefaultThemeType = {
   buttons: ButtonsStyle;
   typography: Typography;
   navigation: NavigationModel;
+  activePages: WebsitePage[];
 };

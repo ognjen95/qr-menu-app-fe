@@ -1,6 +1,7 @@
 query FindThemeByTenantId {
   findThemeByTenantId {
     id
+    activePages
     animation {
       delay
       duration
@@ -24,9 +25,9 @@ query FindThemeByTenantId {
     }
     colorPallete {
       background
+      secondary
       cards
       primary
-      secondary
       surface
       tertiary
       headers
@@ -52,6 +53,7 @@ query FindThemeByTenantId {
       navigationLinksColors
     }
     sections {
+      page
       components {
         props {
           alt

@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import capitalize from "lodash.capitalize";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -12,7 +13,6 @@ import {
 
 import { NavigationLayout } from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
-import { PAGES } from "../../../pages/constants";
 
 type NavigationProps = {
   sectionData: Section;
@@ -21,6 +21,7 @@ type NavigationProps = {
   buttons: ButtonsStyle;
   logo: string;
   navigation: NavigationModel;
+  activePages: string[];
 };
 
 const Navigation: FC<NavigationProps> = ({
@@ -30,6 +31,7 @@ const Navigation: FC<NavigationProps> = ({
   typography,
   logo,
   navigation,
+  activePages,
 }) => (
   <nav className="flex justify-center">
     <div className="flex w-full max-w-[1170px] justify-between items-center p-4">
@@ -50,16 +52,16 @@ const Navigation: FC<NavigationProps> = ({
           "justify-start": navigation.layout === NavigationLayout.LEFT,
         })}
       >
-        {PAGES.filter((page) => page.isVisible).map((page) => (
+        {activePages.map((page) => (
           <Link
-            key={page.name}
-            href={page.url}
+            key={page}
+            href={`?page=${page}`}
             style={{
               fontFamily: typography.text.fontFamily,
               color: colorPallete.text,
             }}
           >
-            {page.name}
+            {capitalize(page)}
           </Link>
         ))}
       </div>

@@ -67,6 +67,12 @@ const DropdownMenu: FC<DropdownMenuProps> = ({
     }
   }, [onOpen, isOpen]);
 
+  useEffect(() => {
+    if (items.length > 0) {
+      setSelectedItemLabel(items[0].label);
+    }
+  }, [items]);
+
   return (
     <RadixDropdownMenu.Root open={isOpen}>
       <RadixDropdownMenu.Trigger

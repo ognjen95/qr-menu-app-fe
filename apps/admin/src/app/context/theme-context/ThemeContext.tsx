@@ -1,7 +1,8 @@
+import { useSearchParams } from "next/navigation";
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 import { FCWithChildren } from "ui-components";
 
-import { SectionActions } from "./enums";
+import { SectionActions, SectionPage } from "./enums";
 import reducer from "./reducer";
 import { DefaultThemeType, Section, ThemeContextType } from "./types";
 import { themeMapper } from "./utils";
@@ -25,6 +26,7 @@ const ThemeContext = createContext<ThemeContextType>({
 
 const ThemeContextProvider: FCWithChildren = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, null);
+  const { get } = useSearchParams();
 
   useFindThemeByTenantIdQuery({
     skip: !!state,
@@ -67,7 +69,10 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
         dispatch({
           type: SectionActions.ADD,
           payload: {
-            section,
+            section: {
+              ...section,
+              page: (get("page") as SectionPage) || SectionPage.HOME,
+            },
             index,
           },
         });
@@ -90,7 +95,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
         });
       },
     }),
-    [state]
+    [get, state]
   );
 
   return (

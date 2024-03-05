@@ -56,6 +56,7 @@ const LoginFeature = () => {
                 <Button
                   size={ButtonSize.LARGE}
                   fullWidth
+                  shadow
                   color={ButtonColor.PRIMARY}
                   loading={loading}
                   formName="login-form"

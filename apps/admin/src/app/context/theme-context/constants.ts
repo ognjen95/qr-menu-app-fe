@@ -4,15 +4,25 @@ import {
   ButtonType,
   ComponentType,
   NavigationLayout,
+  SectionPage,
   TypographySize,
 } from "./enums";
 import { DefaultThemeType } from "./types";
+
+export const DEFAULT_ACTIVE_PAGES = [
+  SectionPage.HOME,
+  SectionPage.ABOUT,
+  SectionPage.CONTACT,
+  SectionPage.MENU,
+  SectionPage.GALLERY,
+];
 
 export const DEFAULT_THEME: DefaultThemeType = {
   logo: {
     url: "",
   },
   id: "",
+  activePages: DEFAULT_ACTIVE_PAGES,
   navigation: {
     layout: NavigationLayout.CENTER,
     backgroundColor: "",

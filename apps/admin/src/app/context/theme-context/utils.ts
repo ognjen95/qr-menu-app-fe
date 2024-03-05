@@ -1,12 +1,15 @@
 import { ThemeConfigurationEntity } from "~graphql-api";
 
-import { AnimationType } from "./enums";
+import { AnimationType, SectionPage } from "./enums";
 import { DefaultThemeType } from "./types";
 
 export const themeMapper = (
   theme: ThemeConfigurationEntity
 ): DefaultThemeType => ({
   id: theme.id,
+  activePages:
+    (theme.activePages?.map((page) => page.toLowerCase()) as SectionPage[]) ??
+    [],
   colorPallete: theme.colorPallete,
   title: theme.title,
   logo: theme.logo,
@@ -37,6 +40,7 @@ export const themeMapper = (
   },
   sections:
     theme.sections.map((section) => ({
+      page: section.page || SectionPage.HOME,
       id: section.id,
       title: section.title ?? "",
       description: section.description ?? "",

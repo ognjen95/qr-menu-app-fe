@@ -2,10 +2,10 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import { DefaultThemeType, Section } from "src/app/context/theme-context/types";
-import { DeleteModal } from "ui-components";
+import { Button, DeleteModal, EmptyList } from "ui-components";
 
 import useRenderSections from "./useRenderSections";
 import { useThemeContext } from "../../../app/context/theme-context/ThemeContext";
@@ -35,18 +35,40 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
 
   const handleAddSection = (section: Section) => {
     const index = addSectionModal.params?.index;
+    const isIndexUndefined = Number.isNaN(index!);
 
-    addSection(section!, index!);
+    if (isIndexUndefined) {
+      addSection(section, theme.sections.length);
+    } else {
+      addSection(section!, index!);
+    }
+
     toast.success("Section added successfully");
     addSectionModal.close();
   };
 
   const handleDelete = () => {
     const index = deleteSectionModal.params?.index;
+
     deleteSection(index!);
     toast.success("Section deleted successfully");
     deleteSectionModal.close();
   };
+
+  const sections = useMemo(
+    () =>
+      theme?.sections?.map((section, index) =>
+        renderThemeSection(
+          section,
+          theme.colorPallete,
+          theme.typography,
+          theme.buttons,
+          theme.animation.type,
+          index
+        )
+      ),
+    [theme, renderThemeSection]
+  );
 
   return (
     <>
@@ -57,6 +79,7 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
         }}
       >
         <Navigation
+          activePages={theme.activePages ?? []}
           navigation={theme.navigation}
           logo={theme?.logo?.url ?? ""}
           sectionData={
@@ -66,17 +89,27 @@ const DefaultTheme: FC<DefaultThemeProps> = ({ theme }) => {
           typography={theme.typography}
           buttons={theme.buttons}
         />
-        {theme?.sections?.map((section, index) =>
-          renderThemeSection(
-            section,
-            theme.colorPallete,
-            theme.typography,
-            theme.buttons,
-            theme.animation.type,
-            index
-          )
-        )}
+        <div>
+          {sections}
+          {sections.every((sec) => !sec) && (
+            <div className="flex flex-col items-center justify-center p-10 space-y-5">
+              <EmptyList
+                title="Page is empty"
+                description="Click on button bellow to add first section"
+                url="/images/no-content.png"
+              />
+              <Button
+                onClick={() => {
+                  addSectionModal.open();
+                }}
+              >
+                Add Section
+              </Button>
+            </div>
+          )}
+        </div>
         <Footer1
+          activePages={theme.activePages ?? []}
           logo={theme?.logo?.url ?? ""}
           colorPallete={theme.colorPallete}
           typography={theme.typography}

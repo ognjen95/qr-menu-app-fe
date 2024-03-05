@@ -4,12 +4,14 @@ import {
   TESTIMONIAL_SECTION,
 } from "~features/themes/sections/testimonials/constants";
 
+import { DEFAULT_ACTIVE_PAGES } from "../../../../app/context/theme-context/constants";
 import {
   AnimationType,
   ButtonSize,
   ButtonType,
   ComponentType,
   NavigationLayout,
+  SectionPage,
   TypographySize,
 } from "../../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../../app/context/theme-context/types";
@@ -21,6 +23,7 @@ import {
 } from "../../sections/working-hours/working-hours-section/constants";
 
 export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
+  activePages: DEFAULT_ACTIVE_PAGES,
   sections: [
     {
       components: [

@@ -1,23 +1,30 @@
+import capitalize from "lodash.capitalize";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
-import { Text, TextVariant } from "ui-components";
+import { Text } from "ui-components";
 
+import { ComponentType } from "../../../../../app/context/theme-context/enums";
 import {
   ColorPallete,
   Typography,
+  WebsitePage,
 } from "../../../../../app/context/theme-context/types";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
-import { PAGES } from "../../../pages/constants";
-import { ComponentType } from "../../../../../app/context/theme-context/enums";
 
 type FooterProps = {
   colorPallete: ColorPallete;
   typography: Typography;
   logo: string;
+  activePages: WebsitePage[];
 };
 
-const Footer1: FC<FooterProps> = ({ logo, colorPallete, typography }) => (
+const Footer1: FC<FooterProps> = ({
+  logo,
+  colorPallete,
+  typography,
+  activePages,
+}) => (
   <>
     <footer>
       <div className="grid grid-cols-4 py-[40px] p-10">
@@ -33,17 +40,17 @@ const Footer1: FC<FooterProps> = ({ logo, colorPallete, typography }) => (
           />
         </div>
         <div className="col-span-1 flex flex-col gap-3 flex">
-          {PAGES.filter((page) => page.isVisible).map((page) => (
+          {activePages.map((page) => (
             <Link
               className="hover:underline"
-              key={page.name}
-              href={page.url}
+              key={page}
+              href={`?page=${page}`}
               style={{
                 fontFamily: typography.text.fontFamily,
                 color: colorPallete.tertiary,
               }}
             >
-              {page.name}
+              {capitalize(page)}
             </Link>
           ))}
         </div>

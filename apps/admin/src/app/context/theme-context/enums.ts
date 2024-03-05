@@ -74,3 +74,18 @@ export enum ComponentType {
   SVG = "SVG",
   VIDEO = "VIDEO",
 }
+
+export enum SectionPage {
+  HOME = "home",
+  ABOUT = "about",
+  CONTACT = "contact",
+  MENU = "menu",
+  ORDER = "order",
+  RESERVATIONS = "reservations",
+  EVENTS = "events",
+  GALLERY = "gallery",
+  BLOG = "blog",
+  CAREERS = "careers",
+  PRIVACY = "privacy",
+  TERMS = "terms",
+}

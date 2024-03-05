@@ -1,9 +1,11 @@
+import { DEFAULT_ACTIVE_PAGES } from "../../../../app/context/theme-context/constants";
 import {
   AnimationType,
   ButtonSize,
   ButtonType,
   ComponentType,
   NavigationLayout,
+  SectionPage,
   TypographySize,
 } from "../../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../../app/context/theme-context/types";
@@ -14,6 +16,7 @@ import { WELCOME_SECTION_CONFIG } from "../../sections/main/welcome-section/cons
 import { WORKING_HOURS_SECTION } from "../../sections/working-hours/working-hours-section/constants";
 
 export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
+  activePages: DEFAULT_ACTIVE_PAGES,
   id: "",
   sections: [
     {
