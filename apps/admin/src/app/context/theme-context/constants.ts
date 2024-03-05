@@ -435,7 +435,7 @@ export const DEFAULT_THEME: DefaultThemeType = {
       description: "Second content section",
       id: "6",
 
-      title: "working-hours",
+      title: "fixed-bg-image",
     },
   ],
 } as const;

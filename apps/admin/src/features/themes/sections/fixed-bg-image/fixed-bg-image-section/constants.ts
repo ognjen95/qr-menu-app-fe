@@ -1,6 +1,6 @@
 import { ComponentType } from "../../../../../app/context/theme-context/enums";
 
-export const WORKING_HOURS_SECTION = {
+export const FIXED_BG_IMAGE_SECTION = {
   components: [
     {
       props: {
@@ -45,10 +45,10 @@ export const WORKING_HOURS_SECTION = {
   ],
   description: "Second content section",
   id: "6",
-  title: "working-hours",
+  title: "fixed-bg-image",
 };
 
-export const WORKING_HOURS_PIZZA_SECTION = {
+export const FIXED_BG_IMAGE_SECTION_PIZZA_SECTION = {
   components: [
     {
       props: {
@@ -92,10 +92,10 @@ export const WORKING_HOURS_PIZZA_SECTION = {
   ],
   description: "Second content section",
   id: "6",
-  title: "working-hours",
+  title: "fixed-bg-image",
 };
 
-export const WORKING_HOURS_PIZZA_2_SECTION = {
+export const FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION = {
   components: [
     {
       props: {
@@ -140,5 +140,5 @@ export const WORKING_HOURS_PIZZA_2_SECTION = {
   ],
   description: "Second content section",
   id: "6",
-  title: "working-hours",
+  title: "fixed-bg-image",
 };

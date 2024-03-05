@@ -13,10 +13,10 @@ import {
   Typography,
 } from "../../../app/context/theme-context/types";
 import { ColorPallete } from "../../../graphql-api";
+import { WORKING_HOURS_SECTIONS } from "../sections/fixed-bg-image/constants";
 import { HEADER_SECTIONS } from "../sections/headers/headers.config";
 import { MAIN_SECTIONS } from "../sections/main/main.config";
 import { TESTIMONIAL_SECTIONS } from "../sections/testimonials/testimonials.config";
-import { WORKING_HOURS_SECTIONS } from "../sections/working-hours/constants";
 
 const useRenderSections = () => {
   const addSectionModal = useModal<{ section: Section; index: number }>();
@@ -45,7 +45,7 @@ const useRenderSections = () => {
         ...TESTIMONIAL_SECTIONS,
         ...WORKING_HOURS_SECTIONS,
       ].find(
-        (section) => section.config.title === sectionData.title
+        (section) => section.config?.title === sectionData.title
       )?.component;
 
       if (!renderSection) return null;

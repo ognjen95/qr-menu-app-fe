@@ -3,8 +3,9 @@
 import React from "react";
 import { FCWithChildren } from "ui-components";
 
+import AuthGuard from "~components/auth-guard/AuthGuard";
+
 import { UserRole } from "../../../common/enums";
-import AuthGuard from "../../../components/auth-guard/AuthGuard";
 import ThemeContextProvider from "../../context/theme-context/ThemeContext";
 
 const BuilderPageLayout: FCWithChildren = ({ children }) => (

@@ -1,3 +1,6 @@
+import { GALLERY_SECTION } from "~features/themes/sections/main/gallery/constants";
+import { WORKING_HOURS_SECTION } from "~features/themes/sections/main/working-hours-section/constants";
+
 import { DEFAULT_ACTIVE_PAGES } from "../../../../app/context/theme-context/constants";
 import {
   AnimationType,
@@ -13,7 +16,6 @@ import { CUISINE_INFO_SECTION } from "../../sections/main/cuisine-info-section/c
 import { INGREDIANTS_INFO_SECTION } from "../../sections/main/ingrediants-info-section/constants";
 import { OFFERS_SECTION } from "../../sections/main/offers-section/constants";
 import { WELCOME_SECTION_CONFIG } from "../../sections/main/welcome-section/constants";
-import { WORKING_HOURS_SECTION } from "../../sections/working-hours/working-hours-section/constants";
 
 export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
   activePages: DEFAULT_ACTIVE_PAGES,
@@ -90,6 +92,7 @@ export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
     CUISINE_INFO_SECTION,
     OFFERS_SECTION,
     INGREDIANTS_INFO_SECTION,
+    GALLERY_SECTION,
     WORKING_HOURS_SECTION,
   ],
   animation: {
