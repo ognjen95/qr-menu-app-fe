@@ -28,7 +28,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, null);
   const { get } = useSearchParams();
 
-  useFindThemeByTenantIdQuery({
+  const { loading } = useFindThemeByTenantIdQuery({
     skip: !!state,
     onCompleted: (fetchedTheme) => {
       dispatch({
@@ -40,7 +40,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
 
   const contextValue = useMemo(
     () => ({
-      loading: false,
+      loading,
       theme: state,
       setTheme: (theme: DefaultThemeType) => {
         dispatch({ type: "THEME", payload: theme });
@@ -95,7 +95,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
         });
       },
     }),
-    [get, state]
+    [get, loading, state]
   );
 
   return (

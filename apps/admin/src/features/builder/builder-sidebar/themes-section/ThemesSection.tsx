@@ -35,7 +35,7 @@ const ThemesSection = () => {
                 }
               }}
               onMouseLeave={() => setIsTop(true)}
-              className="w-[300px] relative col-span-1 relative h-[400px] group overflow-y-auto no-scrollbar ease-in-out duration-300 transition-all hover:shadow-lg rounded-xl shadow hover:border-primary-500 border-2 cursor-pointer border-transparent"
+              className="w-[300px] relative col-span-1 relative h-[400px] group overflow-y-auto overflow-x-hidden no-scrollbar ease-in-out duration-300 transition-all hover:shadow-lg rounded-xl shadow hover:border-primary-500 border-2 cursor-pointer border-transparent"
             >
               <Image
                 src={item.image}

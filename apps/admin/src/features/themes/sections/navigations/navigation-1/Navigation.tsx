@@ -54,6 +54,7 @@ const Navigation: FC<NavigationProps> = ({
       >
         {activePages.map((page) => (
           <Link
+            className="hover:underline"
             key={page}
             href={`?page=${page}`}
             style={{

@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { useCallback, ReactElement, useState, useEffect } from "react";
+import { useCallback, ReactElement, useState, useEffect, useMemo } from "react";
 import { useModal } from "ui-components";
 
 import EditSectionWrapper from "./EditSectionWrapper";
@@ -11,6 +11,7 @@ import {
   Section,
   ButtonsStyle,
   Typography,
+  DefaultThemeType,
 } from "../../../app/context/theme-context/types";
 import { ColorPallete } from "../../../graphql-api";
 import { HEADER_SECTIONS } from "../sections/headers/headers.config";
@@ -18,7 +19,7 @@ import { MAIN_SECTIONS } from "../sections/main/main.config";
 import { TESTIMONIAL_SECTIONS } from "../sections/testimonials/testimonials.config";
 import { WORKING_HOURS_SECTIONS } from "../sections/working-hours/constants";
 
-const useRenderSections = () => {
+const useRenderSections = (theme: DefaultThemeType) => {
   const addSectionModal = useModal<{ section: Section; index: number }>();
   const edtSectionModal = useModal<{ index: number; section: Section }>();
   const deleteSectionModal = useModal<{ index: number }>();
@@ -86,8 +87,23 @@ const useRenderSections = () => {
     [addSectionModal, deleteSectionModal, edtSectionModal, activePage]
   );
 
+  const sections = useMemo(
+    () =>
+      theme?.sections?.map((section, index) =>
+        renderThemeSection(
+          section,
+          theme.colorPallete,
+          theme.typography,
+          theme.buttons,
+          theme.animation.type,
+          index
+        )
+      ),
+    [theme, renderThemeSection]
+  );
+
   return {
-    renderThemeSection,
+    sections,
     addSectionModal,
     edtSectionModal,
     deleteSectionModal,

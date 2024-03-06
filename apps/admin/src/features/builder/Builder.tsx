@@ -1,7 +1,7 @@
 import React from "react";
 import { Loader } from "ui-components";
 
-import DefaultTheme from "~features/themes/default/DefaultTheme";
+import ThemeRenderer from "~features/themes/theme-renderer/ThemeRederer";
 
 import BuilderNavbar from "./builder-navbar/BuilderNavbar";
 import useSaveTheme from "./builder-navbar/useSaveTheme";
@@ -26,14 +26,14 @@ const Builder = () => {
         selected={selected}
         setSelected={setSelected}
       />
-      <div className="flex flex-col flex-1 h-screen overflow-y-auto w-full">
+      <div className="flex flex-col flex-1 h-full overflow-y-auto w-full">
         <BuilderNavbar
           saveThemeLoading={saveThemeLoading}
           handleSaveTheme={handleSaveTheme}
         />
-        <div className="flex flex-col items-center flex-1 overflow-y-auto gap-5  w-full shadow  no-scrollbar shadow shadow-grey-300">
+        <div className="flex flex-col items-center flex-1 overflow-y-auto gap-5 w-full shadow  no-scrollbar shadow shadow-grey-300">
           {loading && <Loader centered />}
-          {!loading && theme && <DefaultTheme theme={theme} />}
+          {!loading && theme && <ThemeRenderer theme={theme} />}
         </div>
       </div>
     </div>
