@@ -9,13 +9,13 @@ import { ComponentType } from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 
-type WorkingHoursSectionProps = {
+type FixedBgImageSectionProps = {
   sectionData: Section;
   colorPallete: ColorPallete;
   typography: Typography;
 };
 
-const WorkingHoursSection: FC<WorkingHoursSectionProps> = ({
+const FixedBgImageSection: FC<FixedBgImageSectionProps> = ({
   sectionData: { components },
   colorPallete,
   typography,
@@ -46,4 +46,4 @@ const WorkingHoursSection: FC<WorkingHoursSectionProps> = ({
   </section>
 );
 
-export default WorkingHoursSection;
+export default FixedBgImageSection;

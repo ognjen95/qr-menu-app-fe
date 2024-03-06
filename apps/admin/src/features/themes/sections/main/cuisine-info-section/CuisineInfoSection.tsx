@@ -6,7 +6,10 @@ import {
   Typography,
 } from "src/app/context/theme-context/types";
 
-import { AnimationType, ComponentType } from "../../../../../app/context/theme-context/enums";
+import {
+  AnimationType,
+  ComponentType,
+} from "../../../../../app/context/theme-context/enums";
 import ThemeButton from "../../../components/buttons/ThemeButton";
 import ThemeImage from "../../../components/images/ThemeImage";
 import ThemeTypography from "../../../components/typography/ThemeTypography";

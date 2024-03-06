@@ -15,12 +15,12 @@ import {
   TypographySize,
 } from "../../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../../app/context/theme-context/types";
+import {
+  FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION,
+  FIXED_BG_IMAGE_SECTION_PIZZA_SECTION,
+} from "../../sections/fixed-bg-image/fixed-bg-image-section/constants";
 import { CUISINE_INFO_PIZZA_SECTION } from "../../sections/main/cuisine-info-section/constants";
 import { WELCOME_PIZZA_SECTION } from "../../sections/main/welcome-section/constants";
-import {
-  WORKING_HOURS_PIZZA_2_SECTION,
-  WORKING_HOURS_PIZZA_SECTION,
-} from "../../sections/working-hours/working-hours-section/constants";
 
 export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
   activePages: DEFAULT_ACTIVE_PAGES,
@@ -92,13 +92,13 @@ export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
       id: "1",
       title: "header",
     },
-    WORKING_HOURS_PIZZA_SECTION,
+    FIXED_BG_IMAGE_SECTION_PIZZA_SECTION,
     WELCOME_PIZZA_SECTION,
     CUISINE_INFO_PIZZA_SECTION,
     TESTIMONIAL_SECTION,
     REVIEW_SECTION,
     MENU_SECTION,
-    WORKING_HOURS_PIZZA_2_SECTION,
+    FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION,
   ],
   animation: {
     delay: "1",
