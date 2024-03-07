@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { Loader } from "ui-components";
 
 import ThemeRenderer from "~features/themes/theme-renderer/ThemeRederer";
@@ -9,7 +9,7 @@ import BuilderSidebar from "./builder-sidebar/BuilderSidebar";
 import useBuilderSidebar from "./builder-sidebar/useBuilderSidebar";
 import { useThemeContext } from "../../app/context/theme-context/ThemeContext";
 
-const Builder = () => {
+const Builder: FC = () => {
   const { sidebarOpen, setSidebarOpen, selected, setSelected } =
     useBuilderSidebar();
 

@@ -30,10 +30,7 @@ const Footer1: FC<FooterProps> = ({
       <div className="grid grid-cols-4 py-[40px] p-10">
         <div className="col-span-1 flex">
           <Image
-            src={
-              logo ||
-              "https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/restaurantlogo.png?v=8"
-            }
+            src={logo || "/menu-logo.png"}
             width={160}
             alt="Image"
             height={160}

@@ -1,106 +1,63 @@
 import { useSearchParams } from "next/navigation";
-import { useCallback, ReactElement, useState, useEffect, useMemo } from "react";
+import { FC } from "react";
 import { useModal } from "ui-components";
 
 import EditSectionWrapper from "./EditSectionWrapper";
-import {
-  AnimationType,
-  SectionPage,
-} from "../../../app/context/theme-context/enums";
+import { SectionPage } from "../../../app/context/theme-context/enums";
 import {
   Section,
-  ButtonsStyle,
-  Typography,
   DefaultThemeType,
 } from "../../../app/context/theme-context/types";
-import { ColorPallete } from "../../../graphql-api";
-import { WORKING_HOURS_SECTIONS } from "../sections/fixed-bg-image/constants";
-import { HEADER_SECTIONS } from "../sections/headers/headers.config";
-import { MAIN_SECTIONS } from "../sections/main/main.config";
-import { TESTIMONIAL_SECTIONS } from "../sections/testimonials/testimonials.config";
+import { ALL_SECTIONS, SectionConfig } from "../sections/constants";
 
 const useRenderSections = (theme: DefaultThemeType) => {
   const addSectionModal = useModal<{ section: Section; index: number }>();
   const edtSectionModal = useModal<{ index: number; section: Section }>();
   const deleteSectionModal = useModal<{ index: number }>();
+
   const { get } = useSearchParams();
 
-  const [activePage, setActivePage] = useState(SectionPage.HOME);
+  const page = (get("page") as SectionPage) || SectionPage.HOME;
 
-  useEffect(() => {
-    setActivePage((get("page") as SectionPage) || SectionPage.HOME);
-  }, [get]);
+  const sectionList: [SectionConfig["component"], Section, number][] = [];
 
-  const renderThemeSection = useCallback(
-    (
-      sectionData: Section,
-      colorPallete: ColorPallete,
-      typography: Typography,
-      buttons: ButtonsStyle,
-      animation: AnimationType,
-      index: number
-    ): ReactElement | null => {
-      const renderSection = [
-        ...HEADER_SECTIONS,
-        ...MAIN_SECTIONS,
-        ...TESTIMONIAL_SECTIONS,
-        ...WORKING_HOURS_SECTIONS,
-      ].find(
-        (section) => section.config?.title === sectionData.title
-      )?.component;
+  theme.sections.forEach((sectionData, index) => {
+    const isHomePage = !sectionData.page && page === SectionPage.HOME;
+    const pageExists = sectionData.page === page || isHomePage;
 
-      if (!renderSection) return null;
+    const sectionComponent = ALL_SECTIONS.find(
+      (section) => section.config?.title === sectionData.title
+    )?.component;
 
-      if (
-        activePage === sectionData.page ||
-        (!sectionData.page && activePage === SectionPage.HOME)
-      ) {
-        return (
-          <EditSectionWrapper
-            editModal={() =>
-              edtSectionModal.open({ index, section: sectionData })
-            }
-            addUpModal={() =>
-              addSectionModal.open({
-                section: sectionData,
-                index: index >= 0 ? index : 0,
-              })
-            }
-            addDownModal={() =>
-              addSectionModal.open({ section: sectionData, index: index + 1 })
-            }
-            deleteSectionModal={() => deleteSectionModal.open({ index })}
-          >
-            {renderSection({
-              sectionData,
-              colorPallete,
-              typography,
-              buttons,
-              animationType: animation,
-            })}
-          </EditSectionWrapper>
-        );
+    if (!sectionComponent || !pageExists) return;
+
+    sectionList.push([sectionComponent as FC, sectionData, index]);
+  });
+
+  const sections = sectionList.map(([SectionComponent, sectionData, index]) => (
+    <EditSectionWrapper
+      key={sectionData.id + sectionData.title + index.toString()}
+      editModal={() => edtSectionModal.open({ index, section: sectionData })}
+      addUpModal={() =>
+        addSectionModal.open({
+          section: sectionData,
+          index: index >= 0 ? index : 0,
+        })
       }
-
-      return null;
-    },
-    [addSectionModal, deleteSectionModal, edtSectionModal, activePage]
-  );
-
-  const sections = useMemo(
-    () =>
-      theme?.sections?.map((section, index) =>
-        renderThemeSection(
-          section,
-          theme.colorPallete,
-          theme.typography,
-          theme.buttons,
-          theme.animation.type,
-          index
-        )
-      ),
-    [theme, renderThemeSection]
-  );
+      addDownModal={() =>
+        addSectionModal.open({ section: sectionData, index: index + 1 })
+      }
+      deleteSectionModal={() => deleteSectionModal.open({ index })}
+    >
+      <SectionComponent
+        sectionData={sectionData}
+        colorPallete={theme.colorPallete}
+        typography={theme.typography}
+        buttons={theme.buttons}
+        animationType={theme.animation.type}
+      />
+    </EditSectionWrapper>
+  ));
 
   return {
     sections,

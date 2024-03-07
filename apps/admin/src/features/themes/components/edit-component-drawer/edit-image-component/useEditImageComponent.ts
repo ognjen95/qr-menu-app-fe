@@ -10,7 +10,8 @@ const useEditImageComponent = (
 ) => {
   const [file, setFile] = useState<File>();
   const { theme, editSection } = useThemeContext();
-  const section = theme.sections[sectionIndex];
+
+  const section = theme!.sections[sectionIndex];
   const component = section.components[componentIndex];
   const componentSrc = component.props?.src;
   const defaultSrc = defaultComponent.props?.src;

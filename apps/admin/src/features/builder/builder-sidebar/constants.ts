@@ -16,7 +16,7 @@ export const MAIN_NAV = [
   {
     iconType: IconType.IMAGE_1,
     text: MainNav.THEMES,
-    link: "/admin/dashboard",
+    link: "/admin/themes",
   },
   {
     iconType: IconType.FILE_DOCUMENT,
@@ -26,12 +26,12 @@ export const MAIN_NAV = [
   {
     iconType: IconType.GLOBE,
     text: MainNav.LANGUAGES,
-    link: "/admin/builder",
+    link: "/admin/languages",
   },
   {
     iconType: IconType.SETTINGS,
     text: MainNav.SETTINGS,
-    link: "/admin/builder",
+    link: "/admin/settings",
   },
 ];
 

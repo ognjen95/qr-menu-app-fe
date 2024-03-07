@@ -17,7 +17,7 @@ const WorkingHoursSection: FC<WorkingHoursSectionProps> = ({
     className="py-[80px]"
     style={{
       backgroundColor:
-        colorPallete.surface || sectionData.style?.backgroundColor,
+        colorPallete.surface || sectionData.style?.backgroundColor || "",
     }}
   >
     <div className="w-[1170px] px-[15px] mx-auto">

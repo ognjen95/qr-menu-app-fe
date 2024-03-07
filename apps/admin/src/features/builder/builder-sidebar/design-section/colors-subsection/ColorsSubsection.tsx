@@ -7,7 +7,7 @@ import { useThemeContext } from "../../../../../app/context/theme-context/ThemeC
 
 const ColorsSubsection = () => {
   const { theme, setCollorPallete } = useThemeContext();
-  const { colorPallete } = theme;
+  const { colorPallete } = theme!;
 
   return (
     <div>
@@ -72,7 +72,18 @@ const ColorsSubsection = () => {
       <Text variant={TextVariant.HEADING6}>Recomended color pallets</Text>
       {RECOMENDED_COLORS.map((item) => (
         <div
-          onClick={() => setCollorPallete(item)}
+          onClick={() =>
+            setCollorPallete({
+              primary: item.primary,
+              secondary: item.secondary,
+              tertiary: item.tertiary,
+              background: item.background,
+              text: item.text,
+              headers: item.headers,
+              surface: item.surface,
+              cards: item.cards,
+            })
+          }
           className={clsx(
             "grid grid-cols-8 mt-3 border p-2 justify-center mx-auto justify-self-center rounded-xl flex hover:bg-gray-200 cursor-pointer transition-all duration-150 ease-in-out",
             {

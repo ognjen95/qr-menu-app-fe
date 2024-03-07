@@ -1,11 +1,24 @@
-import { WORKING_HOURS_SECTION } from "./fixed-bg-image-section/constants";
+import {
+  FIXED_BG_IMAGE_SECTION,
+  FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION,
+  FIXED_BG_IMAGE_SECTION_PIZZA_SECTION,
+} from "./fixed-bg-image-section/constants";
 import FixedBgImageSection from "./fixed-bg-image-section/FixedBgImageSection";
-import { SectionConfigMapper } from "../types";
 
-export const WORKING_HOURS_SECTIONS: SectionConfigMapper[] = [
+export const FIXED_BG_IMAGE_SECTIONS = [
   {
     image: "/images/section-preview-1.png",
-    config: WORKING_HOURS_SECTION,
+    config: FIXED_BG_IMAGE_SECTION,
+    component: FixedBgImageSection,
+  },
+  {
+    image: "/images/section-preview-1.png",
+    config: FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION,
+    component: FixedBgImageSection,
+  },
+  {
+    image: "/images/section-preview-1.png",
+    config: FIXED_BG_IMAGE_SECTION_PIZZA_SECTION,
     component: FixedBgImageSection,
   },
 ];

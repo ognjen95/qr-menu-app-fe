@@ -7,8 +7,8 @@ import {
   Typography,
 } from "src/app/context/theme-context/types";
 
-import ThemeTypography from "../../../components/typography/ThemeTypography";
 import { ComponentType } from "../../../../../app/context/theme-context/enums";
+import ThemeTypography from "../../../components/typography/ThemeTypography";
 
 type OffersSectionProps = {
   sectionData: Section;

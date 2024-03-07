@@ -1,6 +1,5 @@
 "use client";
 
-import "aos/dist/aos.css";
 import React, { FC } from "react";
 import { DefaultThemeType } from "src/app/context/theme-context/types";
 import { DeleteModal } from "ui-components";
@@ -26,18 +25,16 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
     deleteSectionModal
   );
 
-  const isEmptyThemePage = sections.every((sec) => !sec);
-
   return (
     <>
       <div
-        className="break-words w-full flex flex-col justify-between h-full"
+        className="break-words w-full flex flex-col justify-between"
         style={{
           backgroundColor: theme?.colorPallete.background,
         }}
       >
         <Navigation
-          activePages={theme.activePages ?? []}
+          activePages={theme.activePages}
           navigation={theme.navigation}
           logo={theme?.logo?.url ?? ""}
           sectionData={
@@ -47,14 +44,12 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
           typography={theme.typography}
           buttons={theme.buttons}
         />
-        <div>
-          {sections}
-          {isEmptyThemePage && (
-            <EmptyState addSectionModal={addSectionModal.open} />
-          )}
-        </div>
+        {sections}
+        {!sections.length && (
+          <EmptyState addSectionModal={addSectionModal.open} />
+        )}
         <Footer1
-          activePages={theme.activePages ?? []}
+          activePages={theme.activePages}
           logo={theme?.logo?.url ?? ""}
           colorPallete={theme.colorPallete}
           typography={theme.typography}

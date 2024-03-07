@@ -44,7 +44,7 @@ export const FIXED_BG_IMAGE_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "6",
+  id: "99",
   title: "fixed-bg-image",
 };
 
@@ -91,8 +91,8 @@ export const FIXED_BG_IMAGE_SECTION_PIZZA_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "6",
-  title: "fixed-bg-image",
+  id: "98",
+  title: "fixed-bg-image-1",
 };
 
 export const FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION = {
@@ -139,6 +139,6 @@ export const FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "6",
-  title: "fixed-bg-image",
+  id: "97",
+  title: "fixed-bg-image-2",
 };

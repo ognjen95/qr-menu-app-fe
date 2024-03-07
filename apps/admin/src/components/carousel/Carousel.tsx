@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { Portal } from "react-portal";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Icon, IconSize, IconType } from "ui-components";
 import "swiper/css";
@@ -55,10 +55,10 @@ export const Carousel: FC<CarouselProps> = ({
             </div>
             <Swiper
               navigation
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               className="w-full h-2/3 flex justify-center items-center my-auto z-[999999999999999]"
               wrapperClass=""
-              //   onSwiper={(swiperInit) => setSwiper(swiperInit)}
+              onSwiper={(swiperInit) => setSwiper(swiperInit)}
             >
               {imgLinks.map((imgLink) => (
                 <SwiperSlide

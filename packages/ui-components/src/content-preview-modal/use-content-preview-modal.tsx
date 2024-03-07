@@ -26,8 +26,8 @@ const useContentPreviewModal: UseContentPreviewModal = (
   const [ref, setRef] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    const body = document.querySelector("body");
-    setRef(body);
+    const html = document.querySelector("html");
+    setRef(html);
 
     return () => {
       setRef(null);

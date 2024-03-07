@@ -36,10 +36,7 @@ const Navigation: FC<NavigationProps> = ({
   <nav className="flex justify-center">
     <div className="flex w-full max-w-[1170px] justify-between items-center p-4">
       <Image
-        src={
-          logo ||
-          "https://static.cdn-upm.com/static/themes/ef8ba596-4579-11ed-8bca-525400080621/assets-4/restaurantlogo.png?v=8"
-        }
+        src={logo || "/menu-logo.png"}
         width={100}
         alt="logo"
         height={100}

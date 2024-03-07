@@ -1,9 +1,8 @@
 import { REVIEW_SECTION, TESTIMONIAL_SECTION } from "./constants";
 import ReviewSection from "./ReviewSection";
 import TestimonialSection from "./TestimonialSection";
-import { SectionConfigMapper } from "../types";
 
-export const TESTIMONIAL_SECTIONS: SectionConfigMapper[] = [
+export const TESTIMONIAL_SECTIONS = [
   {
     image: "/images/section-preview-2.png",
     config: TESTIMONIAL_SECTION,

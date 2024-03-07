@@ -33,7 +33,7 @@ const CuisineSectionSection: FC<CuisineSectionProps> = ({
     className="py-[120px]"
     style={{
       backgroundColor:
-        colorPallete.surface || sectionData.style?.backgroundColor,
+        colorPallete.surface || sectionData.style?.backgroundColor || "",
     }}
   >
     <div className="w-[1170px] px-[15px] mx-auto">

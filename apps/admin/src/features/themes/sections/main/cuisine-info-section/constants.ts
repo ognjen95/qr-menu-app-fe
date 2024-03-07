@@ -57,7 +57,7 @@ export const CUISINE_INFO_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "3",
+  id: "78",
   title: "cuisine-info",
 };
 
@@ -118,6 +118,6 @@ export const CUISINE_INFO_PIZZA_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "3",
-  title: "cuisine-info",
+  id: "77",
+  title: "cuisine-pizza-info",
 };

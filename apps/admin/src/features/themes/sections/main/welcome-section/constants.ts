@@ -98,5 +98,5 @@ export const WELCOME_PIZZA_SECTION = {
   ],
   description: "First content section",
   id: "2",
-  title: "welcome",
+  title: "welcome-pizza",
 };

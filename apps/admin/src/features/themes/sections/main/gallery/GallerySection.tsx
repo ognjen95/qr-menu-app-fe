@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { FC } from "react";
-import { TypographySize } from "src/app/context/theme-context/enums";
-import { ColorPallete, Section } from "src/app/context/theme-context/types";
+import { Section } from "src/app/context/theme-context/types";
 import { useModal } from "ui-components";
 
-// import { Carousel } from "~components/carousel/Carousel";
+import { Carousel } from "../../../../../components/carousel/Carousel";
 
 type GallerySectionProps = {
   sectionData: Section;
@@ -12,37 +11,41 @@ type GallerySectionProps = {
 
 const GallerySection: FC<GallerySectionProps> = ({
   sectionData: { components },
-}) => (
-  // const modal = useModal<{ index: number }>();
+}) => {
+  const modal = useModal<{ index: number }>();
 
-  <section className="py-[120px]">
-    <div className="flex flex-col items-center max-w-[1170px] mx-auto">
-      <div className="w-full grid grid-cols-[repeat(3,_1fr)] auto-rows-max gap-4 h-fit">
-        {components.map((component, index) => (
-          <div
-            className="h-[300px] relative"
-            key={component.props?.id}
-            onClick={() => {}}
-          >
-            <Image
-              key={component.props?.id}
-              fill
-              objectFit="cover"
-              src={component.props?.src ?? ""}
-              alt="gallery-image"
-            />
-          </div>
-        ))}
+  return (
+    <section className="py-[120px]">
+      <div className="flex flex-col items-center max-w-[1170px] mx-auto">
+        <div className="w-full grid grid-cols-[repeat(3,_1fr)] auto-rows-max gap-4 h-fit">
+          {components.map((component, index) => (
+            <div
+              className="h-[300px] relative"
+              key={component.props?.src}
+              onClick={() => {
+                modal.open({ index });
+              }}
+            >
+              <Image
+                key={component.props?.id}
+                fill
+                objectFit="cover"
+                src={component.props?.src ?? ""}
+                alt="gallery-image"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-    {/* <Carousel
+      <Carousel
         isOpen={modal.isOpen}
-        onClose={modal.close}
+        onClose={() => modal.close()}
         defaultActiveSlide={modal.params?.index ?? 0}
         imgLinks={components.map((component) => component.props?.src ?? "")}
-      /> */}
-  </section>
-);
+      />
+    </section>
+  );
+};
 export type { GallerySectionProps };
 
 export default GallerySection;

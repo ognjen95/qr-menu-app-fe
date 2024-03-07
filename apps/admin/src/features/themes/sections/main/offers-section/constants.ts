@@ -58,6 +58,6 @@ export const OFFERS_SECTION = {
     },
   ],
   description: "Second content section",
-  id: "4",
+  id: "45",
   title: "offers",
 };

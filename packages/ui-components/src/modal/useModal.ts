@@ -11,21 +11,22 @@ type UseModalReturn<TParams = never> = {
 const useModal = <TParams = never>(): UseModalReturn<TParams> => {
   const [isOpen, setIsOpen] = useState(false);
   const [params, setParams] = useState<TParams>();
-  const open = useCallback<(params?: TParams) => void>((modalParams) => {
+
+  const open = (modalParams?: TParams) => {
     setIsOpen(true);
     if (modalParams) {
       setParams(modalParams);
     }
-  }, []);
+  };
 
-  const close = useCallback(() => {
+  const close = () => {
     setIsOpen(false);
-  }, []);
+  };
 
-  const reset = useCallback(() => {
+  const reset = () => {
     close();
     setParams(undefined);
-  }, [close]);
+  };
 
   return { isOpen, open, close, reset, params };
 };

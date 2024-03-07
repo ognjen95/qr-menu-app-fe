@@ -3,8 +3,8 @@ import { Icon, IconType } from "ui-components";
 import EditButtonComponent from "./edit-button-component/EditButtonComponent";
 import EditImageComponent from "./edit-image-component/EditImageComponent";
 import EditTypographyComponent from "./edit-typography-component/EditTypographyComponent";
-import { SectionComponent } from "../../../../app/context/theme-context/types";
 import { ComponentType } from "../../../../app/context/theme-context/enums";
+import { SectionComponent } from "../../../../app/context/theme-context/types";
 
 export const renderIcon = (type: ComponentType) => {
   switch (type) {
@@ -144,7 +144,10 @@ export const mappComponentOptionsForEdit = (
   sectionIndex = 0
 ) =>
   components.map((component, componentIndex) => ({
-    id: component.title + component.title + (component.props?.value ?? ""),
+    id:
+      component.title +
+      component.title +
+      (component.props?.value ?? component.props?.src ?? ""),
     icon: renderIcon(component.type),
     collapsed: true,
     title: renderTitle(component),

@@ -60,7 +60,7 @@ const ContentPreviewModal: FC<ContentPreviewModalProps> = ({
       {isOpen && (
         <Portal node={ref}>
           <div
-            className="absolute w-screen h-screen top-0 flex flex-col bg-[#000000cc] z-[99999999999999] pointer-events-none"
+            className="absolute w-screen h-screen top-0 flex flex-col bg-[#000000cc] backdrop-blur !z-[99999999999999]"
             onClick={(event) => {
               event.stopPropagation();
               onClose();
@@ -80,6 +80,7 @@ const ContentPreviewModal: FC<ContentPreviewModalProps> = ({
                     <Icon type={IconType.ARROW_LEFT_LG} stroke="white" />
                     <Icon
                       type={CONTENT_TYPE_ICON_MAPPER[selectedContent.type]}
+                      stroke="white"
                     />
                     <Text
                       variant={TextVariant.BUTTON1}

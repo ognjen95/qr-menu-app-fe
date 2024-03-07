@@ -37,8 +37,6 @@ const useBuilderPageSelect = (selectedPage = SectionPage.HOME) => {
     setPages(pageOptions);
   }, [push, selectedPage, theme?.activePages]);
 
-  console.log(selectedPage, pages);
-
   return {
     pageOptions: pages,
   };
