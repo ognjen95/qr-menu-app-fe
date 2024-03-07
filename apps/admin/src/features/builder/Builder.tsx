@@ -31,7 +31,7 @@ const Builder: FC = () => {
           saveThemeLoading={saveThemeLoading}
           handleSaveTheme={handleSaveTheme}
         />
-        <div className="flex flex-col items-center flex-1 overflow-y-auto gap-5 w-full shadow  no-scrollbar shadow shadow-grey-300">
+        <div className="flex flex-col items-center flex-1 overflow-y-auto w-full shadow  no-scrollbar shadow shadow-grey-300">
           {loading && <Loader centered />}
           {!loading && theme && <ThemeRenderer theme={theme} />}
         </div>

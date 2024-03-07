@@ -28,7 +28,7 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
   return (
     <>
       <div
-        className="break-words w-full flex flex-col justify-between"
+        className="break-words w-full"
         style={{
           backgroundColor: theme?.colorPallete.background,
         }}
