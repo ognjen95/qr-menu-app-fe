@@ -25,6 +25,9 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
     deleteSectionModal
   );
 
+  const logoFileToUrl =
+    theme?.logo?.file && URL.createObjectURL(theme.logo.file);
+
   return (
     <>
       <div
@@ -36,7 +39,7 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
         <Navigation
           activePages={theme.activePages}
           navigation={theme.navigation}
-          logo={theme?.logo?.url ?? ""}
+          logo={logoFileToUrl || theme?.logo?.url || ""}
           sectionData={
             theme.sections.find((section) => section.title === "header")!
           }
@@ -50,7 +53,7 @@ const ThemeRenderer: FC<ThemeRendererProps> = ({ theme }) => {
         )}
         <Footer1
           activePages={theme.activePages}
-          logo={theme?.logo?.url ?? ""}
+          logo={logoFileToUrl || theme?.logo?.url || ""}
           colorPallete={theme.colorPallete}
           typography={theme.typography}
         />

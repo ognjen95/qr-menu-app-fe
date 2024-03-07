@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useThemeContext } from "../../../../../app/context/theme-context/ThemeContext";
 import { SectionComponent } from "../../../../../app/context/theme-context/types";
+import { downloadFile } from "../../../../../common/helpers";
 
 const useEditImageComponent = (
   defaultComponent: SectionComponent,
@@ -47,19 +48,9 @@ const useEditImageComponent = (
   useEffect(() => {
     if ((!componentSrc && !defaultSrc) || component.props?.file) return;
 
-    const urlToFile = async (url: string) => {
-      if (!url) return;
-
-      const response = await fetch(url);
-      const data = await response.blob();
-      const metadata = {
-        type: `image/${componentSrc?.split(".").pop() ?? "jpg"}`,
-      };
-
-      setFile(new File([data], "image.jpg", metadata));
-    };
-
-    urlToFile(componentSrc || defaultSrc || "");
+    downloadFile(componentSrc || defaultSrc || "", (newFile) => {
+      setFile(newFile);
+    });
   }, [component.props?.file, componentSrc, defaultSrc]);
 
   return {

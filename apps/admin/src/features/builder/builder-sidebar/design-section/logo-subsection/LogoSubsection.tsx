@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextVariant, Text, FileUploadInput } from "ui-components";
 import { FileType } from "ui-components/src/file-upload-input/enums";
 
+import { useThemeContext } from "../../../../../app/context/theme-context/ThemeContext";
+import { downloadFile } from "../../../../../common/helpers";
+
 const LogoSubsection = () => {
-  const [background, setBackground] = useState<File | undefined>(undefined);
+  const { theme, setTheme } = useThemeContext();
+  const currentLogo = theme?.logo?.url;
+  const [logo, setLogo] = useState<File | undefined>(undefined);
+
+  useEffect(() => {
+    downloadFile(currentLogo || "", (newFile) => {
+      setLogo(newFile);
+    });
+  }, [currentLogo]);
 
   return (
     <div className="flex flex-col">
@@ -11,10 +22,16 @@ const LogoSubsection = () => {
       <Text>Select logo image for your website</Text>
       <div className="mt-3">
         <FileUploadInput
-          value={background}
+          value={logo}
           type={FileType.IMAGE}
           onChange={(file) => {
-            setBackground(file[0]);
+            setLogo(file[0]);
+            setTheme({
+              ...theme!,
+              logo: {
+                file: file[0],
+              },
+            });
           }}
         />
       </div>

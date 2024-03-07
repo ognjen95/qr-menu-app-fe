@@ -35,8 +35,16 @@ const handleUploadChangedImages = async (
     )
   );
 
+  if (theme.logo.file) {
+    const uploadId = await upload(theme.logo.file);
+
+    if (!uploadId) return themeCopy;
+
+    themeCopy.logo.url = addBucketPrefix(uploadId);
+    themeCopy.logo.file = undefined;
+  }
+
   return themeCopy;
 };
-
 
 export default handleUploadChangedImages;

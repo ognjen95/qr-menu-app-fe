@@ -65,3 +65,22 @@ export const removeEmptyFields = (
 
   return result;
 };
+
+export const downloadFile = async (
+  url: string,
+  cb?: (newFile: File) => void
+): Promise<File | null> => {
+  if (!url) return null;
+
+  const response = await fetch(url);
+  const data = await response.blob();
+  const metadata = {
+    type: `image/${url?.split(".").pop() ?? "jpg"}`,
+  };
+
+  const newFile = new File([data], "image.jpg", metadata);
+
+  cb?.(newFile);
+
+  return newFile;
+};

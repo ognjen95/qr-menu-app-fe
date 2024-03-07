@@ -20,6 +20,7 @@ const useSaveTheme = (
     if (!theme) return;
 
     const themeCopy = await handleUploadChangedImages(theme, upload);
+
     saveTheme({
       refetchQueries: [FindThemeByTenantIdDocument],
       onCompleted: () => {
