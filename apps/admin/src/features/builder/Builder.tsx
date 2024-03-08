@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { FC, useEffect, useState } from "react";
 import { Loader } from "ui-components";
 
@@ -36,7 +37,14 @@ const Builder: FC = () => {
           saveThemeLoading={saveThemeLoading}
           handleSaveTheme={handleSaveTheme}
         />
-        <div className="flex flex-col items-center flex-1 overflow-y-auto w-full shadow  no-scrollbar shadow shadow-grey-300">
+        <div
+          className={clsx(
+            "flex flex-col items-center flex-1 overflow-y-auto w-full shadow no-scrollbar shadow shadow-grey-300",
+            {
+              "bg-black bg-[url(/images/pub-food.png)]": !isWebsiteBuilder,
+            }
+          )}
+        >
           {loading && <Loader centered />}
           {!loading && theme && !isWebsiteBuilder && (
             <div className="w-[450px]">
