@@ -25,7 +25,13 @@ const WelcomeSection: FC<WelcomeSectionProps> = ({
   typography,
   animationType,
 }) => (
-  <section className="py-16">
+  <section
+    className="py-16"
+    style={{
+      backgroundColor:
+        sectionData?.style?.backgroundColor || colorPallete?.background,
+    }}
+  >
     <div className="w-[1170px] px-[15px] mx-auto">
       <div
         className="flex h-full -mx-[15px] items-center"

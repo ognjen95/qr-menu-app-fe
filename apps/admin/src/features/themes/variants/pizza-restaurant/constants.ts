@@ -9,9 +9,7 @@ import {
   AnimationType,
   ButtonSize,
   ButtonType,
-  ComponentType,
   NavigationLayout,
-  SectionPage,
   TypographySize,
 } from "../../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../../app/context/theme-context/types";
@@ -21,10 +19,12 @@ import {
 } from "../../sections/fixed-bg-image/fixed-bg-image-section/constants";
 import { CUISINE_INFO_PIZZA_SECTION } from "../../sections/main/cuisine-info-section/constants";
 import { WELCOME_PIZZA_SECTION } from "../../sections/main/welcome-section/constants";
+import { MENU_WIDGET_CONFIG } from "../../widgets/menu-widget/constant";
 
 export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
   activePages: DEFAULT_ACTIVE_PAGES,
   sections: [
+    // Home Page
     FIXED_BG_IMAGE_SECTION_PIZZA_SECTION,
     WELCOME_PIZZA_SECTION,
     CUISINE_INFO_PIZZA_SECTION,
@@ -32,6 +32,8 @@ export const PIZZA_RESTAURANT_THEME_CONFIG: DefaultThemeType = {
     REVIEW_SECTION,
     MENU_SECTION,
     FIXED_BG_IMAGE_SECTION_PIZZA_2_SECTION,
+    // Menu Page
+    MENU_WIDGET_CONFIG,
   ],
   animation: {
     delay: "1",

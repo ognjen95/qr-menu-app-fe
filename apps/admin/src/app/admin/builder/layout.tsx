@@ -10,7 +10,7 @@ import ThemeContextProvider from "../../context/theme-context/ThemeContext";
 
 const BuilderPageLayout: FCWithChildren = ({ children }) => (
   <AuthGuard roles={[UserRole.CUSTOMER_OWNER, UserRole.CUSTOMER_EMPLOYEE]}>
-    <ThemeContextProvider>{children}</ThemeContextProvider>
+    {children}
   </AuthGuard>
 );
 

@@ -1,6 +1,7 @@
+import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
 import React, { FC } from "react";
-import { DropdownMenu, IconType, Button } from "ui-components";
+import { DropdownMenu, IconType, Text, Button, Switch } from "ui-components";
 import { ButtonColor, ButtonSize } from "ui-components/src/button/enums";
 import { colors } from "ui-components/src/config/tailwind-config";
 
@@ -18,6 +19,7 @@ const BuilderNavbar: FC<BuilderNavbarProps> = ({
 }) => {
   const { get } = useSearchParams();
   const selectedPage = (get("page") as SectionPage) || SectionPage.HOME;
+  const [isWebsiteEditor, setIsWebsiteEditor] = React.useState(true);
 
   const { pageOptions } = useBuilderPageSelect(selectedPage);
 
@@ -39,6 +41,28 @@ const BuilderNavbar: FC<BuilderNavbarProps> = ({
           iconColor={colors.primary[500]}
           items={pageOptions}
         />
+      </div>
+      <div className="flex items-center space-x-2">
+        <Text
+          color={clsx("font-semibold", {
+            "text-primary-500 font-semibold": isWebsiteEditor,
+            "text-grey-500": !isWebsiteEditor,
+          })}
+        >
+          Website
+        </Text>
+        <Switch
+          checked={!isWebsiteEditor}
+          onCheckedChange={() => setIsWebsiteEditor((prev) => !prev)}
+        />
+        <Text
+          color={clsx("font-semibold", {
+            "text-primary-500": !isWebsiteEditor,
+            "text-grey-500": isWebsiteEditor,
+          })}
+        >
+          QR menu
+        </Text>
       </div>
       <div className="flex items-center space-x-2">
         <Button

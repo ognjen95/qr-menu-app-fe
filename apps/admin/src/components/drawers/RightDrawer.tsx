@@ -15,6 +15,7 @@ export type RightDrawerProps = {
   isOpen: boolean;
   onClose?: () => void;
   dismissible?: boolean;
+  backgroundColor?: string;
 };
 
 const RightDrawer: FCWithChildren<RightDrawerProps> = ({
@@ -25,6 +26,7 @@ const RightDrawer: FCWithChildren<RightDrawerProps> = ({
   isOpen = false,
   onClose,
   dismissible = false,
+  backgroundColor,
 }) => (
   <Drawer
     open={isOpen}
@@ -36,6 +38,9 @@ const RightDrawer: FCWithChildren<RightDrawerProps> = ({
       hideHandle
       onClose={onClose}
       className="bg-white flex flex-col rounded-l-md h-full min-w-[400px] bg-white backdrop-blur mt-24 fixed bottom-0 right-0 z-[9999999999]"
+      style={{
+        backgroundColor,
+      }}
     >
       {(title || description) && (
         <DrawerHeader>

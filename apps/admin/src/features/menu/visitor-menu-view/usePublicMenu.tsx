@@ -5,15 +5,22 @@ import { addBucketPrefix } from "../../../common/helpers";
 import { useGetPublicMenuQuery } from "../../../graphql-api";
 import { MenuSection } from "../menu-overview/types";
 
-const usePublicMenu = () => {
+export type UsePublicMenuProps = {
+  hideHeader?: boolean;
+  id?: string;
+};
+
+const usePublicMenu = (props?: UsePublicMenuProps) => {
   const { menuId } = useParams();
+  const { id, hideHeader } = props || {};
 
   const { data } = useGetPublicMenuQuery({
+    skip: !menuId && !id,
     variables: {
       options: {
         where: {
           id: {
-            equals: menuId as string,
+            equals: (menuId as string) || id,
           },
         },
       },

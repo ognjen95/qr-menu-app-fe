@@ -16,17 +16,26 @@ import { CUISINE_INFO_SECTION } from "../../sections/main/cuisine-info-section/c
 import { INGREDIANTS_INFO_SECTION } from "../../sections/main/ingrediants-info-section/constants";
 import { OFFERS_SECTION } from "../../sections/main/offers-section/constants";
 import { WELCOME_SECTION_CONFIG } from "../../sections/main/welcome-section/constants";
+import { MENU_WIDGET_CONFIG } from "../../widgets/menu-widget/constant";
 
 export const DEFAULT_THEME_CONFIG: DefaultThemeType = {
   activePages: DEFAULT_ACTIVE_PAGES,
   id: "",
   sections: [
-    WELCOME_SECTION_CONFIG,
+    // Home page
+    {
+      ...WELCOME_SECTION_CONFIG,
+      style: {
+        backgroundColor: "#fff",
+      },
+    },
     CUISINE_INFO_SECTION,
     OFFERS_SECTION,
     INGREDIANTS_INFO_SECTION,
     GALLERY_SECTION,
     WORKING_HOURS_SECTION,
+    // Menu Page
+    MENU_WIDGET_CONFIG,
   ],
   animation: {
     delay: "1",

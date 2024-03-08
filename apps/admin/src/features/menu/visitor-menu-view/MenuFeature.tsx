@@ -2,8 +2,14 @@ import { FC } from "react";
 
 import MenuFeatureLayout from "./MenuFeatureLayout";
 import usePublicMenu from "./usePublicMenu";
+import ThemeContextProvider from "../../../app/context/theme-context/ThemeContext";
 
-const MenuFeature: FC = () => {
+export type MenuFeatureProps = {
+  hideHeader?: boolean;
+  id?: string;
+};
+
+const MenuFeature: FC<MenuFeatureProps> = ({ hideHeader, id }) => {
   const {
     menu,
     chips,
@@ -12,7 +18,7 @@ const MenuFeature: FC = () => {
     isTopOfPage,
     onChipClick,
     ref,
-  } = usePublicMenu();
+  } = usePublicMenu({ hideHeader, id });
 
   return (
     <MenuFeatureLayout
@@ -23,6 +29,7 @@ const MenuFeature: FC = () => {
       setSelectedChip={(chip) => setSelectedChip(`${chip}#SCROLLED_TO`)}
       isTopOfPage={isTopOfPage}
       ref={ref}
+      hideHeader={hideHeader}
     />
   );
 };

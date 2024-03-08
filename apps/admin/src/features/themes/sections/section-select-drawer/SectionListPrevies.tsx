@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { FC } from "react";
 
 import { Section } from "../../../../app/context/theme-context/types";
-import { SectionConfig } from "../constants";
+import { SectionConfig } from "../../types";
 
 export type SectionListPreviewProps = {
   onSectionSelect: (config: Section) => void;

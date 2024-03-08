@@ -9,13 +9,17 @@ import { FCWithChildren } from "ui-components";
 import apolloClient from "~config/apollo-client";
 import useTrackRouterHistory from "~hooks/use-track-router-history";
 
+import ThemeContextProvider from "../app/context/theme-context/ThemeContext";
+
 const AppLayout: FCWithChildren = ({ children }) => {
   useTrackRouterHistory();
 
   return (
     <ApolloProvider client={apolloClient}>
-      {children}
-      <ToastContainer position="top-center" />
+      <ThemeContextProvider>
+        {children}
+        <ToastContainer position="top-center" />
+      </ThemeContextProvider>
     </ApolloProvider>
   );
 };

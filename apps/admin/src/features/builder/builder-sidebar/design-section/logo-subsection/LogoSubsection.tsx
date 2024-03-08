@@ -11,10 +11,14 @@ const LogoSubsection = () => {
   const [logo, setLogo] = useState<File | undefined>(undefined);
 
   useEffect(() => {
-    downloadFile(currentLogo || "", (newFile) => {
-      setLogo(newFile);
-    });
-  }, [currentLogo]);
+    if (theme?.logo.file) {
+      setLogo(theme?.logo.file);
+    } else {
+      downloadFile(currentLogo || "", (newFile) => {
+        setLogo(newFile);
+      });
+    }
+  }, [currentLogo, theme?.logo.file]);
 
   return (
     <div className="flex flex-col">

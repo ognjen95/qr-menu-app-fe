@@ -8,7 +8,8 @@ import {
   Section,
   DefaultThemeType,
 } from "../../../app/context/theme-context/types";
-import { ALL_SECTIONS, SectionConfig } from "../sections/constants";
+import { ALL_SECTIONS } from "../sections/constants";
+import { SectionConfig } from "../types";
 
 const useRenderSections = (theme: DefaultThemeType) => {
   const addSectionModal = useModal<{ section: Section; index: number }>();

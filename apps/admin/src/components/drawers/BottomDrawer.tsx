@@ -16,6 +16,7 @@ export type BottomDrawerProps = {
   isOpen: boolean;
   onClose: () => void;
   fullHeight?: boolean;
+  backgroundColor?: string;
 };
 
 const BottomDrawer: FCWithChildren<BottomDrawerProps> = ({
@@ -26,6 +27,7 @@ const BottomDrawer: FCWithChildren<BottomDrawerProps> = ({
   isOpen = false,
   onClose,
   fullHeight = false,
+  backgroundColor,
 }) => (
   <Drawer open={isOpen} onClose={onClose}>
     <DrawerContent
@@ -35,8 +37,11 @@ const BottomDrawer: FCWithChildren<BottomDrawerProps> = ({
           "max-h-[90vh]": !fullHeight,
           "h-[90vh]": fullHeight,
         },
-        "fixed inset-x-0 bottom-0 z-[9999999999999999999] mt-24 flex h-auto flex-col rounded-t-2xl border bg-white"
+        "fixed inset-x-0 bottom-0 z-[9999999999999999999] mt-24 flex h-auto flex-col rounded-t-2xl border bg-current"
       )}
+      style={{
+        backgroundColor,
+      }}
     >
       {(title || description) && (
         <DrawerHeader>
