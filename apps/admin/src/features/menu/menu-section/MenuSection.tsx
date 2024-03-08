@@ -18,6 +18,7 @@ export type MenuSectionProps = {
   modal: UseModalReturn<MenuSectionItem>;
   setSelectedChip: (chip: string) => void;
   items: MenuSectionItem[];
+  isBuilder?: boolean;
 };
 
 const MenuSection: FC<MenuSectionProps> = ({
@@ -28,6 +29,7 @@ const MenuSection: FC<MenuSectionProps> = ({
   items,
   modal,
   colorPallete,
+  isBuilder,
 }) => {
   const [ref, isvisible] = useIntersectionObserver({
     threshold: 0,
@@ -46,7 +48,12 @@ const MenuSection: FC<MenuSectionProps> = ({
 
   return (
     <div key={sectionId}>
-      <div className="py-5 px-5 xs:px-0" ref={ref}>
+      <div
+        className={clsx("py-5 px-5", {
+          "xs:px-0": !isBuilder,
+        })}
+        ref={ref}
+      >
         <ThemeTypography
           style={{
             color: colorPallete?.text,
@@ -57,13 +64,19 @@ const MenuSection: FC<MenuSectionProps> = ({
           }}
         />
       </div>
-      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-5">
+      <div
+        className={clsx({
+          "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-5":
+            !isBuilder,
+          "grid grid-cols-1 gap-2": isBuilder,
+        })}
+      >
         {items.map((item) => (
           <div
             onClick={() => modal.open(item)}
             key={item.id}
             className={clsx({
-              "rounded-xl": !isMobile,
+              "rounded-xl": !isMobile && !isBuilder,
             })}
             style={{
               backgroundColor: colorPallete?.surface,
@@ -81,7 +94,12 @@ const MenuSection: FC<MenuSectionProps> = ({
                 <div className="flex flex-col h-10">
                   <ThemeTypography
                     type={ComponentType.P}
-                    style={{ color: colorPallete?.text, fontWeight: "500" }}
+                    style={{
+                      color: colorPallete?.text,
+                      fontWeight: "400",
+                      opacity: "0.9",
+                      fontSize: "16px",
+                    }}
                     props={{
                       value: item.description,
                     }}

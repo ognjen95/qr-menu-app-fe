@@ -1,15 +1,16 @@
 import { FC } from "react";
+import { Loader } from "ui-components";
 
 import MenuFeatureLayout from "./MenuFeatureLayout";
 import usePublicMenu from "./usePublicMenu";
-import ThemeContextProvider from "../../../app/context/theme-context/ThemeContext";
 
 export type MenuFeatureProps = {
   hideHeader?: boolean;
   id?: string;
+  isBuilder?: boolean;
 };
 
-const MenuFeature: FC<MenuFeatureProps> = ({ hideHeader, id }) => {
+const MenuFeature: FC<MenuFeatureProps> = ({ hideHeader, id, isBuilder }) => {
   const {
     menu,
     chips,
@@ -18,10 +19,14 @@ const MenuFeature: FC<MenuFeatureProps> = ({ hideHeader, id }) => {
     isTopOfPage,
     onChipClick,
     ref,
+    loading,
   } = usePublicMenu({ hideHeader, id });
+
+  if (loading) return <Loader centered />;
 
   return (
     <MenuFeatureLayout
+      isBuilder={isBuilder}
       menu={menu}
       onChipClick={onChipClick}
       chips={chips}

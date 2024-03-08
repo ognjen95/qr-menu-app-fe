@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Loader } from "ui-components";
 
 import ThemeRenderer from "~features/themes/theme-renderer/ThemeRederer";
@@ -8,8 +8,11 @@ import useSaveTheme from "./builder-navbar/useSaveTheme";
 import BuilderSidebar from "./builder-sidebar/BuilderSidebar";
 import useBuilderSidebar from "./builder-sidebar/useBuilderSidebar";
 import { useThemeContext } from "../../app/context/theme-context/ThemeContext";
+import MenuFeature from "../menu/visitor-menu-view/MenuFeature";
 
 const Builder: FC = () => {
+  const [isWebsiteBuilder, setIsWebsiteBuilder] = useState(true);
+
   const { sidebarOpen, setSidebarOpen, selected, setSelected } =
     useBuilderSidebar();
 
@@ -28,12 +31,21 @@ const Builder: FC = () => {
       />
       <div className="flex flex-col flex-1 h-full overflow-y-auto w-full">
         <BuilderNavbar
+          isWebsiteEditor={isWebsiteBuilder}
+          toogleWebsiteEditor={() => setIsWebsiteBuilder((prev) => !prev)}
           saveThemeLoading={saveThemeLoading}
           handleSaveTheme={handleSaveTheme}
         />
         <div className="flex flex-col items-center flex-1 overflow-y-auto w-full shadow  no-scrollbar shadow shadow-grey-300">
           {loading && <Loader centered />}
-          {!loading && theme && <ThemeRenderer theme={theme} />}
+          {!loading && theme && !isWebsiteBuilder && (
+            <div className="w-[450px]">
+              <MenuFeature isBuilder id="65bcd68784c0415100207b31" />
+            </div>
+          )}
+          {!loading && theme && isWebsiteBuilder && (
+            <ThemeRenderer theme={theme} />
+          )}
         </div>
       </div>
     </div>

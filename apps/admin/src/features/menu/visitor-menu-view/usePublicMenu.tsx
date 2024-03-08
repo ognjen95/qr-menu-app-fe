@@ -12,9 +12,9 @@ export type UsePublicMenuProps = {
 
 const usePublicMenu = (props?: UsePublicMenuProps) => {
   const { menuId } = useParams();
-  const { id, hideHeader } = props || {};
+  const { id } = props || {};
 
-  const { data } = useGetPublicMenuQuery({
+  const { data, loading } = useGetPublicMenuQuery({
     skip: !menuId && !id,
     variables: {
       options: {
@@ -90,6 +90,7 @@ const usePublicMenu = (props?: UsePublicMenuProps) => {
     isTopOfPage,
     onChipClick,
     ref,
+    loading,
   };
 };
 

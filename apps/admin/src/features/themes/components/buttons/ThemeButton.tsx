@@ -15,9 +15,10 @@ import { removeEmptyFields } from "../../../../common/helpers";
 export type ThemeButtonProps = {
   style?: CSSStyle;
   props?: ComponentProps;
+  onClick?: () => void;
 };
 
-const ThemeButton: FC<ThemeButtonProps> = ({ style, props }) => {
+const ThemeButton: FC<ThemeButtonProps> = ({ style, props, onClick }) => {
   const { theme } = useThemeContext();
 
   if (!theme?.buttons) {
@@ -26,6 +27,9 @@ const ThemeButton: FC<ThemeButtonProps> = ({ style, props }) => {
 
   return (
     <button
+      onClick={() => {
+        onClick?.();
+      }}
       type="button"
       className={clsx(
         {

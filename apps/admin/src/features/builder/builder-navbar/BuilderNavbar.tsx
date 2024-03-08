@@ -11,15 +11,18 @@ import { SectionPage } from "../../../app/context/theme-context/enums";
 export type BuilderNavbarProps = {
   saveThemeLoading: boolean;
   handleSaveTheme: () => void;
+  toogleWebsiteEditor: () => void;
+  isWebsiteEditor: boolean;
 };
 
 const BuilderNavbar: FC<BuilderNavbarProps> = ({
   saveThemeLoading,
   handleSaveTheme,
+  toogleWebsiteEditor,
+  isWebsiteEditor,
 }) => {
   const { get } = useSearchParams();
   const selectedPage = (get("page") as SectionPage) || SectionPage.HOME;
-  const [isWebsiteEditor, setIsWebsiteEditor] = React.useState(true);
 
   const { pageOptions } = useBuilderPageSelect(selectedPage);
 
@@ -53,7 +56,7 @@ const BuilderNavbar: FC<BuilderNavbarProps> = ({
         </Text>
         <Switch
           checked={!isWebsiteEditor}
-          onCheckedChange={() => setIsWebsiteEditor((prev) => !prev)}
+          onCheckedChange={() => toogleWebsiteEditor()}
         />
         <Text
           color={clsx("font-semibold", {

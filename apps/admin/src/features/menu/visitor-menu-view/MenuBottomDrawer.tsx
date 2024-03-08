@@ -88,6 +88,11 @@ const MenuDrawerContent = ({
       </div>
       <ThemeTypography
         type={ComponentType.P}
+        style={{
+          fontWeight: "400",
+          opacity: "0.9",
+          fontSize: "16px",
+        }}
         props={{
           value: modal?.params?.description,
         }}

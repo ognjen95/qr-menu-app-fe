@@ -7,6 +7,7 @@ import {
   Paper,
   ButtonGroup,
   PaperColor,
+  Loader,
 } from "ui-components";
 import { Option } from "ui-components/src/select/types";
 
@@ -16,9 +17,11 @@ import { useThemeContext } from "../../../../../app/context/theme-context/ThemeC
 
 const TypographySubsection = () => {
   const { theme, setTypography } = useThemeContext();
-  const { typography } = theme;
+  const { typography } = theme || {};
 
   const ref = React.useRef<HTMLDivElement>(null);
+
+  if (!typography) return <Loader centered />;
 
   return (
     <div className="flex flex-col space-y-5 overflow-y-auto h-full no-scrollbar pb-16">

@@ -98,6 +98,7 @@ export type ComponentProps = {
 };
 
 export type CSSStyle = {
+  opacity?: string | null;
   padding?: string | null;
   margin?: string | null;
   color?: string | null;

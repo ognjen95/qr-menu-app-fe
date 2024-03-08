@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { forwardRef, useContext } from "react";
 import { Loader } from "ui-components";
 import { useModal } from "ui-components/src/modal";
@@ -22,6 +23,7 @@ export type MenuFeatureLayoutProps = {
   isTopOfPage: boolean;
   onChipClick: (chip: string) => void;
   hideHeader?: boolean;
+  isBuilder?: boolean;
 };
 
 const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
@@ -34,15 +36,15 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
       onChipClick,
       menu,
       hideHeader,
+      isBuilder,
     },
     ref
   ) => {
     const modal = useModal<MenuSectionItem>();
+
     const { theme } = useThemeContext();
 
     if (!theme) return <Loader centered />;
-
-    console.log({ colors: theme?.colorPallete });
 
     return (
       <div
@@ -53,6 +55,7 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
       >
         {!hideHeader && (
           <MenuHeader
+            isBuilder={isBuilder}
             colorPallete={theme?.colorPallete}
             chips={chips}
             selectedChip={selectedChip}
@@ -60,13 +63,18 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
             onChipClick={onChipClick}
           />
         )}
-        <div className="xs:px-5">
+        <div
+          className={clsx({
+            "xs:px-5": !isBuilder,
+          })}
+        >
           {menu?.menuSections.map((section) => (
             <div
               ref={selectedChip === section.name ? ref : undefined}
               key={section.id}
             >
               <MenuSection
+                isBuilder={isBuilder}
                 colorPallete={theme?.colorPallete}
                 sectionId={section.id}
                 section={section.name}
