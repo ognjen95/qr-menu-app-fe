@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image";
 import { FC, useEffect } from "react";
-import { TextVariant, Paper, PaperRounded, Text } from "ui-components";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
 import { ComponentType } from "../../../app/context/theme-context/enums";
@@ -35,13 +34,15 @@ const MenuSection: FC<MenuSectionProps> = ({
     rootMargin: "0px 90% -90% 0px",
   });
 
+  const isMobile = useBreakpoints("xs");
+
   useEffect(() => {
+    if (!isMobile) return;
+
     if (isvisible && selectedChip.split("#SCROLLED_TO")[0] !== section) {
       setSelectedChip(section);
     }
-  }, [isvisible, section, selectedChip, setSelectedChip]);
-
-  const isMobile = useBreakpoints("xs");
+  }, [isvisible, section, selectedChip, isMobile, setSelectedChip]);
 
   return (
     <div key={sectionId}>

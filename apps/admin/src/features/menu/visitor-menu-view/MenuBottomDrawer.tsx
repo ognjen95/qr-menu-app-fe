@@ -29,12 +29,12 @@ const MenuDrawerContent = ({
   buttons,
 }: MenuBottomDrawerProps) => (
   <div
-    className="flex flex-col items-center space-y-5 p-5 flex-1 overflow-y-auto"
+    className="flex flex-col items-center space-y-5 flex-1 overflow-y-auto"
     style={{
       backgroundColor: colorPallete?.surface,
     }}
   >
-    <div className="min-h-[200px] h-[200px] max-w-[400px] relative shadow border border-gray-200 rounded-xl w-full overflow-hidden">
+    <div className="min-h-[300px] h-[300px] shadow max-w-[500px] relative shadow rounded-b-2xl  w-full overflow-hidden">
       <Image
         alt="Menu item"
         quality={100}
@@ -45,7 +45,7 @@ const MenuDrawerContent = ({
         src={modal?.params?.image || "/images/no-content.png"}
       />
     </div>
-    <div className="flex flex-col w-full justify-between space-y-2">
+    <div className="flex flex-col w-full justify-between space-y-2 p-5">
       <div className="flex items-center justify-between space-x-3">
         <ThemeTypography
           type={ComponentType.H4}
@@ -153,6 +153,7 @@ const MenuBottomDrawer: FC<MenuBottomDrawerProps> = ({
   }
   return (
     <BottomDrawer
+      hideHandle
       backgroundColor={colorPallete?.surface}
       isOpen={modal.isOpen}
       onClose={modal.close}
