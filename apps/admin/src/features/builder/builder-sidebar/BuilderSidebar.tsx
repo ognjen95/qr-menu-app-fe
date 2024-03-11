@@ -8,25 +8,15 @@ import { colors } from "ui-components/src/config/tailwind-config";
 import { DESING_OPTIONS, MAIN_NAV } from "./constants";
 import { MainNav } from "./enums";
 import ExtendedSidebar from "./ExtendedSidebar";
-import { SelectedEnumType } from "./types";
+import useBuilderSidebar from "./useBuilderSidebar";
 import useExtendedSidebar from "./useExtendedSidebar";
 
-export type SidebarContainerProps = {
-  sidebarOpen: boolean;
-  close: () => void;
-  open: (selected: string) => void;
-  setSelected: React.Dispatch<React.SetStateAction<SelectedEnumType | null>>;
-  selected: SelectedEnumType | null;
-};
+const SidebarContainer: FC = () => {
+  const { sidebarOpen, setSidebarOpen, selected, setSelected } =
+    useBuilderSidebar();
 
-const SidebarContainer: FC<SidebarContainerProps> = ({
-  sidebarOpen,
-  close: onClose,
-  open,
-  selected,
-  setSelected,
-}) => {
   const renderExtendedSidebar = useExtendedSidebar();
+
   const subemnu = useMemo(
     () =>
       DESING_OPTIONS.find((option) => option.text === selected)?.return ?? null,
@@ -34,7 +24,7 @@ const SidebarContainer: FC<SidebarContainerProps> = ({
   );
 
   const close = () => {
-    onClose();
+    setSidebarOpen(false);
     setSelected(MainNav.EDITOR);
   };
 
@@ -57,7 +47,7 @@ const SidebarContainer: FC<SidebarContainerProps> = ({
                 if (item.text === MainNav.EDITOR) {
                   close();
                 } else {
-                  open(item.text);
+                  setSidebarOpen(true);
                 }
 
                 setSelected(item.text);

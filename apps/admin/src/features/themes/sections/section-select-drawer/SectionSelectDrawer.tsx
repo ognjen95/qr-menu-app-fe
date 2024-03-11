@@ -31,6 +31,7 @@ const SectionSelectDrawer: FC<SectionSelectDrawerProps> = ({
 
   return (
     <BottomDrawer
+      backgroundColor="white"
       fullHeight
       isOpen={addSectionModal.isOpen}
       onClose={addSectionModal.close}

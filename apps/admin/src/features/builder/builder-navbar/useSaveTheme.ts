@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
 import handleUploadChangedImages from "./handleUploadChangedImages";
-import { DefaultThemeType } from "../../../app/context/theme-context/types";
+import { useThemeContext } from "../../../app/context/theme-context/ThemeContext";
 import {
   FindThemeByTenantIdDocument,
   SectionPage,
@@ -9,11 +9,11 @@ import {
 } from "../../../graphql-api";
 import useUploadFile from "../../../hooks/use-upload-file";
 
-const useSaveTheme = (
-  theme: DefaultThemeType | null,
-  setTheme: (theme: DefaultThemeType) => void
-) => {
+const useSaveTheme = () => {
+  const { theme, setTheme } = useThemeContext();
+
   const [saveTheme, { loading }] = useSaveThemeConfigurationMutation();
+
   const { upload } = useUploadFile();
 
   const handleSaveTheme = async () => {

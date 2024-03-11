@@ -5,9 +5,7 @@ import { FCWithChildren } from "ui-components";
 import { SectionActions, SectionPage } from "./enums";
 import reducer from "./reducer";
 import { DefaultThemeType, Section, ThemeContextType } from "./types";
-import { themeMapper } from "./utils";
 import { DesignOptions } from "../../../features/builder/builder-sidebar/enums";
-import { useFindThemeByTenantIdQuery } from "../../../graphql-api";
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: null,
@@ -28,19 +26,9 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, null);
   const { get } = useSearchParams();
 
-  const { loading } = useFindThemeByTenantIdQuery({
-    skip: !!state,
-    onCompleted: (fetchedTheme) => {
-      dispatch({
-        type: "THEME",
-        payload: themeMapper(fetchedTheme.findThemeByTenantId),
-      });
-    },
-  });
-
   const contextValue = useMemo(
     () => ({
-      loading,
+      loading: false,
       theme: state,
       setTheme: (theme: DefaultThemeType) => {
         dispatch({ type: "THEME", payload: theme });
@@ -95,7 +83,7 @@ const ThemeContextProvider: FCWithChildren = ({ children }) => {
         });
       },
     }),
-    [get, loading, state]
+    [get, state]
   );
 
   return (

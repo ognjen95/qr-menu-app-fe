@@ -6,25 +6,22 @@ import { ButtonColor, ButtonSize } from "ui-components/src/button/enums";
 import { colors } from "ui-components/src/config/tailwind-config";
 
 import useBuilderPageSelect from "./useBuilderPageSelect";
+import useSaveTheme from "./useSaveTheme";
 import { SectionPage } from "../../../app/context/theme-context/enums";
 
 export type BuilderNavbarProps = {
-  saveThemeLoading: boolean;
-  handleSaveTheme: () => void;
   toogleWebsiteEditor: () => void;
   isWebsiteEditor: boolean;
 };
 
 const BuilderNavbar: FC<BuilderNavbarProps> = ({
-  saveThemeLoading,
-  handleSaveTheme,
   toogleWebsiteEditor,
   isWebsiteEditor,
 }) => {
   const { get } = useSearchParams();
   const selectedPage = (get("page") as SectionPage) || SectionPage.HOME;
-
   const { pageOptions } = useBuilderPageSelect(selectedPage);
+  const { saveThemeLoading, handleSaveTheme } = useSaveTheme();
 
   return (
     <div className="flex items-center justify-between space-x-3 px-5 py-2">
