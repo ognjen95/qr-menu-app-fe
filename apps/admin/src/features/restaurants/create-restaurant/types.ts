@@ -1,3 +1,5 @@
+import { Option } from "ui-components/src/select/types";
+
 export type RestaurantFormModel = {
   name: string;
   description?: string;
@@ -5,4 +7,5 @@ export type RestaurantFormModel = {
   country: string;
   city: string;
   state: string;
+  menuId: Option | null;
 };

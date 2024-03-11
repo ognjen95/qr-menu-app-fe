@@ -12,7 +12,6 @@ const MenuBottomDrawer: FC<MenuBottomDrawerProps> = ({
   alergens = [],
   tags = [],
   colorPallete,
-  buttons,
 }) => {
   const isSmallScreen = useBreakpoints("sm");
 

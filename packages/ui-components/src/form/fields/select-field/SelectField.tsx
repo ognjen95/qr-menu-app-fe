@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from "react";
 import {
   Control,
   FieldPath,
@@ -16,11 +17,10 @@ export type SelectFieldProps<TFormValues extends FieldValues = FieldValues> =
     defaultValue?: string | number;
   };
 
-const SelectField = <TFormValues extends FieldValues = FieldValues>({
-  fieldName,
-  control,
-  ...props
-}: SelectFieldProps<TFormValues>) => {
+const SelectField = <TFormValues extends FieldValues = FieldValues>(
+  { fieldName, control, ...props }: SelectFieldProps<TFormValues>,
+  ref?: ForwardedRef<HTMLDivElement>
+) => {
   const {
     field,
     fieldState: { error },
@@ -34,8 +34,15 @@ const SelectField = <TFormValues extends FieldValues = FieldValues>({
       onChange={(value) =>
         field.onChange(value as PathValue<TFormValues, Path<TFormValues>>)
       }
+      ref={ref}
     />
   );
 };
 
-export default SelectField;
+export default forwardRef(SelectField) as <
+  TFormValues extends FieldValues = FieldValues
+>(
+  props: SelectFieldProps<TFormValues> & {
+    ref?: ForwardedRef<HTMLDivElement>;
+  }
+) => ReturnType<typeof SelectField>;

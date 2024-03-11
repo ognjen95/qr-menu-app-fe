@@ -1,7 +1,11 @@
 import { toast } from "react-toastify";
 import { useForm, useModal } from "ui-components";
 
-import { namedOperations, useUpdateRestaurantMutation } from "~graphql-api";
+import {
+  namedOperations,
+  useGetMenusLazyQuery,
+  useUpdateRestaurantMutation,
+} from "~graphql-api";
 
 import { UpdateRestaurantModalParams } from "./types";
 import {
@@ -13,6 +17,7 @@ import { RestaurantTableModel } from "../restaurants-overview/types";
 
 const useUpdateRestaurant = (restaurants: RestaurantTableModel[]) => {
   const modal = useModal<UpdateRestaurantModalParams>();
+  const [getMenus] = useGetMenusLazyQuery();
 
   const form = useForm({
     defaultValues: DEFAULT_VALUES,
@@ -23,8 +28,14 @@ const useUpdateRestaurant = (restaurants: RestaurantTableModel[]) => {
 
   const [updateRestaurant, { loading }] = useUpdateRestaurantMutation();
 
-  const onUpdate = (id: string) => {
+  const onUpdate = async (id: string) => {
     const restaurant = restaurants.find((rest) => rest.id === id);
+
+    const { data } = await getMenus();
+
+    const thisMenu = data?.menus.edges.find(
+      (menu) => menu.node.id === restaurant?.menuId
+    );
 
     if (restaurant) {
       reset({
@@ -34,6 +45,9 @@ const useUpdateRestaurant = (restaurants: RestaurantTableModel[]) => {
         city: restaurant.location.city,
         state: restaurant.location.state,
         country: restaurant.location.country,
+        menuId: restaurant.menuId
+          ? { label: thisMenu?.node.name, value: restaurant.menuId }
+          : null,
       });
       modal.open({ id });
     }
@@ -46,6 +60,7 @@ const useUpdateRestaurant = (restaurants: RestaurantTableModel[]) => {
           id: modal.params!.id,
           description: data.description,
           name: data.name,
+          menuId: data.menuId?.value.toString() || null,
           location: {
             address: data.address,
             city: data.city,

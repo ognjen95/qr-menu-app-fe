@@ -14,7 +14,7 @@ const Builder: FC = () => {
 
   const { theme, loading } = useFetchAndSetTheme();
 
-  const menuId = "65bcd68784c0415100207b31"; // TODO: get from router
+  const menuId = "65ef19002496ffaa19b7fd93"; // TODO: get from router
 
   return (
     <div className="flex items-start h-screen bg-white overflow-hidden w-full">

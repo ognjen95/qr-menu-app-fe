@@ -14,6 +14,8 @@ const usePublicMenu = (props?: UsePublicMenuProps) => {
   const { menuId } = useParams();
   const { id } = props || {};
 
+  const [selectedChip, setSelectedChip] = useState<string>("");
+
   const { data, loading } = useGetPublicMenuQuery({
     skip: !menuId && !id,
     variables: {
@@ -32,8 +34,6 @@ const usePublicMenu = (props?: UsePublicMenuProps) => {
       data?.publicMenu.menuSections.edges.map((node) => node.node.name) ?? [],
     [data?.publicMenu.menuSections.edges]
   );
-
-  const [selectedChip, setSelectedChip] = useState<string>("");
 
   const ref = useRef<HTMLDivElement>(null);
 

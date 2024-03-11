@@ -27,6 +27,7 @@ const useCreateRestaurant = () => {
             state: data.state,
             country: data.country,
           },
+          menuId: data.menuId?.value.toString() || null,
         },
       },
       refetchQueries: [namedOperations.Query.GetRestaurants],
