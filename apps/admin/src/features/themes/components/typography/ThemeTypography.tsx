@@ -31,7 +31,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.primary,
+          color: theme!.colorPallete?.primary,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -47,7 +47,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.headers,
+          color: theme!.colorPallete?.headers,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -64,7 +64,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.headers,
+          color: theme!.colorPallete?.headers,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -81,7 +81,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.primary,
+          color: theme!.colorPallete?.primary,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -98,7 +98,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.headers,
+          color: theme!.colorPallete?.headers,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -115,7 +115,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.headers.fontFamily,
           fontWeight: typography.headers.weight,
-          color: theme.colorPallete?.headers,
+          color: theme!.colorPallete?.headers,
           fontSize,
           ...removeEmptyFields(style),
         }}
@@ -132,7 +132,7 @@ const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
         style={{
           fontFamily: typography.text.fontFamily,
           fontWeight: typography.text.weight,
-          color: theme.colorPallete?.text,
+          color: theme!.colorPallete?.text,
           fontSize,
           ...removeEmptyFields(style),
         }}

@@ -86,19 +86,19 @@ const MenuSection: FC<MenuSectionProps> = ({
               <div className="flex flex-col flex-1 justify-between overflow-hidden space-y-2 pr-2">
                 <ThemeTypography
                   type={ComponentType.H5}
-                  style={{ color: colorPallete?.primary }}
+                  style={{ color: colorPallete?.text }}
                   props={{
                     value: item.name,
                   }}
                 />
-                <div className="flex flex-col h-10">
+                <div className="flex flex-col max-h-10 overflow-hidden">
                   <ThemeTypography
                     type={ComponentType.P}
                     style={{
                       color: colorPallete?.text,
                       fontWeight: "400",
                       opacity: "0.9",
-                      fontSize: "16px",
+                      fontSize: "14px",
                     }}
                     props={{
                       value: item.description,
@@ -106,7 +106,7 @@ const MenuSection: FC<MenuSectionProps> = ({
                   />
                 </div>
                 <ThemeTypography
-                  type={ComponentType.H6}
+                  type={ComponentType.H5}
                   style={{ color: colorPallete?.primary }}
                   props={{
                     value: item.variants
