@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { CSSProperties } from "react";
 
 import { CHIP_VARIANT_CLASS_MAPPER } from "./constants";
 import { ChipSize, ChipVariant } from "./enums";
@@ -11,6 +12,7 @@ type ChipProps = {
   variant?: ChipVariant;
   onRemove?: () => void;
   onClick?: () => void;
+  style?: CSSProperties;
 };
 
 const Chip = ({
@@ -18,13 +20,15 @@ const Chip = ({
   variant = ChipVariant.DARK,
   text,
   onRemove,
+  style,
   onClick,
 }: ChipProps) => (
   <div
+    style={style}
     onClick={onClick}
     className={clsx(
       "gap-3 py-2 inline-flex justify-center items-center rounded-full min-w-fit",
-      CHIP_VARIANT_CLASS_MAPPER[variant],
+      !style && CHIP_VARIANT_CLASS_MAPPER[variant],
       size,
       { "cursor-pointer hover:opacity-80": onClick }
     )}

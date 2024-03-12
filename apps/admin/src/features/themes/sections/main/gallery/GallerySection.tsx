@@ -4,21 +4,20 @@ import { Section } from "src/app/context/theme-context/types";
 import { useModal } from "ui-components";
 
 import { Carousel } from "../../../../../components/carousel/Carousel";
+import ThemeSection from "../../../components/section-wrapper/ThemeSection";
 
 type GallerySectionProps = {
   sectionData: Section;
 };
 
-const GallerySection: FC<GallerySectionProps> = ({
-  sectionData: { components },
-}) => {
+const GallerySection: FC<GallerySectionProps> = ({ sectionData }) => {
   const modal = useModal<{ index: number }>();
 
   return (
-    <section className="py-[120px]">
-      <div className="flex flex-col items-center max-w-[1170px] mx-auto">
+    <div>
+      <ThemeSection sectionData={sectionData}>
         <div className="w-full grid grid-cols-[repeat(3,_1fr)] auto-rows-max gap-4 h-fit">
-          {components.map((component, index) => (
+          {sectionData.components.map((component, index) => (
             <div
               className="h-[300px] relative"
               key={component.props?.src}
@@ -36,14 +35,16 @@ const GallerySection: FC<GallerySectionProps> = ({
             </div>
           ))}
         </div>
-      </div>
+      </ThemeSection>
       <Carousel
         isOpen={modal.isOpen}
         onClose={() => modal.close()}
         defaultActiveSlide={modal.params?.index ?? 0}
-        imgLinks={components.map((component) => component.props?.src ?? "")}
+        imgLinks={sectionData.components.map(
+          (component) => component.props?.src ?? ""
+        )}
       />
-    </section>
+    </div>
   );
 };
 export type { GallerySectionProps };

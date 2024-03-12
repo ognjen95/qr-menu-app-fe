@@ -51,9 +51,9 @@ const MenuDrawerContent = ({
           />
         )}
       </div>
-      <div className="flex flex-col py-3">
-        {(modal?.params?.variants?.length ?? 0) > 1 &&
-          modal?.params?.variants?.map((variant, index) => (
+      {(modal?.params?.variants?.length ?? 0) > 1 && (
+        <div className="flex flex-col py-3">
+          {modal?.params?.variants?.map((variant, index) => (
             <div className="flex justify-between" key={variant.price}>
               <ThemeTypography
                 type={ComponentType.H6}
@@ -72,7 +72,8 @@ const MenuDrawerContent = ({
               />
             </div>
           ))}
-      </div>
+        </div>
+      )}
       <ThemeTypography
         type={ComponentType.P}
         style={{
@@ -86,21 +87,53 @@ const MenuDrawerContent = ({
       />
     </div>
     {!!alergens.length && (
-      <div className="flex flex-col w-full justify-between space-y-3">
-        <Text color="font-semibold">Alergens</Text>
-        <div className="flex items-center flex-wrap gap-1">
+      <div className="flex flex-col w-full justify-between space-y-3 px-5">
+        <ThemeTypography
+          type={ComponentType.H6}
+          style={{
+            color: colorPallete?.primary,
+          }}
+          props={{
+            value: "Alergens",
+          }}
+        />
+        <div className="flex items-center flex-wrap gap-1 bg-grey-50/10 p-3 rounded-2xl">
           {alergens.map((alergen) => (
-            <Chip variant={ChipVariant.LIGHT} key={alergen} text={alergen} />
+            <Chip
+              variant={ChipVariant.LIGHT}
+              key={alergen}
+              text={alergen}
+              style={{
+                backgroundColor: colorPallete?.primary,
+                color: colorPallete?.text,
+              }}
+            />
           ))}
         </div>
       </div>
     )}
     {!!tags.length && (
-      <div className="flex flex-col w-full justify-between space-y-3">
-        <Text color="font-semibold">Tags</Text>
+      <div className="flex items-center flex-wrap gap-1 bg-grey-50/10 p-3 rounded-2xl">
+        <ThemeTypography
+          type={ComponentType.H6}
+          style={{
+            color: colorPallete?.primary,
+          }}
+          props={{
+            value: "Tags",
+          }}
+        />
         <div className="flex items-center flex-wrap gap-1">
           {tags.map((tag) => (
-            <Chip variant={ChipVariant.OUTLINED} key={tag} text={tag} />
+            <Chip
+              variant={ChipVariant.OUTLINED}
+              key={tag}
+              text={tag}
+              style={{
+                backgroundColor: colorPallete?.primary,
+                color: colorPallete?.text,
+              }}
+            />
           ))}
         </div>
       </div>

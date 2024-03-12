@@ -5,6 +5,7 @@ import ThemeButton from "~features/themes/components/buttons/ThemeButton";
 
 import { ComponentType } from "../../../../../app/context/theme-context/enums";
 import ThemeImage from "../../../components/images/ThemeImage";
+import ThemeSection from "../../../components/section-wrapper/ThemeSection";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 
 type MenuSectionProps = {
@@ -12,98 +13,90 @@ type MenuSectionProps = {
   colorPallete: ColorPallete;
 };
 
-const MenuSection: FC<MenuSectionProps> = ({
-  sectionData: { components },
-  colorPallete,
-}) => (
-  <section
-    className="py-[120px]"
-    style={{ backgroundColor: colorPallete.surface }}
-  >
-    <div className="px-[15px] mx-auto w-[1170px]">
-      <div className="text-center mb-[60px]">
-        <ThemeTypography
-          type={ComponentType.H1}
-          props={components?.[10]?.props}
-          style={components?.[10]?.style}
-        />
+const MenuSection: FC<MenuSectionProps> = ({ sectionData, colorPallete }) => (
+  <ThemeSection colorPallete={colorPallete} sectionData={sectionData}>
+    <div className="text-center mb-[60px]">
+      <ThemeTypography
+        type={ComponentType.H1}
+        props={sectionData?.components?.[10]?.props}
+        style={sectionData?.components?.[10]?.style}
+      />
+    </div>
+    <div className="flex justify-center">
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <ThemeImage
+            className="rounded-md mb-4"
+            component={sectionData?.components?.[0]}
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[1]?.props}
+            style={sectionData?.components?.[1]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[2]?.props}
+            style={sectionData?.components?.[2]?.style}
+          />
+          <div className="mt-[20px]">
+            <ThemeButton
+              style={sectionData?.components?.[9]?.style}
+              props={sectionData?.components?.[9]?.props}
+            />
+          </div>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <ThemeImage
-              className="rounded-md mb-4"
-              component={components?.[0]}
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <ThemeImage
+            className="rounded-md mb-4"
+            component={sectionData?.components?.[3]}
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[4]?.props}
+            style={sectionData?.components?.[4]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[5]?.props}
+            style={sectionData?.components?.[5]?.style}
+          />
+          <div className="mt-[20px]">
+            <ThemeButton
+              style={sectionData?.components?.[9]?.style}
+              props={sectionData?.components?.[9]?.props}
             />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[1]?.props}
-              style={components?.[1]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[2]?.props}
-              style={components?.[2]?.style}
-            />
-            <div className="mt-[20px]">
-              <ThemeButton
-                style={components?.[9]?.style}
-                props={components?.[9]?.props}
-              />
-            </div>
           </div>
         </div>
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <ThemeImage
-              className="rounded-md mb-4"
-              component={components?.[3]}
+      </div>
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <ThemeImage
+            className="rounded-md mb-4"
+            component={sectionData?.components?.[6]}
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[7]?.props}
+            style={sectionData?.components?.[7]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[8]?.props}
+            style={sectionData?.components?.[8]?.style}
+          />
+          <div className="mt-[20px]">
+            <ThemeButton
+              style={sectionData?.components?.[9]?.style}
+              props={sectionData?.components?.[9]?.props}
             />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[4]?.props}
-              style={components?.[4]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[5]?.props}
-              style={components?.[5]?.style}
-            />
-            <div className="mt-[20px]">
-              <ThemeButton
-                style={components?.[9]?.style}
-                props={components?.[9]?.props}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <ThemeImage
-              className="rounded-md mb-4"
-              component={components?.[6]}
-            />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[7]?.props}
-              style={components?.[7]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[8]?.props}
-              style={components?.[8]?.style}
-            />
-            <div className="mt-[20px]">
-              <ThemeButton
-                style={components?.[9]?.style}
-                props={components?.[9]?.props}
-              />
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </ThemeSection>
 );
 
 export default MenuSection;

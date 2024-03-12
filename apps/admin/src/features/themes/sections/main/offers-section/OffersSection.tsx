@@ -8,6 +8,7 @@ import {
 } from "src/app/context/theme-context/types";
 
 import { ComponentType } from "../../../../../app/context/theme-context/enums";
+import ThemeSection from "../../../components/section-wrapper/ThemeSection";
 import ThemeTypography from "../../../components/typography/ThemeTypography";
 
 type OffersSectionProps = {
@@ -17,79 +18,87 @@ type OffersSectionProps = {
 };
 
 const OffersSectionSection: FC<OffersSectionProps> = ({
-  sectionData: { components },
+  sectionData,
   colorPallete,
   typography,
 }) => (
-  <section className="py-[120px]">
-    <div className="px-[15px] mx-auto w-[1170px]">
-      <div
-        className="flex justify-center"
-        // data-aos="fade-up"
-      >
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <FontAwesomeIcon
-              icon={faCoffee}
-              color={components?.[0]?.style?.color ?? colorPallete.primary}
-              size="4x"
-              className="mb-5"
-            />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[1]?.props}
-              style={components?.[1]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[2]?.props}
-              style={components?.[2]?.style}
-            />
-          </div>
+  <ThemeSection
+    colorPallete={colorPallete}
+    sectionData={sectionData}
+    typography={typography}
+  >
+    <div
+      className="flex justify-center"
+      // data-aos="fade-up"
+    >
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <FontAwesomeIcon
+            icon={faCoffee}
+            color={
+              sectionData?.components?.[0]?.style?.color ?? colorPallete.primary
+            }
+            size="4x"
+            className="mb-5"
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[1]?.props}
+            style={sectionData?.components?.[1]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[2]?.props}
+            style={sectionData?.components?.[2]?.style}
+          />
         </div>
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <FontAwesomeIcon
-              icon={faBed}
-              color={components?.[3]?.style?.color ?? colorPallete.primary}
-              size="4x"
-              className="mb-5"
-            />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[4]?.props}
-              style={components?.[4]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[5]?.props}
-              style={components?.[5]?.style}
-            />
-          </div>
+      </div>
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <FontAwesomeIcon
+            icon={faBed}
+            color={
+              sectionData?.components?.[3]?.style?.color ?? colorPallete.primary
+            }
+            size="4x"
+            className="mb-5"
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[4]?.props}
+            style={sectionData?.components?.[4]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[5]?.props}
+            style={sectionData?.components?.[5]?.style}
+          />
         </div>
-        <div className="relative min-h-0 px-[15px] w-1/3">
-          <div className="flex flex-col text-center">
-            <FontAwesomeIcon
-              icon={faCutlery}
-              color={components?.[6]?.style?.color ?? colorPallete.primary}
-              size="4x"
-              className="mb-5"
-            />
-            <ThemeTypography
-              type={ComponentType.H3}
-              props={components?.[7]?.props}
-              style={components?.[7]?.style}
-            />
-            <ThemeTypography
-              type={ComponentType.P}
-              props={components?.[8]?.props}
-              style={components?.[8]?.style}
-            />
-          </div>
+      </div>
+      <div className="relative min-h-0 px-[15px] w-1/3">
+        <div className="flex flex-col text-center">
+          <FontAwesomeIcon
+            icon={faCutlery}
+            color={
+              sectionData?.components?.[6]?.style?.color ?? colorPallete.primary
+            }
+            size="4x"
+            className="mb-5"
+          />
+          <ThemeTypography
+            type={ComponentType.H3}
+            props={sectionData?.components?.[7]?.props}
+            style={sectionData?.components?.[7]?.style}
+          />
+          <ThemeTypography
+            type={ComponentType.P}
+            props={sectionData?.components?.[8]?.props}
+            style={sectionData?.components?.[8]?.style}
+          />
         </div>
       </div>
     </div>
-  </section>
+  </ThemeSection>
 );
 
 export default OffersSectionSection;
