@@ -9,4 +9,11 @@ export type MenuBottomDrawerProps = {
   tags?: string[];
   colorPallete?: DefaultThemeType["colorPallete"];
   buttons?: DefaultThemeType["buttons"];
+  onVariantChange?: (variant: string) => void;
+};
+
+export type OrderUrlItem = {
+  id: string;
+  price: string;
+  qty: string;
 };

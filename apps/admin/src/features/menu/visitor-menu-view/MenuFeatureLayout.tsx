@@ -1,10 +1,12 @@
 import clsx from "clsx";
-import React, { forwardRef, useContext } from "react";
+import React, { forwardRef } from "react";
 import { Loader } from "ui-components";
 import { useModal } from "ui-components/src/modal";
 
 import MenuBottomDrawer from "./MenuBottomDrawer";
 import MenuHeader from "./MenuHeader";
+import OrderBottomNav from "./OrderBottomNav";
+import { useOrderContext } from "../../../app/context/cart-context/CartContext";
 import { useThemeContext } from "../../../app/context/theme-context/ThemeContext";
 import {
   MenuSectionItem,
@@ -43,6 +45,7 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
     const modal = useModal<MenuSectionItem>();
 
     const { theme } = useThemeContext();
+    const { order } = useOrderContext();
 
     if (!theme) return <Loader centered />;
 
@@ -64,7 +67,7 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
           />
         )}
         <div
-          className={clsx({
+          className={clsx("relative", {
             "xs:px-5": !isBuilder,
           })}
         >
@@ -85,6 +88,9 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
               />
             </div>
           ))}
+          {order?.length && (
+            <OrderBottomNav colorPallete={theme?.colorPallete} />
+          )}
         </div>
         <MenuBottomDrawer
           colorPallete={theme?.colorPallete}

@@ -18,7 +18,11 @@ const IconButton: FC<IconButtonProps> = ({
   className,
 }) => (
   <div
-    onClick={iconProps.onClick}
+    onClick={(e) => {
+      e.stopPropagation();
+      if (disabled) return;
+      iconProps?.onClick?.(e);
+    }}
     className={clsx("p-2 rounded-lg", className, {
       "bg-primary-50": isActive,
       "hover:bg-grey-100 cursor-pointer": !disabled,

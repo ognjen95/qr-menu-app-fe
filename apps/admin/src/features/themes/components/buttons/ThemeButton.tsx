@@ -16,9 +16,15 @@ export type ThemeButtonProps = {
   style?: CSSStyle;
   props?: ComponentProps;
   onClick?: () => void;
+  className?: string;
 };
 
-const ThemeButton: FC<ThemeButtonProps> = ({ style, props, onClick }) => {
+const ThemeButton: FC<ThemeButtonProps> = ({
+  style,
+  props,
+  onClick,
+  className,
+}) => {
   const { theme } = useThemeContext();
 
   if (!theme?.buttons) {
@@ -38,7 +44,8 @@ const ThemeButton: FC<ThemeButtonProps> = ({ style, props, onClick }) => {
           "h-12 px-5": theme.buttons.buttonSize === ButtonSize.MEDIUM,
           "h-14 px-6": theme.buttons.buttonSize === ButtonSize.LARGE,
         },
-        "active:scale-95 transition-all duration-300 ease-in-out self-center"
+        "active:scale-95 transition-all duration-300 ease-in-out self-center",
+        className
       )}
       style={{
         backgroundColor:

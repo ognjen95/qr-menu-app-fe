@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import Image from "next/image";
 import { FC, useEffect } from "react";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
+import MenuItem from "./MenuSectionItem";
 import { ComponentType } from "../../../app/context/theme-context/enums";
 import { DefaultThemeType } from "../../../app/context/theme-context/types";
 import useBreakpoints from "../../../hooks/use-breakpoints";
@@ -26,10 +26,10 @@ const MenuSection: FC<MenuSectionProps> = ({
   sectionId,
   selectedChip,
   setSelectedChip,
-  items,
+  items: menuSectionItems,
   modal,
   colorPallete,
-  isBuilder,
+  isBuilder = false,
 }) => {
   const [ref, isvisible] = useIntersectionObserver({
     threshold: 0,
@@ -71,68 +71,15 @@ const MenuSection: FC<MenuSectionProps> = ({
           "grid grid-cols-1 gap-2": isBuilder,
         })}
       >
-        {items.map((item) => (
-          <div
-            onClick={() => modal.open(item)}
+        {menuSectionItems.map((item) => (
+          <MenuItem
             key={item.id}
-            className={clsx({
-              "rounded-xl": !isMobile && !isBuilder,
-            })}
-            style={{
-              backgroundColor: colorPallete?.surface,
-            }}
-          >
-            <div className="flex items-center justify-between pl-4 pr-2 py-2">
-              <div className="flex flex-col flex-1 justify-between overflow-hidden space-y-2 pr-2">
-                <ThemeTypography
-                  type={ComponentType.H5}
-                  style={{ color: colorPallete?.text }}
-                  props={{
-                    value: item.name,
-                  }}
-                />
-                <div className="flex flex-col max-h-10 overflow-hidden">
-                  <ThemeTypography
-                    type={ComponentType.P}
-                    style={{
-                      color: colorPallete?.text,
-                      fontWeight: "400",
-                      opacity: "0.9",
-                      fontSize: "14px",
-                    }}
-                    props={{
-                      value: item.description,
-                    }}
-                  />
-                </div>
-                <ThemeTypography
-                  type={ComponentType.H5}
-                  style={{ color: colorPallete?.primary }}
-                  props={{
-                    value: item.variants
-                      .map((variant) => `${variant.price}$`)
-                      .join(" • "),
-                  }}
-                />
-              </div>
-              <div>
-                <div className="shadow border border-gray-200 rounded-xl overflow-hidden relative h-[100px] w-[100px]">
-                  <Image
-                    alt="Menu item"
-                    quality={100}
-                    priority
-                    loading="eager"
-                    objectFit="cover"
-                    objectPosition="center"
-                    blurDataURL="/images/no-content.png"
-                    placeholder="blur"
-                    fill
-                    src={item.image || "/images/no-content.png"}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+            item={item}
+            colorPallete={colorPallete!}
+            modal={modal}
+            isMobile={isMobile}
+            isBuilder={isBuilder}
+          />
         ))}
       </div>
     </div>

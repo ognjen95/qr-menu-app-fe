@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { Chip, Text } from "ui-components";
+import { Chip } from "ui-components";
 import { ChipVariant } from "ui-components/src/chip/enums";
 
 import { MenuBottomDrawerProps } from "./types";
+import Variants from "./Variants";
 import { ComponentType } from "../../../graphql-api";
 import ThemeTypography from "../../themes/components/typography/ThemeTypography";
 
@@ -11,6 +12,7 @@ const MenuDrawerContent = ({
   tags = [],
   modal,
   colorPallete,
+  onVariantChange,
 }: MenuBottomDrawerProps) => (
   <div
     className="flex flex-col items-center space-y-5 flex-1 overflow-y-auto"
@@ -53,25 +55,11 @@ const MenuDrawerContent = ({
       </div>
       {(modal?.params?.variants?.length ?? 0) > 1 && (
         <div className="flex flex-col py-3">
-          {modal?.params?.variants?.map((variant, index) => (
-            <div className="flex justify-between" key={variant.price}>
-              <ThemeTypography
-                type={ComponentType.H6}
-                props={{
-                  value: `${index + 1}. ${variant.name ?? ""}`,
-                }}
-              />
-              <ThemeTypography
-                type={ComponentType.H5}
-                style={{
-                  color: colorPallete?.primary,
-                }}
-                props={{
-                  value: `${variant.price.toString()}$`,
-                }}
-              />
-            </div>
-          ))}
+          <Variants
+            variants={modal.params!.variants}
+            colorPallete={colorPallete!}
+            onChange={onVariantChange}
+          />
         </div>
       )}
       <ThemeTypography
