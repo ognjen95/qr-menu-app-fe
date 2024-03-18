@@ -9,7 +9,7 @@ import { removeEmptyFields } from "../../../../common/helpers";
 import { ThemeComponentProps } from "../types";
 
 const ThemeTypography: FC<ThemeComponentProps<ComponentTypeUnion>> = ({
-  type,
+  type = ComponentType.P,
   className,
   style,
   props,

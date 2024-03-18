@@ -14,15 +14,19 @@ const OrderContext = createContext<{
   order?: OrderUrlItem[];
   setOrder: (newOrder: OrderUrlItem[]) => void;
   resetOrder: () => void;
+  total: number;
 }>({
   order: [],
   setOrder: () => {},
   resetOrder: () => {},
+  total: 0,
 });
 
 const OrderContextProvider: FCWithChildren = ({ children }) => {
   const [order, setOrder] = useState<OrderUrlItem[]>();
   const { getOrder, setOrder: setOrderLocalStorage } = useOrderLocalStorage();
+  const total =
+    order?.reduce((acc, item) => acc + +item.price * +item.qty, 0) ?? 0;
 
   useEffect(() => {
     if (!order) {
@@ -33,6 +37,7 @@ const OrderContextProvider: FCWithChildren = ({ children }) => {
   const contextValue = useMemo(
     () => ({
       order,
+      total,
       setOrder: (newOrder: OrderUrlItem[]) => {
         setOrder(newOrder);
         setOrderLocalStorage(newOrder);
@@ -42,7 +47,7 @@ const OrderContextProvider: FCWithChildren = ({ children }) => {
         setOrderLocalStorage([]);
       },
     }),
-    [order, setOrderLocalStorage]
+    [order, setOrderLocalStorage, total]
   );
 
   return (

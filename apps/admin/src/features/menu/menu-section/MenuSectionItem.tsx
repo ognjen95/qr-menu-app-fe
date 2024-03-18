@@ -103,6 +103,7 @@ const MenuItem = ({
         </div>
       </div>
       {!!itemVariants?.length &&
+        isMobile &&
         itemVariants.map((orderVariant, index) => (
           <SelectedOptions
             key={orderVariant.id}

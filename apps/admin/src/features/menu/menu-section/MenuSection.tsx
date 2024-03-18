@@ -19,6 +19,7 @@ export type MenuSectionProps = {
   setSelectedChip: (chip: string) => void;
   items: MenuSectionItem[];
   isBuilder?: boolean;
+  isMobile?: boolean;
 };
 
 const MenuSection: FC<MenuSectionProps> = ({
@@ -30,13 +31,12 @@ const MenuSection: FC<MenuSectionProps> = ({
   modal,
   colorPallete,
   isBuilder = false,
+  isMobile = false,
 }) => {
   const [ref, isvisible] = useIntersectionObserver({
     threshold: 0,
     rootMargin: "0px 90% -90% 0px",
   });
-
-  const isMobile = useBreakpoints("xs");
 
   useEffect(() => {
     if (!isMobile) return;

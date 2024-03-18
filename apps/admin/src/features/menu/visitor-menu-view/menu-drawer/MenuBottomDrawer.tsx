@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from "react";
 
 import MenuDrawerContent from "./MenuDrawerContent";
 import OrderButton from "./OrderButton";
-import { MenuBottomDrawerProps } from "./types";
-import BottomDrawer from "../../../components/drawers/BottomDrawer";
-import RightDrawer from "../../../components/drawers/RightDrawer";
-import useBreakpoints from "../../../hooks/use-breakpoints";
+import BottomDrawer from "../../../../components/drawers/BottomDrawer";
+import RightDrawer from "../../../../components/drawers/RightDrawer";
+import useBreakpoints from "../../../../hooks/use-breakpoints";
+import { MenuBottomDrawerProps } from "../types";
 
 const MenuBottomDrawer: FC<MenuBottomDrawerProps> = ({
   modal,

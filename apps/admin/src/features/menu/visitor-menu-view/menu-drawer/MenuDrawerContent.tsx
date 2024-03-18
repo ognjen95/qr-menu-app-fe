@@ -2,10 +2,10 @@ import Image from "next/image";
 import { Chip } from "ui-components";
 import { ChipVariant } from "ui-components/src/chip/enums";
 
-import { MenuBottomDrawerProps } from "./types";
-import Variants from "./Variants";
-import { ComponentType } from "../../../graphql-api";
-import ThemeTypography from "../../themes/components/typography/ThemeTypography";
+import { ComponentType } from "../../../../graphql-api";
+import ThemeTypography from "../../../themes/components/typography/ThemeTypography";
+import { MenuBottomDrawerProps } from "../types";
+import Variants from "../Variants";
 
 const MenuDrawerContent = ({
   alergens = [],

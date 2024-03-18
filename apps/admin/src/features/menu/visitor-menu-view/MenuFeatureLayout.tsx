@@ -3,11 +3,13 @@ import React, { forwardRef } from "react";
 import { Loader } from "ui-components";
 import { useModal } from "ui-components/src/modal";
 
-import MenuBottomDrawer from "./MenuBottomDrawer";
+import MenuBottomDrawer from "./menu-drawer/MenuBottomDrawer";
 import MenuHeader from "./MenuHeader";
+import OrderRightCard from "./order-right-card/OrderRightCard";
 import OrderBottomNav from "./OrderBottomNav";
 import { useOrderContext } from "../../../app/context/cart-context/CartContext";
 import { useThemeContext } from "../../../app/context/theme-context/ThemeContext";
+import useBreakpoints from "../../../hooks/use-breakpoints";
 import {
   MenuSectionItem,
   MenuSection as MenuSectionType,
@@ -45,7 +47,30 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
     const modal = useModal<MenuSectionItem>();
 
     const { theme } = useThemeContext();
-    const { order } = useOrderContext();
+    const { order, total } = useOrderContext();
+    const items = menu?.menuSections.flatMap((section) => section.items);
+
+    const orderItems =
+      order?.map((ord) => {
+        const item = items.find((i) => i.id === ord.id);
+        const variant = item?.variants.find(
+          (v) => v.price.toString() === ord.price
+        );
+
+        return {
+          selectedItem: item!,
+          selectedVariant: variant?.name || "",
+          id: ord.id,
+          name: variant?.name || item?.name || "",
+          price: variant?.price ? +variant.price : 0,
+          qty: +ord.qty,
+          total: +(variant?.price ?? 0) * +ord.qty,
+        };
+      }) ?? [];
+
+    const isSmallScreen = useBreakpoints("sm");
+    const isExtraSmallScreen = useBreakpoints("xs");
+    const isMobile = isSmallScreen || isExtraSmallScreen;
 
     if (!theme) return <Loader centered />;
 
@@ -68,27 +93,38 @@ const MenuFeatureLayout = forwardRef<HTMLDivElement, MenuFeatureLayoutProps>(
         )}
         <div
           className={clsx("relative", {
-            "xs:px-5": !isBuilder,
+            "xs:px-5": !isBuilder || isMobile,
+            "px-5 flex space-x-10": !isMobile && !isBuilder,
           })}
         >
-          {menu?.menuSections.map((section) => (
-            <div
-              ref={selectedChip === section.name ? ref : undefined}
-              key={section.id}
-            >
-              <MenuSection
-                isBuilder={isBuilder}
-                colorPallete={theme?.colorPallete}
-                sectionId={section.id}
-                section={section.name}
-                selectedChip={selectedChip}
-                modal={modal}
-                items={section.items}
-                setSelectedChip={setSelectedChip}
-              />
-            </div>
-          ))}
-          {order?.length && (
+          <div>
+            {menu?.menuSections.map((section) => (
+              <div
+                ref={selectedChip === section.name ? ref : undefined}
+                key={section.id}
+              >
+                <MenuSection
+                  isMobile={isMobile}
+                  isBuilder={isBuilder}
+                  colorPallete={theme?.colorPallete}
+                  sectionId={section.id}
+                  section={section.name}
+                  selectedChip={selectedChip}
+                  modal={modal}
+                  items={section.items}
+                  setSelectedChip={setSelectedChip}
+                />
+              </div>
+            ))}
+          </div>
+          {!isMobile && !isBuilder && (
+            <OrderRightCard
+              colorPallete={theme?.colorPallete}
+              orders={orderItems}
+              total={total}
+            />
+          )}
+          {order?.length && isMobile && (
             <OrderBottomNav colorPallete={theme?.colorPallete} />
           )}
         </div>

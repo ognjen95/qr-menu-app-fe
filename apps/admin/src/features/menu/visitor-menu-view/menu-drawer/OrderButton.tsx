@@ -1,11 +1,11 @@
 import { IconButton, IconType } from "ui-components";
 import { UseModalReturn } from "ui-components/src/modal/useModal";
 
-import useOrder from "./useOrder";
-import { ColorPallete, ComponentType } from "../../../graphql-api";
-import ThemeButton from "../../themes/components/buttons/ThemeButton";
-import ThemeTypography from "../../themes/components/typography/ThemeTypography";
-import { MenuSectionItem } from "../menu-overview/types";
+import { ColorPallete, ComponentType } from "../../../../graphql-api";
+import ThemeButton from "../../../themes/components/buttons/ThemeButton";
+import ThemeTypography from "../../../themes/components/typography/ThemeTypography";
+import { MenuSectionItem } from "../../menu-overview/types";
+import useOrder from "../useOrder";
 
 const OrderButton = ({
   colorPallete,
